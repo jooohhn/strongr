@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Button } from 'reactstrap';
 import { APP_NAME } from '../../../shared/config';
 
 const HomePage = () =>
@@ -13,6 +14,7 @@ const HomePage = () =>
       ]}
     />
     <h1>At Home Page</h1>
+    <Button color="danger">Danger!</Button>
   </div>);
 
 export default HomePage;

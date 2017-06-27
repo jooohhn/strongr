@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App';
 import { APP_CONTAINER_SELECTOR } from '../shared/config';

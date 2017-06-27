@@ -21,8 +21,10 @@ export default {
       { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [
+          {
+            loader: 'style-loader'
+          },
           {
             loader: 'postcss-loader'
           }
@@ -38,7 +40,7 @@ export default {
   ],
   devtool: isProd ? false : 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.css']
   },
   devServer: {
     // port for dev server
