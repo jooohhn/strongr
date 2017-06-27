@@ -1,0 +1,28 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": [
+		"airbnb",
+		"plugin:flowtype/recommended"
+	],
+	"plugins": [
+		"flowtype",
+		"compat"
+	],
+	"rules": {
+		"no-unexpected-multiline": 2,
+		"compat/compat": 2,
+		"react/sort-comp": ["error", {
+			"order": ["type-annotations", "constructor", "static-methods", "everything-else", "lifecycle", "render"]
+		}],
+		"comma-dangle": ["error", "never"],
+		"no-tabs": 0,
+		"react/jsx-wrap-multilines": ["error", {"declaration": false, "assignment": false}]
+	},
+	"settings": {
+		"polyfills": ["fetch"]
+	}
+}
