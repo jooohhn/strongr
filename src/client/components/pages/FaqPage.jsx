@@ -3,18 +3,18 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const title = 'Page Not Found';
+const title = 'F.A.Q.';
 
-const NotFoundPage = () =>
+const AboutPage = () =>
   (<div>
     <Helmet
       title={title}
       meta={[
-        { name: 'description', content: 'Route not found' },
+        { name: 'description', content: 'Frequently Asked Questions' },
         { property: 'og:title', content: title }
       ]}
     />
-    <h1>At Not Found</h1>
+    <h1>At FAQ Page</h1>
   </div>);
 
-export default NotFoundPage;
+export default AboutPage;

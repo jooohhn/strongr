@@ -2,21 +2,19 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import Message from '../../components/Message';
 
 const title = 'Hello Page';
 
-const HelloPage = () =>
+const AboutPage = () =>
   (<div>
     <Helmet
       title={title}
       meta={[
-        { name: 'description', content: 'A page to say hello' },
+        { name: 'description', content: 'About Strongr.io' },
         { property: 'og:title', content: title }
       ]}
     />
-    <h1>At HelloPage</h1>
-    <Message message="Hello World" />
+    <h1>At About page</h1>
   </div>);
 
-export default HelloPage;
+export default AboutPage;

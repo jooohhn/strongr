@@ -9,7 +9,10 @@ const HomePage = () =>
   (<div>
     <Helmet
       meta={[
-        { name: 'description', content: 'At HomePage of Hello App' },
+        {
+          name: 'description',
+          content: "Calculate 1RM's and Workout Programs"
+        },
         { property: 'og:title', content: APP_NAME }
       ]}
     />
