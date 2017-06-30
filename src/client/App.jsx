@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Switch } from 'react-router';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import { APP_NAME } from '../shared/config';
 import NavMenu from './containers/NavMenu';
@@ -13,7 +13,8 @@ import NotFoundPage from './components/pages/NotFoundPage';
 import {
   HOME_PAGE_ROUTE,
   ABOUT_PAGE_ROUTE,
-  FAQ_PAGE_ROUTE
+  FAQ_PAGE_ROUTE,
+  ROOT_ROUTE
 } from '../shared/routes';
 
 const App = () =>
@@ -21,7 +22,12 @@ const App = () =>
     <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
     <NavMenu />
     <Switch>
-      <Route exact path={HOME_PAGE_ROUTE} component={HomePage} />
+      <Route
+        exact
+        path={ROOT_ROUTE}
+        render={() => <Redirect to={HOME_PAGE_ROUTE} />}
+      />
+      <Route path={HOME_PAGE_ROUTE} component={HomePage} />
       <Route path={FAQ_PAGE_ROUTE} component={FaqPage} />
       <Route path={ABOUT_PAGE_ROUTE} component={AboutPage} />
       <Route component={NotFoundPage} />

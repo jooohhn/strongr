@@ -2,6 +2,7 @@
 .*/node_modules/fbjs/.*
 .*/node_modules/stylelint/.*
 .*/node_modules/babel-plugin-flow-runtime/.*
+.*/node_modules/styled-components/.*
 .*/release/.*
 .*/git/.*
 

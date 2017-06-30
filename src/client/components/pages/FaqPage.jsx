@@ -15,6 +15,7 @@ const AboutPage = () =>
       ]}
     />
     <h1>At FAQ Page</h1>
+    - Sources used
   </div>);
 
 export default AboutPage;

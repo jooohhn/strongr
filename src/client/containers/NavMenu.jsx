@@ -35,7 +35,7 @@ export default class NavMenu extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" light toggleable>
+        <Navbar color="inverse" inverse toggleable>
           <NavbarToggler right onClick={this.toggle} />
           <NavbarBrand tag={Link} to="/">
             {APP_NAME}
@@ -48,11 +48,7 @@ export default class NavMenu extends React.Component {
                 { route: ABOUT_PAGE_ROUTE, label: 'About' }
               ].map(link =>
                 (<NavItem>
-                  <NavLink
-                    activeClassName="active"
-                    tag={RRNavLink}
-                    to={link.route}
-                  >
+                  <NavLink tag={RRNavLink} to={link.route}>
                     {link.label}
                   </NavLink>
                 </NavItem>)

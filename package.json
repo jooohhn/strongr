@@ -69,6 +69,7 @@
 		"react-router-dom": "^4.1.1",
 		"reactstrap": "^4.6.2",
 		"style-loader": "^0.18.2",
+		"styled-components": "^2.1.0",
 		"stylefmt": "^6.0.0",
 		"stylelint": "^7.12.0"
 	}
