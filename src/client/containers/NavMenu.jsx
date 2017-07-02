@@ -47,7 +47,7 @@ export default class NavMenu extends React.Component {
                 { route: FAQ_PAGE_ROUTE, label: 'FAQ' },
                 { route: ABOUT_PAGE_ROUTE, label: 'About' }
               ].map(link =>
-                (<NavItem>
+                (<NavItem key={link.route}>
                   <NavLink tag={RRNavLink} to={link.route}>
                     {link.label}
                   </NavLink>

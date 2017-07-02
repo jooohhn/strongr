@@ -2,18 +2,21 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Button } from 'reactstrap';
+import { Button, Container, Row, Col } from 'reactstrap';
+
 import { APP_NAME } from '../../../shared/config';
 import DataWrapper from '../DataWrapper';
 import TableWrapper from '../TableWrapper';
-import type { ormFormulaType } from '../../types';
+import FormWrapper from '../FormWrapper';
+import type { ormFormulaType, programTemplateType } from '../../types';
 
 export default class HomePage extends React.Component {
   state: {
     gender: 'male' | 'female',
     ormFormula: ormFormulaType,
     units: 'lbs' | 'kg',
-    view: 'data' | 'table'
+    view: 'data' | 'table',
+    programTemplate: programTemplateType
   };
 
   constructor(props: {}) {
@@ -23,7 +26,8 @@ export default class HomePage extends React.Component {
       // @TODO: Have units be based on user location
       ormFormula: 'Epley',
       units: 'lbs',
-      view: 'data'
+      view: 'data',
+      programTemplate: '5/3/1'
     };
   }
 
@@ -39,16 +43,13 @@ export default class HomePage extends React.Component {
             { property: 'og:title', content: APP_NAME }
           ]}
         />
-        <h1>At Home Page</h1>
-        {this.state.view === 'data' ? <DataWrapper /> : <TableWrapper />}
-        <Button
-          onClick={() =>
-            (this.state.view === 'data'
-              ? this.setState({ view: 'table' })
-              : this.setState({ view: 'data' }))}
-        >
-          Viewing {this.state.view}
-        </Button>
+        <Container fluid style={{ marginTop: '2vh' }}>
+          <Row>
+            <Col xs="12" sm="12" md="3" lg="3" xl="3">
+              <FormWrapper />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

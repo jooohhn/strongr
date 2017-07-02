@@ -4,6 +4,7 @@ import React from 'react';
 import { Switch } from 'react-router';
 import { Route, Redirect } from 'react-router-dom';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 import { APP_NAME } from '../shared/config';
 import NavMenu from './containers/NavMenu';
 import HomePage from './components/pages/HomePage';
@@ -16,9 +17,14 @@ import {
   FAQ_PAGE_ROUTE,
   ROOT_ROUTE
 } from '../shared/routes';
+import { BACKGROUND_COLOR } from './colors';
 
+const GlobalDiv = styled.div`
+  min-height: 100vh;
+  background-color: ${BACKGROUND_COLOR};
+`;
 const App = () =>
-  (<div>
+  (<GlobalDiv>
     <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
     <NavMenu />
     <Switch>
@@ -32,6 +38,6 @@ const App = () =>
       <Route path={ABOUT_PAGE_ROUTE} component={AboutPage} />
       <Route component={NotFoundPage} />
     </Switch>
-  </div>);
+  </GlobalDiv>);
 
 export default App;

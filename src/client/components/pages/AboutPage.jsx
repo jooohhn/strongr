@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Container, Row, Col } from 'reactstrap';
 
 const title = 'Hello Page';
 
@@ -14,7 +15,11 @@ const AboutPage = () =>
         { property: 'og:title', content: title }
       ]}
     />
-    <h1>At About page</h1>
+    <Container fluid style={{ marginTop: '2vh' }}>
+      <Row>
+        <h3>About Page</h3>
+      </Row>
+    </Container>
   </div>);
 
 export default AboutPage;

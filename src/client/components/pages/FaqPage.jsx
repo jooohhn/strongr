@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Container, Row, Col } from 'reactstrap';
 
 const title = 'F.A.Q.';
 
@@ -14,8 +15,12 @@ const AboutPage = () =>
         { property: 'og:title', content: title }
       ]}
     />
-    <h1>At FAQ Page</h1>
-    - Sources used
+    <Container fluid style={{ marginTop: '2vh' }}>
+      <Row>
+        <h3>FAQ Page</h3>
+        -Sources Used
+      </Row>
+    </Container>
   </div>);
 
 export default AboutPage;

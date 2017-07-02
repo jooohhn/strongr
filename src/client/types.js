@@ -6,3 +6,5 @@ export type ormFormulaType =
   | 'Lombardi'
   | 'Mayhew et al.'
   | "O'Conner et al.";
+
+export type programTemplateType = '5/3/1';
