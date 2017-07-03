@@ -8,3 +8,5 @@ export type ormFormulaType =
   | "O'Conner et al.";
 
 export type programTemplateType = '5/3/1';
+
+export type liftType = 'Bench Press' | 'Squat' | 'Deadlift';

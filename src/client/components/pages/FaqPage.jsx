@@ -15,10 +15,11 @@ const AboutPage = () =>
         { property: 'og:title', content: title }
       ]}
     />
-    <Container fluid style={{ marginTop: '1.5vh' }}>
+    <Container fluid style={{ marginTop: '1.25vh' }}>
       <Row>
         <h3>FAQ Page</h3>
-        -Sources Used
+        <p>-Sources used</p>
+        <p>-How are ORMs calculated</p>
       </Row>
     </Container>
   </div>);
