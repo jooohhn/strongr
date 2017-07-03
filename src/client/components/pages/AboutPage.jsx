@@ -4,7 +4,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 
-const title = 'Hello Page';
+const title = 'About';
 
 const AboutPage = () =>
   (<div>
@@ -15,7 +15,7 @@ const AboutPage = () =>
         { property: 'og:title', content: title }
       ]}
     />
-    <Container fluid style={{ marginTop: '2vh' }}>
+    <Container fluid style={{ marginTop: '1.5vh' }}>
       <Row>
         <h3>About Page</h3>
       </Row>

@@ -15,7 +15,7 @@ const NotFoundPage = () =>
         { property: 'og:title', content: title }
       ]}
     />
-    <Container fluid style={{ marginTop: '2vh' }}>
+    <Container fluid style={{ marginTop: '1.5vh' }}>
       <Row>
         <h3>404 Page</h3>
       </Row>

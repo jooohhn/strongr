@@ -2,19 +2,27 @@ import React from 'react';
 import { NavLink as RRNavLink, Link } from 'react-router-dom';
 import {
   Collapse,
-  Navbar,
+  Navbar as UntsyledNavbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink
 } from 'reactstrap';
+import styled from 'styled-components';
 import {
   HOME_PAGE_ROUTE,
   ABOUT_PAGE_ROUTE,
   FAQ_PAGE_ROUTE
 } from '../../shared/routes';
 import { APP_NAME } from '../../shared/config';
+import { BACKGROUND_COLOR, NAV_COLOR } from '../colors';
+
+// @ TODO: These CSS properties aren't given priority. Find out why
+const StyledNavbar = styled(UntsyledNavbar)`
+	 background-color:${NAV_COLOR};
+	 color: ${BACKGROUND_COLOR} !important
+`;
 
 export default class NavMenu extends React.Component {
   constructor(props) {
@@ -35,7 +43,7 @@ export default class NavMenu extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="inverse" inverse toggleable>
+        <StyledNavbar inverse toggleable>
           <NavbarToggler right onClick={this.toggle} />
           <NavbarBrand tag={Link} to="/">
             {APP_NAME}
@@ -55,7 +63,7 @@ export default class NavMenu extends React.Component {
               )}
             </Nav>
           </Collapse>
-        </Navbar>
+        </StyledNavbar>
       </div>
     );
   }

@@ -43,7 +43,7 @@ export default class HomePage extends React.Component {
             { property: 'og:title', content: APP_NAME }
           ]}
         />
-        <Container fluid style={{ marginTop: '2vh' }}>
+        <Container fluid style={{ marginTop: '1.5vh' }}>
           <Row>
             <Col xs="12" sm="12" md="3" lg="3" xl="3">
               <FormWrapper />

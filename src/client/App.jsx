@@ -6,7 +6,7 @@ import { Route, Redirect } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { APP_NAME } from '../shared/config';
-import NavMenu from './containers/NavMenu';
+import UnstyledNavMenu from './containers/NavMenu';
 import HomePage from './components/pages/HomePage';
 import FaqPage from './components/pages/FaqPage';
 import AboutPage from './components/pages/AboutPage';
@@ -23,10 +23,15 @@ const GlobalDiv = styled.div`
   min-height: 100vh;
   background-color: ${BACKGROUND_COLOR};
 `;
+
+const StyledNavMenu = styled(UnstyledNavMenu)`
+	 background-color: red;
+`;
+
 const App = () =>
   (<GlobalDiv>
     <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
-    <NavMenu />
+    <StyledNavMenu />
     <Switch>
       <Route
         exact

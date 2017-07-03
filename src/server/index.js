@@ -15,7 +15,7 @@ app.use(STATIC_PATH, express.static('dist'));
 // For static files
 app.use(STATIC_PATH, express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.send(renderApp());
 });
 

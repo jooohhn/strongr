@@ -15,7 +15,7 @@ const AboutPage = () =>
         { property: 'og:title', content: title }
       ]}
     />
-    <Container fluid style={{ marginTop: '2vh' }}>
+    <Container fluid style={{ marginTop: '1.5vh' }}>
       <Row>
         <h3>FAQ Page</h3>
         -Sources Used
