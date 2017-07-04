@@ -6,7 +6,6 @@ import {
   FormGroup as UnstlyedFormGroup,
   Label,
   Input,
-  FormText,
   Container,
   Row,
   Col
@@ -54,7 +53,7 @@ const FormWrapper = () =>
           <Row>
             <Col xs="7" sm="7" md="7" lg="7" xl="7">
               <Label for="weightInput">Weight</Label>
-              <Input type="text" name="Weight" id="weightInput" />
+              <Input type="number" name="Weight" id="weightInput" />
             </Col>
             <Col xs="5" sm="5" md="5" lg="5" xl="5">
               <Label for="unitInput">Units</Label>
@@ -74,7 +73,9 @@ const FormWrapper = () =>
           <option>McGlothin</option>
           <option>Lombardi</option>
           <option>Mayhew et al.</option>
-          <option>O'Conner et al.</option>
+          <option>
+            {"O'Conner et al."}
+          </option>
         </Input>
       </FormGroup>
       <FormGroup>

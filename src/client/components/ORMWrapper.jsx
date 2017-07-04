@@ -12,7 +12,7 @@ const lifts = ['Bench Press', 'Squat', 'Deadlift'];
 const ORMWrapper = () =>
   (<div>
     {lifts.map(lift =>
-      (<CardWrapper>
+      (<CardWrapper key={lift}>
         <ORMCard lift={lift} />{' '}
       </CardWrapper>)
     )}

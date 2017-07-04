@@ -2,10 +2,10 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 import { APP_NAME } from '../../../shared/config';
-import ScheduleWrapper from '../ScheduleWrapper';
+// import ScheduleWrapper from '../ScheduleWrapper';
 import ORMWrapper from '../ORMWrapper';
 import FormWrapper from '../FormWrapper';
 import type { ormFormulaType, programTemplateType } from '../../types';
@@ -45,10 +45,10 @@ export default class HomePage extends React.Component {
         />
         <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
-            <Col xs="12" sm="12" md="3" lg="3" xl="3">
+            <Col xs="12" sm="12" md="5" lg="4" xl="3">
               <FormWrapper />
             </Col>
-            <Col xs="12" sm="12" md="9" lg="9" xl="9">
+            <Col xs="12" sm="12" md="7" lg="8" xl="9">
               <ORMWrapper />
             </Col>
           </Row>

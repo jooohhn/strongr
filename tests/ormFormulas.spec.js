@@ -1,7 +1,6 @@
 /* eslint no-restricted-syntax: 0 */
 import ormFormulas from '../src/client/ORMFormulas';
 
-
 describe('One Rep Max Formulas', () => {
   // beforeAll(async () => {
 
@@ -22,6 +21,7 @@ describe('One Rep Max Formulas', () => {
       expect(epley(5, 205)).toBe(239);
     });
 
+    // prettier-ignore
     it('Testing Bad Input', async () => {
       const { epley } = ormFormulas;
       expect(() => { epley(0, 175); }).toThrow();

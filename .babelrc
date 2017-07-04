@@ -2,7 +2,8 @@
   "presets": [
     "env",
     "flow",
-    "react"
+    "react",
+		"stage-0"
   ],
   "plugins": [
     "flow-react-proptypes"
