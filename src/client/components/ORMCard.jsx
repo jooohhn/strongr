@@ -17,7 +17,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import { SECONDARY_COLOR } from '../colors';
-import { liftType } from '../types';
+import type { liftType } from '../types';
 
 const StyledProgress = styled(Progress)`
 	background-color: ${SECONDARY_COLOR}
