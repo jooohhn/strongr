@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 
 import { APP_NAME } from '../../../shared/config';
-// import ScheduleWrapper from '../ScheduleWrapper';
+import ScheduleWrapper from '../ScheduleWrapper';
 import ORMWrapper from '../ORMWrapper';
 import FormWrapper from '../FormWrapper';
 import type { ormFormulaType, programTemplateType } from '../../types';
@@ -24,14 +24,23 @@ export default class HomePage extends React.Component {
     this.state = {
       gender: 'male',
       // @TODO: Have units be based on user location
-      ormFormula: 'Epley',
+      ormFormula: 'epley',
       units: 'lbs',
       programTemplate: '5/3/1',
       view: 'data'
     };
   }
 
+  handleViewChange = () => {
+    if (this.state.view === 'data') {
+      this.setState({ view: 'table' });
+    } else if (this.state.view === 'table') {
+      this.setState({ view: 'data' });
+    } else throw new Error('this.state.view is neither table or data');
+  };
+
   render() {
+    const { view, ormFormula } = this.state;
     return (
       <div>
         <Helmet
@@ -46,10 +55,11 @@ export default class HomePage extends React.Component {
         <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
             <Col xs="12" sm="12" md="5" lg="4" xl="3">
-              <FormWrapper />
+              <FormWrapper handleViewChange={this.handleViewChange} />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="9">
-              <ORMWrapper />
+              {(view === 'data' && <ORMWrapper ormFormula={ormFormula} />) ||
+                <ScheduleWrapper />}
             </Col>
           </Row>
         </Container>

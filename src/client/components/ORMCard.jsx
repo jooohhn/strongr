@@ -16,7 +16,7 @@ import {
 import styled from 'styled-components';
 import { SECONDARY_COLOR } from '../colors';
 import ormFormulas from '../ORMFormulas';
-import type { liftType } from '../types';
+import type { liftType, ormFormulaType } from '../types';
 
 const StyledProgress = styled(UnstyledProgress)`
 	background-color: ${SECONDARY_COLOR}
@@ -39,7 +39,8 @@ const Alert = styled.span`
 `;
 
 type Props = {
-  lift: liftType
+  lift: liftType,
+  ormFormula: ormFormulaType
 };
 
 type State = {
@@ -66,8 +67,10 @@ export default class ORMCard extends React.Component {
     }
     this.setState({ reps: e.target.value }, () => {
       const { reps, weight } = this.state;
+      const { ormFormula } = this.props;
       if (reps !== '' && weight !== '') {
-        this.setState({ orm: ormFormulas.epley(reps, weight) });
+        // $FlowFixMe @ TODO: Define the other ormFormulas
+        this.setState({ orm: ormFormulas[ormFormula](reps, weight) });
       } else {
         this.setState({ orm: '?' });
       }
@@ -80,8 +83,10 @@ export default class ORMCard extends React.Component {
     }
     this.setState({ weight: e.target.value }, () => {
       const { reps, weight } = this.state;
+      const { ormFormula } = this.props;
       if (reps !== '' && weight !== '') {
-        this.setState({ orm: ormFormulas.epley(reps, weight) });
+        // $FlowFixMe @ TODO: Define the other ormFormulas
+        this.setState({ orm: ormFormulas[ormFormula](reps, weight) });
       } else {
         this.setState({ orm: '?' });
       }

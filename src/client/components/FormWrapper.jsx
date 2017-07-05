@@ -38,7 +38,12 @@ const Form = styled(UnstyledForm)`
 	border-radius: .25rem;
 `;
 
-const FormWrapper = () =>
+type Props = {
+  handleViewChange: () => void;
+};
+
+
+const FormWrapper = (props: Props) =>
   (<div>
     <Form>
       <FormGroup>
@@ -85,7 +90,9 @@ const FormWrapper = () =>
           <option>Starting Strength</option>
         </Input>
       </FormGroup>
-      <Button block>Generate Schedule</Button>
+      <Button block onClick={props.handleViewChange}>
+        Generate Schedule
+      </Button>
     </Form>
   </div>);
 
