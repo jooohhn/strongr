@@ -39,11 +39,13 @@ const Form = styled(UnstyledForm)`
 `;
 
 type Props = {
-  handleViewChange: () => void
+  handleViewChange: () => void,
+	view: 'data' | 'schedule'
 };
 
-const FormWrapper = (props: Props) =>
-  (<div>
+const FormWrapper = (props: Props) => {
+  const buttonText = props.view === 'data' ? 'Show schedule' : 'Show 1RM';
+  return (<div>
     <Form>
       <FormGroup>
         <Label for="genderInput">Gender</Label>
@@ -90,9 +92,10 @@ const FormWrapper = (props: Props) =>
         </Input>
       </FormGroup>
       <Button block onClick={props.handleViewChange}>
-        Generate Schedule
+        {buttonText}
       </Button>
     </Form>
   </div>);
+};
 
 export default FormWrapper;

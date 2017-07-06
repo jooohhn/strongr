@@ -16,7 +16,7 @@ export default class HomePage extends React.Component {
     ormFormula: ormFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: programTemplateType,
-    view: 'data' | 'table'
+    view: 'data' | 'schedule'
   };
 
   constructor(props: {}) {
@@ -33,10 +33,10 @@ export default class HomePage extends React.Component {
 
   handleViewChange = () => {
     if (this.state.view === 'data') {
-      this.setState({ view: 'table' });
-    } else if (this.state.view === 'table') {
+      this.setState({ view: 'schedule' });
+    } else if (this.state.view === 'schedule') {
       this.setState({ view: 'data' });
-    } else throw new Error('this.state.view is neither table or data');
+    } else throw new Error('this.state.view is neither schedule or data');
   };
 
   render() {
@@ -55,7 +55,7 @@ export default class HomePage extends React.Component {
         <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
             <Col xs="12" sm="12" md="5" lg="4" xl="3">
-              <FormWrapper handleViewChange={this.handleViewChange} />
+              <FormWrapper handleViewChange={this.handleViewChange} view={view} />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="9">
               {(view === 'data' && <ORMWrapper ormFormula={ormFormula} />) ||

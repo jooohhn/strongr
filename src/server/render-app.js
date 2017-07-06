@@ -10,7 +10,6 @@ const renderApp = () => {
   <head>
      ${head.title}
      ${head.meta}
-    <link rel="stylesheet" href="${STATIC_PATH}/css/app.global.css">
   </head>
   <body>
     <div class="${APP_CONTAINER_CLASS}"></div>
