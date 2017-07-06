@@ -22,7 +22,7 @@ const Button = styled(UnstyledButton)`
 	background-color: ${SECONDARY_COLOR};
 	color: ${BACKGROUND_COLOR};
 	border-color: ${SECONDARY_COLOR};
-	 &:hover {
+	&:hover {
 		background-color: ${PRIMARY_COLOR};
 		color: ${BACKGROUND_COLOR};
 		border-color: ${PRIMARY_COLOR};
@@ -39,9 +39,8 @@ const Form = styled(UnstyledForm)`
 `;
 
 type Props = {
-  handleViewChange: () => void;
+  handleViewChange: () => void
 };
-
 
 const FormWrapper = (props: Props) =>
   (<div>

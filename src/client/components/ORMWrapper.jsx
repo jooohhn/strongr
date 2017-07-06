@@ -8,7 +8,7 @@ import type { ormFormulaType } from '../types';
 
 const CardWrapper = styled.div`margin-bottom: 2vh;`;
 
-const lifts = ['Bench Press', 'Squat', 'Deadlift'];
+const lifts = ['Bench Press', 'Deadlift', 'Squat', 'Overhead Press'];
 
 type Props = {
   ormFormula: ormFormulaType

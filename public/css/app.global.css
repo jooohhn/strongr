@@ -1,6 +1,12 @@
-body {
-	margin: auto;
+
+html, body {
+	height: 100%;
 	font-family: sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+	background-color: #ECF0F1;
 }
 
 /* @TODO: Remove Safari's <select> gloss*/
@@ -13,5 +19,9 @@ a {
 }
 
 button {
+	transition: .4s ease-out, .2s ease-in;
+}
+
+svg {
 	transition: .4s ease-out, .2s ease-in;
 }
