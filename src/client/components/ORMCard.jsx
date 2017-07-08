@@ -16,7 +16,7 @@ import {
 import styled from 'styled-components';
 import { SECONDARY_COLOR } from '../colors';
 import ormFormulas from '../ORMFormulas';
-import type { liftType, ormFormulaType } from '../types';
+import type { exerciseType, ormFormulaType } from '../types';
 
 const StyledProgress = styled(UnstyledProgress)`
 	background-color: ${SECONDARY_COLOR}
@@ -39,7 +39,7 @@ const Alert = styled.span`
 `;
 
 type Props = {
-  lift: liftType,
+  lift: exerciseType,
   ormFormula: ormFormulaType
 };
 

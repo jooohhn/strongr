@@ -55,7 +55,10 @@ export default class HomePage extends React.Component {
         <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
             <Col xs="12" sm="12" md="5" lg="4" xl="3">
-              <FormWrapper handleViewChange={this.handleViewChange} view={view} />
+              <FormWrapper
+                handleViewChange={this.handleViewChange}
+                view={view}
+              />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="9">
               {(view === 'data' && <ORMWrapper ormFormula={ormFormula} />) ||

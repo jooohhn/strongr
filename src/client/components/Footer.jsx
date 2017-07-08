@@ -7,7 +7,6 @@ import { NAV_COLOR, BACKGROUND_COLOR } from '../colors';
 const StyledFooterDiv = styled.footer`
   width: 100%;
   height: 8vh;
-  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;

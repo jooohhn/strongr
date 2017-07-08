@@ -9,6 +9,7 @@
 		"start": "npm-run-all -p dev:start dev:wds",
 		"dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
 		"dev:wds": "webpack-dev-server --progress",
+		"prod": "yarn prod:build && yarn prod:start",
 		"prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
 		"prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
 		"prod:stop": "pm2 delete server",
@@ -70,6 +71,7 @@
 		"react-hot-loader": "next",
 		"react-router": "^4.1.1",
 		"react-router-dom": "^4.1.1",
+		"react-virtualized": "^9.8.0",
 		"reactstrap": "^4.6.2",
 		"styled-components": "^2.1.0"
 	}
