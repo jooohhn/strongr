@@ -1,4 +1,6 @@
 
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 html, body {
 	height: 100%;
 	font-family: sans-serif;
@@ -24,4 +26,9 @@ button {
 
 svg {
 	transition: .4s ease-out, .2s ease-in;
+}
+
+/* Overriding Bootstrap */
+.table-responsive table{
+	margin-bottom: 0;
 }

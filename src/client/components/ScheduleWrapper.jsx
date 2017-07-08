@@ -4,7 +4,6 @@ import React from 'react';
 import ScheduleCard from './ScheduleCard';
 import type { programTemplateType } from '../types';
 
-
 type Props = {
   programTemplate: programTemplateType,
   benchOrm: number,
