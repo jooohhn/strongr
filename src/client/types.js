@@ -10,3 +10,7 @@ export type ormFormulaType =
 export type programTemplateType = '5/3/1, startingStrength';
 
 export type exerciseType = 'benchPress' | 'squat' | 'deadLift';
+
+export type weekType = {
+  number: number
+};

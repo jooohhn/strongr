@@ -7,16 +7,11 @@ import {
   CardHeader,
   CardBlock
 } from 'reactstrap';
-
 import styled from 'styled-components';
 import type { programTemplateType } from '../types';
 
 type Props = {
-  programTemplate: programTemplateType,
-  benchOrm: number,
-  squatOrm: number,
-  deadliftOrm: number,
-  overheadPressOrm: number
+  cardData: any
 };
 
 // @TODO: Find out why border needs !important
@@ -34,76 +29,55 @@ const StyledTable = styled(UnstyledTable)`
 	font-size: 85%;
 `;
 
-const columnHeaders = [
-  'Day 1\nOverhead Press',
-  'Day 2\nDeadlift',
-  'Day 3\nBench Press',
-  'Day 4\nSquat'
-];
+const ScheduleCard = (props: Props) => {
+  const { columnHeaders, phases } = props.cardData;
+  // @TODO When React 16 comes out, replace the array with just two
+  // disjoint JSX elements <tr><th></th></tr> and {body content}
+  // https://stackoverflow.com/questions/33766085/how-to-avoid-extra-wrapping-div-in-react
+  const bodyContent = phases.map(({ name, rows, setCount }) => {
+    const phaseData = rows.map(row =>
+      (<tr>
+        {row.map(cellContent =>
+          (<td key={cellContent}>
+            {cellContent}
+          </td>)
+        )}
+      </tr>)
+    );
+    return [
+      <tr>
+        <th rowSpan={setCount + 1}>
+          {name}
+        </th>
+      </tr>,
+      phaseData
+    ];
+  });
+  // Maps whole row sections together by phase name
+  return (
+    <Card>
+      <CardHeader tag="h5">
+        <b>Week 1</b>
+      </CardHeader>
+      <CardBlock>
+        <StyledTable striped responsive>
+          <thead>
+            <tr>
+              <th style={{ width: '100px', borderTop: 'none' }}>Phase</th>
+              {columnHeaders.map(e =>
+                (<th key={e}>
+                  {e}
+                </th>)
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {bodyContent}
+          </tbody>
+        </StyledTable>
+      </CardBlock>
+    </Card>
+  );
+};
 
-const ScheduleWrapper = (props: Props) =>
-  (<Card>
-    <CardHeader tag="h5">
-      <b>Week 1</b>
-    </CardHeader>
-    <CardBlock>
-      <StyledTable striped responsive>
-        <thead>
-          <tr>
-            <th style={{ width: '100', borderTop: 'none' }}>Phase</th>
-            {columnHeaders.map(e =>
-              (<th>
-                {e}
-              </th>)
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th rowSpan="4">Warm Up</th>
-          </tr>
-          <tr>
-            <td>60 x 5</td>
-            <td>160 x 5</td>
-            <td>95 x 5</td>
-            <td>135 x 5</td>
-          </tr>
-          <tr>
-            <td>75 x 5</td>
-            <td>200 x 5</td>
-            <td>120 x 5</td>
-            <td>170 x 5</td>
-          </tr>
-          <tr>
-            <td>85 x 3</td>
-            <td>240 x 3</td>
-            <td>140 x 3 </td>
-            <td>205 x 3</td>
-          </tr>
-          <tr>
-            <th rowSpan="4">5/3/1</th>
-          </tr>
-          <tr>
-            <td>60 x 5</td>
-            <td>160 x 5</td>
-            <td>95 x 5</td>
-            <td>135 x 5</td>
-          </tr>
-          <tr>
-            <td>75 x 5</td>
-            <td>200 x 5</td>
-            <td>120 x 5</td>
-            <td>170 x 5</td>
-          </tr>
-          <tr>
-            <td>85 x 3</td>
-            <td>240 x 3</td>
-            <td>140 x 3 </td>
-            <td>205 x 3</td>
-          </tr>
-        </tbody>
-      </StyledTable>
-    </CardBlock>
-  </Card>);
-
-export default ScheduleWrapper;
+export default ScheduleCard;

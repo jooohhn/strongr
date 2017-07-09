@@ -13,6 +13,10 @@ import type { ormFormulaType, programTemplateType } from '../../types';
 export default class HomePage extends React.Component {
   state: {
     gender: 'male' | 'female',
+    benchPressOrm: number,
+    deadliftOrm: number,
+    overheadPressOrm: number,
+    squatOrm: number,
     ormFormula: ormFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: programTemplateType,
@@ -61,8 +65,14 @@ export default class HomePage extends React.Component {
               />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="9">
-              {(view === 'data' && <ORMWrapper ormFormula={ormFormula} />) ||
-                <ScheduleWrapper />}
+              {view === 'data'
+                ? <ORMWrapper ormFormula={ormFormula} />
+                : <ScheduleWrapper
+                  benchPressOrm={236}
+                  deadliftOrm={396}
+                  squatOrm={342}
+                  overheadPressOrm={145}
+                />}
             </Col>
           </Row>
         </Container>

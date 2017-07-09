@@ -2,16 +2,35 @@
 
 import React from 'react';
 import ScheduleCard from './ScheduleCard';
+import { fiveThreeOneGenerator } from '../TemplateFormulas';
 import type { programTemplateType } from '../types';
 
 type Props = {
-  programTemplate: programTemplateType,
-  benchOrm: number,
-  squatOrm: number,
+  benchPressOrm: number,
   deadliftOrm: number,
-  overheadPressOrm: number
+  overheadPressOrm: number,
+  programTemplate: programTemplateType,
+  squatOrm: number
 };
 
-const ScheduleWrapper = (props: Props) => <ScheduleCard />;
+export default class ScheduleWrapper extends React.Component {
+  constructor(props: Props) {
+    super(props);
+  }
 
-export default ScheduleWrapper;
+  render() {
+    const {
+      benchPressOrm,
+      deadliftOrm,
+      overheadPressOrm,
+      squatOrm
+    } = this.props;
+    const cardData = fiveThreeOneGenerator(
+      benchPressOrm,
+      deadliftOrm,
+      overheadPressOrm,
+      squatOrm
+    );
+    return <ScheduleCard cardData={cardData} />;
+  }
+}
