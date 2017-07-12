@@ -20,6 +20,7 @@ const AboutPage = () =>
         <h3>FAQ Page</h3>
         <p>-Sources used</p>
         <p>-How are ORMs calculated</p>
+        <p>-How are ORMs used in calculating schedules</p>
       </Row>
     </Container>
   </div>);

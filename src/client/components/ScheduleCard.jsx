@@ -8,7 +8,6 @@ import {
   CardBlock
 } from 'reactstrap';
 import styled from 'styled-components';
-import type { programTemplateType } from '../types';
 
 type Props = {
   cardData: any
@@ -35,10 +34,10 @@ const ScheduleCard = (props: Props) => {
   // disjoint JSX elements <tr><th></th></tr> and {body content}
   // https://stackoverflow.com/questions/33766085/how-to-avoid-extra-wrapping-div-in-react
   const bodyContent = phases.map(({ name, rows, setCount }) => {
-    const phaseData = rows.map(row =>
+    const phaseData = rows.map((row, y) =>
       (<tr>
-        {row.map(cellContent =>
-          (<td key={cellContent}>
+        {row.map((cellContent, x) =>
+          (<td key={`Content:${cellContent} [${y}][${x}]`}>
             {cellContent}
           </td>)
         )}
@@ -55,28 +54,30 @@ const ScheduleCard = (props: Props) => {
   });
   // Maps whole row sections together by phase name
   return (
-    <Card>
-      <CardHeader tag="h5">
-        <b>Week 1</b>
-      </CardHeader>
-      <CardBlock>
-        <StyledTable striped responsive>
-          <thead>
-            <tr>
-              <th style={{ width: '100px', borderTop: 'none' }}>Phase</th>
-              {columnHeaders.map(e =>
-                (<th key={e}>
-                  {e}
-                </th>)
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {bodyContent}
-          </tbody>
-        </StyledTable>
-      </CardBlock>
-    </Card>
+    <div>
+      <Card>
+        <CardHeader tag="h5">
+          <b>Week 1</b>
+        </CardHeader>
+        <CardBlock>
+          <StyledTable striped responsive>
+            <thead>
+              <tr>
+                <th style={{ width: '100px', borderTop: 'none' }}>Phase</th>
+                {columnHeaders.map(e =>
+                  (<th key={e}>
+                    {e}
+                  </th>)
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyContent}
+            </tbody>
+          </StyledTable>
+        </CardBlock>
+      </Card>
+    </div>
   );
 };
 

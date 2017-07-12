@@ -39,8 +39,9 @@ const Alert = styled.span`
 `;
 
 type Props = {
-  lift: exerciseType,
-  ormFormula: ormFormulaType
+  exercise: exerciseType,
+  ormFormula: ormFormulaType,
+  setOrm: (exerciseType, number) => void
 };
 
 type State = {
@@ -61,36 +62,41 @@ export default class ORMCard extends React.Component {
     };
   }
 
-  handleChangeReps = (e: SyntheticEvent) => {
+  handleInputChange = (e: SyntheticEvent) => {
     if (!(e.target instanceof window.HTMLInputElement)) {
       return;
     }
-    this.setState({ reps: e.target.value }, () => {
-      const { reps, weight } = this.state;
-      const { ormFormula } = this.props;
-      if (reps !== '' && weight !== '') {
-        // $FlowFixMe @ TODO: Define the other ormFormulas
-        this.setState({ orm: ormFormulas[ormFormula](reps, weight) });
-      } else {
-        this.setState({ orm: '?' });
-      }
-    });
-  };
-
-  handleChangeWeight = (e: SyntheticEvent) => {
-    if (!(e.target instanceof window.HTMLInputElement)) {
-      return;
+    if (e.target.name === 'Repetitions') {
+      this.setState({ reps: e.target.value }, () => {
+        const { reps, weight } = this.state;
+        const { ormFormula } = this.props;
+        if (reps !== '' && weight !== '') {
+          // $FlowFixMe @ TODO: Define the other ormFormulas
+          const orm = ormFormulas[ormFormula](reps, weight);
+          this.setState({ orm });
+          this.props.setOrm(this.props.exercise, orm);
+        } else {
+          this.setState({ orm: '?' });
+        }
+      });
+    } else if (e.target.name === 'Weight') {
+      this.setState({ weight: e.target.value }, () => {
+        const { reps, weight } = this.state;
+        const { ormFormula } = this.props;
+        if (reps !== '' && weight !== '') {
+          // $FlowFixMe @ TODO: Define the other ormFormulas
+          const orm = ormFormulas[ormFormula](reps, weight);
+          this.setState({ orm });
+          this.props.setOrm(this.props.exercise, orm);
+        } else {
+          this.setState({ orm: '?' });
+        }
+      });
+    } else {
+      throw new Error(
+        `Input name is ${e.target.name} rather than "Weight" or "Repetitions"`
+      );
     }
-    this.setState({ weight: e.target.value }, () => {
-      const { reps, weight } = this.state;
-      const { ormFormula } = this.props;
-      if (reps !== '' && weight !== '') {
-        // $FlowFixMe @ TODO: Define the other ormFormulas
-        this.setState({ orm: ormFormulas[ormFormula](reps, weight) });
-      } else {
-        this.setState({ orm: '?' });
-      }
-    });
   };
 
   render() {
@@ -99,7 +105,7 @@ export default class ORMCard extends React.Component {
         <Card>
           <CardBlock>
             <StyledCardTitle>
-              {this.props.lift}
+              {this.props.exercise}
               <Alert>
                 {`1RM: ${this.state.orm}`}
               </Alert>
@@ -114,7 +120,7 @@ export default class ORMCard extends React.Component {
                       name="Repetitions"
                       id="benchRepsInput"
                       value={this.state.reps}
-                      onChange={this.handleChangeReps}
+                      onChange={this.handleInputChange}
                     />
                   </Col>
                   <Col xs="5" sm="5" md="5" lg="5" xl="5">
@@ -124,7 +130,7 @@ export default class ORMCard extends React.Component {
                       name="Weight"
                       id="weightInput"
                       value={this.state.weight}
-                      onChange={this.handleChangeWeight}
+                      onChange={this.handleInputChange}
                     />
                   </Col>
                 </Row>

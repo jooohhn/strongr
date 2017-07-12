@@ -8,15 +8,19 @@ import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../ScheduleWrapper';
 import ORMWrapper from '../ORMWrapper';
 import FormWrapper from '../FormWrapper';
-import type { ormFormulaType, programTemplateType } from '../../types';
+import type {
+  ormFormulaType,
+  programTemplateType,
+  exerciseType
+} from '../../types';
 
 export default class HomePage extends React.Component {
   state: {
     gender: 'male' | 'female',
-    benchPressOrm: number,
-    deadliftOrm: number,
-    overheadPressOrm: number,
-    squatOrm: number,
+    benchPressOrm: ?number,
+    deadliftOrm: ?number,
+    overheadPressOrm: ?number,
+    squatOrm: ?number,
     ormFormula: ormFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: programTemplateType,
@@ -27,6 +31,10 @@ export default class HomePage extends React.Component {
     super(props);
     this.state = {
       gender: 'male',
+      benchPressOrm: null,
+      deadliftOrm: null,
+      overheadPressOrm: null,
+      squatOrm: null,
       // @TODO: Have units be based on user location
       ormFormula: 'epley',
       units: 'lbs',
@@ -40,7 +48,26 @@ export default class HomePage extends React.Component {
       this.setState({ view: 'schedule' });
     } else if (this.state.view === 'schedule') {
       this.setState({ view: 'data' });
-    } else throw new Error('this.state.view is neither schedule or data');
+    } else throw new Error('this.state.view is neither schedule nor data');
+  };
+
+  setOrm = (exercise: exerciseType, orm: number) => {
+    switch (exercise) {
+      case 'benchPress':
+        this.setState({ benchPressOrm: orm });
+        break;
+      case 'deadlift':
+        this.setState({ deadliftOrm: orm });
+        break;
+      case 'overheadPress':
+        this.setState({ overheadPressOrm: orm });
+        break;
+      case 'squat':
+        this.setState({ squatOrm: orm });
+        break;
+      default:
+        throw new Error(`setOrm given ${exercise}" instead of exerciseType`);
+    }
   };
 
   render() {
@@ -66,12 +93,12 @@ export default class HomePage extends React.Component {
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="9">
               {view === 'data'
-                ? <ORMWrapper ormFormula={ormFormula} />
+                ? <ORMWrapper ormFormula={ormFormula} setOrm={this.setOrm} />
                 : <ScheduleWrapper
-                  benchPressOrm={236}
-                  deadliftOrm={396}
-                  squatOrm={342}
-                  overheadPressOrm={145}
+                  benchPressOrm={this.state.benchPressOrm}
+                  deadliftOrm={this.state.deadliftOrm}
+                  squatOrm={this.state.squatOrm}
+                  overheadPressOrm={this.state.overheadPressOrm}
                 />}
             </Col>
           </Row>

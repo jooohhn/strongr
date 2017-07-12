@@ -7,10 +7,10 @@ export type ormFormulaType =
   | 'mayhew et al.'
   | "o'Conner et al.";
 
-export type programTemplateType = '5/3/1, startingStrength';
+export type programTemplateType = '5/3/1' | 'startingStrength';
 
-export type exerciseType = 'benchPress' | 'squat' | 'deadLift';
-
-export type weekType = {
-  number: number
-};
+export type exerciseType =
+  | 'benchPress'
+  | 'deadlift'
+  | 'overheadPress'
+  | 'squat';

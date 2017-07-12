@@ -4,43 +4,55 @@ const roundToFives = num => 5 * Math.round(num / 5);
 
 // Week -> Day -> Phases -> Day
 export function fiveThreeOneGenerator(
-  benchPressWeight: number,
-  deadliftWeight: number,
-  overheadPressWeight: number,
-  squatWeight: number
+  benchPressWeight: ?number,
+  deadliftWeight: ?number,
+  overheadPressWeight: ?number,
+  squatWeight: ?number
 ) {
-  const weekOneSets = (exerciseWeight: number) => [
-    `${roundToFives(exerciseWeight * 0.5)} x 5`,
-    `${roundToFives(exerciseWeight * 0.6)} x 3`,
-    `${roundToFives(exerciseWeight * 0.4)} x 5`,
-    `${roundToFives(exerciseWeight * 0.65)} x 5`,
-    `${roundToFives(exerciseWeight * 0.75)} x 5`,
-    `${roundToFives(exerciseWeight * 0.85)} x 5+`
-  ];
+  const weekOneSets = (exerciseWeight: ?number) =>
+    typeof exerciseWeight === 'number'
+      ? [
+        `${roundToFives(exerciseWeight * 0.5)} x 5`,
+        `${roundToFives(exerciseWeight * 0.6)} x 3`,
+        `${roundToFives(exerciseWeight * 0.4)} x 5`,
+        `${roundToFives(exerciseWeight * 0.65)} x 5`,
+        `${roundToFives(exerciseWeight * 0.75)} x 5`,
+        `${roundToFives(exerciseWeight * 0.85)} x 5+`
+      ]
+      : Array(6).fill('–');
 
-  const weekTwoSets = (exerciseWeight: number) => [
-    `${roundToFives(exerciseWeight * 0.4)} x 5`,
-    `${roundToFives(exerciseWeight * 0.5)} x 5`,
-    `${roundToFives(exerciseWeight * 0.6)} x 3`,
-    `${roundToFives(exerciseWeight * 0.7)} x 3`,
-    `${roundToFives(exerciseWeight * 0.8)} x 3`,
-    `${roundToFives(exerciseWeight * 0.9)} x 3+`
-  ];
+  const weekTwoSets = (exerciseWeight: ?number) =>
+    typeof exerciseWeight === 'number'
+      ? [
+        `${roundToFives(exerciseWeight * 0.4)} x 5`,
+        `${roundToFives(exerciseWeight * 0.5)} x 5`,
+        `${roundToFives(exerciseWeight * 0.6)} x 3`,
+        `${roundToFives(exerciseWeight * 0.7)} x 3`,
+        `${roundToFives(exerciseWeight * 0.8)} x 3`,
+        `${roundToFives(exerciseWeight * 0.9)} x 3+`
+      ]
+      : Array(6).fill('–');
 
-  const weekThreeSets = (exerciseWeight: number) => [
-    `${roundToFives(exerciseWeight * 0.4)} x 5`,
-    `${roundToFives(exerciseWeight * 0.5)} x 5`,
-    `${roundToFives(exerciseWeight * 0.6)} x 5`,
-    `${roundToFives(exerciseWeight * 0.75)} x 5`,
-    `${roundToFives(exerciseWeight * 0.85)} x 3`,
-    `${roundToFives(exerciseWeight * 0.95)} x 1+`
-  ];
+  const weekThreeSets = (exerciseWeight: ?number) =>
+    typeof exerciseWeight === 'number'
+      ? [
+        `${roundToFives(exerciseWeight * 0.4)} x 5`,
+        `${roundToFives(exerciseWeight * 0.5)} x 5`,
+        `${roundToFives(exerciseWeight * 0.6)} x 5`,
+        `${roundToFives(exerciseWeight * 0.75)} x 5`,
+        `${roundToFives(exerciseWeight * 0.85)} x 3`,
+        `${roundToFives(exerciseWeight * 0.95)} x 1+`
+      ]
+      : Array(6).fill('–');
 
-  const weekFourSets = (exerciseWeight: number) => [
-    `${roundToFives(exerciseWeight * 0.4)} x 5`,
-    `${roundToFives(exerciseWeight * 0.5)} x 5`,
-    `${roundToFives(exerciseWeight * 0.6)} x 5`
-  ];
+  const weekFourSets = (exerciseWeight: ?number) =>
+    typeof exerciseWeight === 'number'
+      ? [
+        `${roundToFives(exerciseWeight * 0.4)} x 5`,
+        `${roundToFives(exerciseWeight * 0.5)} x 5`,
+        `${roundToFives(exerciseWeight * 0.6)} x 5`
+      ]
+      : Array(3).fill('–');
 
   // @TODO: - need to make sure sum of rowspan - 2 === sets.length
   //        - Create types for all of these

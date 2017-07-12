@@ -14,7 +14,7 @@
 		"prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
 		"prod:stop": "pm2 delete server",
 		"lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
-		"lint-fix": " prettier --single-quote --write \"{,!(dist|flow-typed|lib)/**}/*.{js,jsx}\" && yarn lint -- --fix",
+		"lint-fix": "prettier --single-quote --write \"{,!(dist|flow-typed|lib)/**}/*.{js,jsx}\" && yarn lint -- --fix",
 		"test": "yarn lint && flow && jest --coverage",
 		"test:unit": "jest",
 		"precommit": "yarn test",
