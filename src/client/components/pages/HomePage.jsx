@@ -3,11 +3,12 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
-
 import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../ScheduleWrapper';
 import ORMWrapper from '../ORMWrapper';
 import FormWrapper from '../FormWrapper';
+import ormFormulas from '../../ORMFormulas';
+
 import type {
   ormFormulaType,
   programTemplateType,
@@ -17,11 +18,23 @@ import type {
 export default class HomePage extends React.Component {
   state: {
     gender: 'male' | 'female',
-    benchPressOrm: ?number,
-    deadliftOrm: ?number,
-    overheadPressOrm: ?number,
-    squatOrm: ?number,
-    ormFormula: ormFormulaType,
+    benchPressData: {
+      exerciseName: exerciseType,
+      reps: ?number,
+      weight: ?number
+    },
+    deadliftData: {
+      exerciseName: exerciseType,
+      reps: ?number,
+      weight: ?number
+    },
+    overheadPressData: {
+      exerciseName: exerciseType,
+      reps: ?number,
+      weight: ?number
+    },
+    squatData: { exerciseName: exerciseType, reps: ?number, weight: ?number },
+    ormFormulaName: ormFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: programTemplateType,
     view: 'data' | 'schedule'
@@ -31,12 +44,17 @@ export default class HomePage extends React.Component {
     super(props);
     this.state = {
       gender: 'male',
-      benchPressOrm: null,
-      deadliftOrm: null,
-      overheadPressOrm: null,
-      squatOrm: null,
+      benchPressData: { exerciseName: 'benchPress', reps: null, weight: null },
+      deadliftData: { exerciseName: 'deadlift', reps: null, weight: null },
+      overheadPressData: {
+        exerciseName: 'overheadPress',
+        reps: null,
+        weight: null
+      },
+      squatData: { exerciseName: 'squat', reps: null, weight: null },
       // @TODO: Have units be based on user location
-      ormFormula: 'epley',
+      //        Hardcoded 'epley'
+      ormFormulaName: 'epley',
       units: 'lbs',
       programTemplate: '5/3/1',
       view: 'data'
@@ -51,27 +69,33 @@ export default class HomePage extends React.Component {
     } else throw new Error('this.state.view is neither schedule nor data');
   };
 
-  setOrm = (exercise: exerciseType, orm: number) => {
-    switch (exercise) {
+  setExerciseData = (
+    exerciseName: exerciseType,
+    reps: ?number,
+    weight: ?number
+  ) => {
+    switch (exerciseName) {
       case 'benchPress':
-        this.setState({ benchPressOrm: orm });
+        this.setState({ benchPressData: { exerciseName, reps, weight } });
         break;
       case 'deadlift':
-        this.setState({ deadliftOrm: orm });
+        this.setState({ deadliftData: { exerciseName, reps, weight } });
         break;
       case 'overheadPress':
-        this.setState({ overheadPressOrm: orm });
+        this.setState({ overheadPressData: { exerciseName, reps, weight } });
         break;
       case 'squat':
-        this.setState({ squatOrm: orm });
+        this.setState({ squatData: { exerciseName, reps, weight } });
         break;
       default:
-        throw new Error(`setOrm given ${exercise}" instead of exerciseType`);
+        throw new Error(
+          `setExerciseData given ${exerciseName}" instead of exerciseType`
+        );
     }
   };
 
   render() {
-    const { view, ormFormula } = this.state;
+    const { view, ormFormulaName } = this.state;
     return (
       <div>
         <Helmet
@@ -93,12 +117,20 @@ export default class HomePage extends React.Component {
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="9">
               {view === 'data'
-                ? <ORMWrapper ormFormula={ormFormula} setOrm={this.setOrm} />
+                ? <ORMWrapper
+                  ormFormula={ormFormulas[ormFormulaName]}
+                  setExerciseData={this.setExerciseData}
+                  benchPressData={this.state.benchPressData}
+                  deadliftData={this.state.deadliftData}
+                  squatData={this.state.squatData}
+                  overheadPressData={this.state.overheadPressData}
+                />
                 : <ScheduleWrapper
-                  benchPressOrm={this.state.benchPressOrm}
-                  deadliftOrm={this.state.deadliftOrm}
-                  squatOrm={this.state.squatOrm}
-                  overheadPressOrm={this.state.overheadPressOrm}
+                  ormFormula={ormFormulas[ormFormulaName]}
+                  benchPressData={this.state.benchPressData}
+                  deadliftData={this.state.deadliftData}
+                  squatData={this.state.squatData}
+                  overheadPressData={this.state.overheadPressData}
                 />}
             </Col>
           </Row>

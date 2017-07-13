@@ -8,11 +8,17 @@ import { fiveThreeOneGenerator } from '../TemplateFormulas';
 import type { programTemplateType } from '../types';
 
 type Props = {
-  benchPressOrm: ?number,
-  deadliftOrm: ?number,
-  overheadPressOrm: ?number,
-  squatOrm: ?number,
-  programTemplate: programTemplateType
+  ormFormula: (reps: ?number, weight: ?number) => ?number,
+  benchPressData: {
+    reps: ?number,
+    weight: ?number
+  },
+  deadliftData: { reps: ?number, weight: ?number },
+  overheadPressData: {
+    reps: ?number,
+    weight: ?number
+  },
+  squatData: { reps: ?number, weight: ?number }
 };
 
 const StyledAlert = styled(UnstyledAlert)`
@@ -32,20 +38,30 @@ export default class ScheduleWrapper extends React.Component {
   constructor(props: Props) {
     super(props);
   }
-
   render() {
     const {
-      benchPressOrm,
-      deadliftOrm,
-      overheadPressOrm,
-      squatOrm
+      ormFormula,
+      benchPressData,
+      deadliftData,
+      overheadPressData,
+      squatData
     } = this.props;
+    const benchPressOrm =
+      ormFormula(benchPressData.reps, benchPressData.weight) || null;
+    const deadliftOrm = ormFormula(
+      deadliftData.reps,
+      deadliftData.weight || null
+    );
+    const overheadPressOrm =
+      ormFormula(overheadPressData.reps, overheadPressData.weight) || null;
+    const squatOrm = ormFormula(squatData.reps, squatData.weight) || null;
     const cardData = fiveThreeOneGenerator(
       benchPressOrm,
       deadliftOrm,
       overheadPressOrm,
       squatOrm
     );
+
     return (
       <div>
         <StyledAlert color={overheadPressOrm !== null ? 'success' : 'danger'}>

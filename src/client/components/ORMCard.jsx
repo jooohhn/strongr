@@ -15,8 +15,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import { SECONDARY_COLOR } from '../colors';
-import ormFormulas from '../ORMFormulas';
-import type { exerciseType, ormFormulaType } from '../types';
+import type { exerciseType } from '../types';
 
 const StyledProgress = styled(UnstyledProgress)`
 	background-color: ${SECONDARY_COLOR}
@@ -39,27 +38,21 @@ const Alert = styled.span`
 `;
 
 type Props = {
-  exercise: exerciseType,
-  ormFormula: ormFormulaType,
-  setOrm: (exerciseType, number) => void
-};
-
-type State = {
-  orm: number | '?',
-  reps: number | '',
-  weight: number | ''
+  title: 'Bench Press' | 'Deadlift' | 'Overhead Press' | 'Squat',
+  exerciseName: exerciseType,
+  reps: ?number,
+  weight: ?number,
+  ormFormula: (reps: ?number, weight: ?number) => ?number,
+  setExerciseData: (
+    exerciseName: exerciseType,
+    reps: ?number,
+    weight: ?number
+  ) => void
 };
 
 export default class ORMCard extends React.Component {
-  state: State;
-
   constructor(props: Props) {
     super(props);
-    this.state = {
-      orm: '?',
-      reps: '',
-      weight: ''
-    };
   }
 
   handleInputChange = (e: SyntheticEvent) => {
@@ -67,31 +60,15 @@ export default class ORMCard extends React.Component {
       return;
     }
     if (e.target.name === 'Repetitions') {
-      this.setState({ reps: e.target.value }, () => {
-        const { reps, weight } = this.state;
-        const { ormFormula } = this.props;
-        if (reps !== '' && weight !== '') {
-          // $FlowFixMe @ TODO: Define the other ormFormulas
-          const orm = ormFormulas[ormFormula](reps, weight);
-          this.setState({ orm });
-          this.props.setOrm(this.props.exercise, orm);
-        } else {
-          this.setState({ orm: '?' });
-        }
-      });
+      const { setExerciseData } = this.props;
+      const { exerciseName, weight } = this.props;
+      const newReps = parseInt(e.target.value, 10) || null;
+      setExerciseData(exerciseName, newReps, weight);
     } else if (e.target.name === 'Weight') {
-      this.setState({ weight: e.target.value }, () => {
-        const { reps, weight } = this.state;
-        const { ormFormula } = this.props;
-        if (reps !== '' && weight !== '') {
-          // $FlowFixMe @ TODO: Define the other ormFormulas
-          const orm = ormFormulas[ormFormula](reps, weight);
-          this.setState({ orm });
-          this.props.setOrm(this.props.exercise, orm);
-        } else {
-          this.setState({ orm: '?' });
-        }
-      });
+      const { setExerciseData } = this.props;
+      const { exerciseName, reps } = this.props;
+      const newWeight = parseInt(e.target.value, 10) || null;
+      setExerciseData(exerciseName, reps, newWeight);
     } else {
       throw new Error(
         `Input name is ${e.target.name} rather than "Weight" or "Repetitions"`
@@ -100,14 +77,17 @@ export default class ORMCard extends React.Component {
   };
 
   render() {
+    const { title, reps, weight, ormFormula } = this.props;
+    const orm = ormFormula(reps, weight) || '?';
+
     return (
       <div>
         <Card>
           <CardBlock>
             <StyledCardTitle>
-              {this.props.exercise}
+              {title}
               <Alert>
-                {`1RM: ${this.state.orm}`}
+                {`1RM: ${orm}`}
               </Alert>
             </StyledCardTitle>
             <FormGroup>
@@ -119,7 +99,7 @@ export default class ORMCard extends React.Component {
                       type="number"
                       name="Repetitions"
                       id="benchRepsInput"
-                      value={this.state.reps}
+                      value={reps || ''}
                       onChange={this.handleInputChange}
                     />
                   </Col>
@@ -129,7 +109,7 @@ export default class ORMCard extends React.Component {
                       type="number"
                       name="Weight"
                       id="weightInput"
-                      value={this.state.weight}
+                      value={weight || ''}
                       onChange={this.handleInputChange}
                     />
                   </Col>
