@@ -31,8 +31,8 @@ const StyledTable = styled(UnstyledTable)`
 `;
 
 const ScheduleCard = (props: Props) => {
-  const { columnHeaders, cardData } = props;
-  const { phases } = cardData;
+  const { columnHeaders } = props;
+  const { phases } = props.cardData;
   // @TODO When React 16 comes out, replace the array with just two
   // disjoint JSX elements <tr><th></th></tr> and {body content}
   // https://stackoverflow.com/questions/33766085/how-to-avoid-extra-wrapping-div-in-react
@@ -60,7 +60,9 @@ const ScheduleCard = (props: Props) => {
     <div>
       <Card>
         <CardHeader tag="h5">
-          <b>Week 1</b>
+          <b>
+            {props.cardData.cardTitle}
+          </b>
         </CardHeader>
         <CardBlock>
           <StyledTable striped responsive>
