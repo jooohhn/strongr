@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Alert as UnstyledAlert } from 'reactstrap';
 import ScheduleCard from './ScheduleCard';
 import { fiveThreeOneGenerator } from '../TemplateFormulas';
-import type { programTemplateType } from '../types';
+import type { ProgramTemplateType } from '../types';
 
 type Props = {
   ormFormula: (reps: ?number, weight: ?number) => ?number,
@@ -55,7 +55,7 @@ export default class ScheduleWrapper extends React.Component {
     const overheadPressOrm =
       ormFormula(overheadPressData.reps, overheadPressData.weight) || null;
     const squatOrm = ormFormula(squatData.reps, squatData.weight) || null;
-    const cardData = fiveThreeOneGenerator(
+    const { columnHeaders, data } = fiveThreeOneGenerator(
       benchPressOrm,
       deadliftOrm,
       overheadPressOrm,
@@ -84,7 +84,9 @@ export default class ScheduleWrapper extends React.Component {
             Squat Max:<strong>{squatOrm || '?'}</strong>
           </span>
         </StyledAlert>
-        <ScheduleCard cardData={cardData} />
+        {data.map(e =>
+          <ScheduleCard cardData={e} columnHeaders={columnHeaders} />
+        )}
       </div>
     );
   }

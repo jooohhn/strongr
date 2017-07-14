@@ -8,9 +8,11 @@ import {
   CardBlock
 } from 'reactstrap';
 import styled from 'styled-components';
+import type { ScheduleCardDataType } from '../types';
 
 type Props = {
-  cardData: any
+  columnHeaders: Array<string>,
+  cardData: ScheduleCardDataType
 };
 
 // @TODO: Find out why border needs !important
@@ -29,12 +31,13 @@ const StyledTable = styled(UnstyledTable)`
 `;
 
 const ScheduleCard = (props: Props) => {
-  const { columnHeaders, phases } = props.cardData;
+  const { columnHeaders, cardData } = props;
+  const { phases } = cardData;
   // @TODO When React 16 comes out, replace the array with just two
   // disjoint JSX elements <tr><th></th></tr> and {body content}
   // https://stackoverflow.com/questions/33766085/how-to-avoid-extra-wrapping-div-in-react
-  const bodyContent = phases.map(({ name, rows, setCount }) => {
-    const phaseData = rows.map((row, y) =>
+  const bodyContent = phases.map(({ name, rowContent, setCount }) => {
+    const data = rowContent.map((row, y) =>
       (<tr>
         {row.map((cellContent, x) =>
           (<td key={`Content:${cellContent} [${y}][${x}]`}>
@@ -49,7 +52,7 @@ const ScheduleCard = (props: Props) => {
           {name}
         </th>
       </tr>,
-      phaseData
+      data
     ];
   });
   // Maps whole row sections together by phase name

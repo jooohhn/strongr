@@ -1,5 +1,5 @@
 // @flow
-export type ormFormulaType =
+export type OrmFormulaType =
   | 'epley'
   | 'brzycki'
   | 'mcglothin'
@@ -7,10 +7,18 @@ export type ormFormulaType =
   | 'mayhew et al.'
   | "o'Conner et al.";
 
-export type programTemplateType = '5/3/1' | 'startingStrength';
+export type ProgramTemplateType = '5/3/1' | 'startingStrength';
 
-export type exerciseType =
+export type ExerciseType =
   | 'benchPress'
   | 'deadlift'
   | 'overheadPress'
   | 'squat';
+
+export type ScheduleCardDataType = Array<{
+  phases: {
+    name: string,
+    rowContent: Array<string>,
+    setCount: number
+  }
+}>;

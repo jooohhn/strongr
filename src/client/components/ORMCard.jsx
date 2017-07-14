@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import { SECONDARY_COLOR } from '../colors';
-import type { exerciseType } from '../types';
+import type { ExerciseType } from '../types';
 
 const StyledProgress = styled(UnstyledProgress)`
 	background-color: ${SECONDARY_COLOR}
@@ -39,12 +39,12 @@ const Alert = styled.span`
 
 type Props = {
   title: 'Bench Press' | 'Deadlift' | 'Overhead Press' | 'Squat',
-  exerciseName: exerciseType,
+  exerciseName: ExerciseType,
   reps: ?number,
   weight: ?number,
   ormFormula: (reps: ?number, weight: ?number) => ?number,
   setExerciseData: (
-    exerciseName: exerciseType,
+    exerciseName: ExerciseType,
     reps: ?number,
     weight: ?number
   ) => void

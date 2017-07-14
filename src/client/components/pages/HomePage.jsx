@@ -10,33 +10,33 @@ import FormWrapper from '../FormWrapper';
 import ormFormulas from '../../ORMFormulas';
 
 import type {
-  ormFormulaType,
-  programTemplateType,
-  exerciseType
+  OrmFormulaType,
+  ProgramTemplateType,
+  ExerciseType
 } from '../../types';
 
 export default class HomePage extends React.Component {
   state: {
     gender: 'male' | 'female',
     benchPressData: {
-      exerciseName: exerciseType,
+      exerciseName: ExerciseType,
       reps: ?number,
       weight: ?number
     },
     deadliftData: {
-      exerciseName: exerciseType,
+      exerciseName: ExerciseType,
       reps: ?number,
       weight: ?number
     },
     overheadPressData: {
-      exerciseName: exerciseType,
+      exerciseName: ExerciseType,
       reps: ?number,
       weight: ?number
     },
-    squatData: { exerciseName: exerciseType, reps: ?number, weight: ?number },
-    ormFormulaName: ormFormulaType,
+    squatData: { exerciseName: ExerciseType, reps: ?number, weight: ?number },
+    ormFormulaName: OrmFormulaType,
     units: 'lbs' | 'kg',
-    programTemplate: programTemplateType,
+    programTemplate: ProgramTemplateType,
     view: 'data' | 'schedule'
   };
 
@@ -70,7 +70,7 @@ export default class HomePage extends React.Component {
   };
 
   setExerciseData = (
-    exerciseName: exerciseType,
+    exerciseName: ExerciseType,
     reps: ?number,
     weight: ?number
   ) => {
@@ -89,7 +89,7 @@ export default class HomePage extends React.Component {
         break;
       default:
         throw new Error(
-          `setExerciseData given ${exerciseName}" instead of exerciseType`
+          `setExerciseData given ${exerciseName}" instead of ExerciseType`
         );
     }
   };

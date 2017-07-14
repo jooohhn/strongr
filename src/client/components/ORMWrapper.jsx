@@ -4,29 +4,29 @@ import React from 'react';
 
 import styled from 'styled-components';
 import ORMCard from '../components/ORMCard';
-import type { exerciseType } from '../types';
+import type { ExerciseType } from '../types';
 
 const CardWrapper = styled.div`margin-bottom: 2vh;`;
 
 type Props = {
   ormFormula: (reps: ?number, weight: ?number) => ?number,
   setExerciseData: (
-    exerciseName: exerciseType,
+    exerciseName: ExerciseType,
     reps: ?number,
     weight: ?number
   ) => void,
   benchPressData: {
-    exerciseName: exerciseType,
+    exerciseName: ExerciseType,
     reps: ?number,
     weight: ?number
   },
-  deadliftData: { exerciseName: exerciseType, reps: ?number, weight: ?number },
+  deadliftData: { exerciseName: ExerciseType, reps: ?number, weight: ?number },
   overheadPressData: {
-    exerciseName: exerciseType,
+    exerciseName: ExerciseType,
     reps: ?number,
     weight: ?number
   },
-  squatData: { exerciseName: exerciseType, reps: ?number, weight: ?number }
+  squatData: { exerciseName: ExerciseType, reps: ?number, weight: ?number }
 };
 
 const ORMWrapper = (props: Props) =>
