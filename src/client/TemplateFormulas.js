@@ -66,6 +66,12 @@ export function fiveThreeOneGenerator(
     const squatSets = setsGenerator(squatWeight);
     return {
       cardTitle: `Week ${i + 1}`,
+      columnHeaders: [
+        'Day 1\nOverhead Press',
+        'Day 2\nDeadlift',
+        'Day 3\nBench Press',
+        'Day 4\nSquat'
+      ],
       phases: [
         {
           name: 'Warm Up',
@@ -125,6 +131,12 @@ export function fiveThreeOneGenerator(
   const squatSets = weekFourSets(squatWeight);
   const deloadWeek = {
     cardTitle: 'Week 4',
+    columnHeaders: [
+      'Day 1\nOverhead Press',
+      'Day 2\nDeadlift',
+      'Day 3\nBench Press',
+      'Day 4\nSquat'
+    ],
     phases: [
       {
         name: 'Deload',
@@ -156,12 +168,6 @@ export function fiveThreeOneGenerator(
   standardWeeks.push(deloadWeek);
 
   return {
-    columnHeaders: [
-      'Day 1\nOverhead Press',
-      'Day 2\nDeadlift',
-      'Day 3\nBench Press',
-      'Day 4\nSquat'
-    ],
     data: standardWeeks
   };
 }

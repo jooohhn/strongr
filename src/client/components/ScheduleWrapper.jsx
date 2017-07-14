@@ -88,7 +88,7 @@ export default class ScheduleWrapper extends React.Component {
           (<ScheduleCard
             key={e.cardTitle}
             cardData={e}
-            columnHeaders={columnHeaders}
+            columnHeaders={e.columnHeaders}
           />)
         )}
       </div>
