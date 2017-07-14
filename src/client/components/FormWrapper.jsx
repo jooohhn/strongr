@@ -55,47 +55,59 @@ const FormWrapper = (props: Props) => {
             <option>Female</option>
           </Input>
         </FormGroup>
-        <FormGroup>
-          <Container fluid style={{ padding: '0' }}>
-            <Row>
-              <Col xs="7" sm="7" md="7" lg="7" xl="7">
+        <Container fluid style={{ padding: '0' }}>
+          <Row>
+            <Col xs="6">
+              <FormGroup>
                 <Label for="weightInput">Weight</Label>
                 <Input type="number" name="Weight" id="weightInput" />
-              </Col>
-              <Col xs="5" sm="5" md="5" lg="5" xl="5">
+              </FormGroup>
+            </Col>
+            <Col xs="6">
+              <FormGroup>
                 <Label for="unitInput">Units</Label>
                 <Input type="select" name="Units" id="unitInput">
                   <option>lbs</option>
                   <option>kg</option>
                 </Input>
-              </Col>
-            </Row>
-          </Container>
-        </FormGroup>
-        <FormGroup>
-          <Label for="ormFormulaInput">One Rep Max Formula</Label>
-          <Input type="select" name="One Rep Max Formula" id="ormFormulaInput">
-            <option>Epley</option>
-            <option>Brzycki</option>
-            <option>McGlothin</option>
-            <option>Lombardi</option>
-            <option>Mayhew et al.</option>
-            <option>
-              {"O'Conner et al."}
-            </option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="programTemplateInput">Program Template</Label>
-          <Input
-            type="select"
-            name="Program Template"
-            id="programTemplateInput"
-          >
-            <option>5/3/1</option>
-            <option>Starting Strength</option>
-          </Input>
-        </FormGroup>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="6">
+              <FormGroup>
+                <Label for="ormFormulaInput">1RM Formula</Label>
+                <Input
+                  type="select"
+                  name="One Rep Max Formula"
+                  id="ormFormulaInput"
+                >
+                  <option>Epley</option>
+                  <option>Brzycki</option>
+                  <option>McGlothin</option>
+                  <option>Lombardi</option>
+                  <option>Mayhew et al.</option>
+                  <option>
+                    {"O'Conner et al."}
+                  </option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col xs="6">
+              <FormGroup>
+                <Label for="programTemplateInput">Programs</Label>
+                <Input
+                  type="select"
+                  name="Program Template"
+                  id="programTemplateInput"
+                >
+                  <option>5/3/1</option>
+                  <option>Starting Strength</option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
+        </Container>
         <Button block onClick={props.handleViewChange}>
           {buttonText}
         </Button>
