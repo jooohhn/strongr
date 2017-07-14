@@ -62,8 +62,6 @@ export default class ScheduleWrapper extends React.Component {
       squatOrm
     );
 
-    console.log(data);
-
     return (
       <div>
         <StyledAlert color={overheadPressOrm !== null ? 'success' : 'danger'}>

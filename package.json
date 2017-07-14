@@ -5,20 +5,22 @@
 	"main": "index.js",
 	"author": "John Tran",
 	"license": "MIT",
+	"engines": {
+  	"node": "8.*",
+  	"yarn": "0.27.5"
+	},
 	"scripts": {
 		"start": "npm-run-all -p dev:start dev:wds",
 		"dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
 		"dev:wds": "webpack-dev-server --progress",
 		"prod": "yarn prod:build && yarn prod:start",
 		"prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
-		"prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
-		"prod:stop": "pm2 delete server",
+		"prod:start": "heroku local",
 		"lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
 		"lint-fix": "prettier --single-quote --write \"{,!(dist|flow-typed|lib)/**}/*.{js,jsx}\" && yarn lint -- --fix",
 		"test": "yarn lint && flow && jest --coverage",
 		"test:unit": "jest",
-		"precommit": "yarn test",
-		"prepush": "yarn test && yarn prod:build"
+		"heroku-postbuild": "yarn prod:build"
 	},
 	"browserslist": [
 		"> 1%"
@@ -46,7 +48,6 @@
 		"jest": "^20.0.4",
 		"nodemon": "^1.11.0",
 		"npm-run-all": "^4.0.2",
-		"pm2": "^2.5.0",
 		"postcss": "^6.0.4",
 		"postcss-cssnext": "^3.0.2",
 		"postcss-loader": "^2.0.6",
