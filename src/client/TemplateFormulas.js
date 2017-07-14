@@ -57,14 +57,15 @@ export function fiveThreeOneGenerator(
   // @TODO: - need to make sure sum of rowspan - 2 === sets.length
   //        - Create types for all of these
 
-  const weeksFuncArr = [weekOneSets, weekTwoSets, weekThreeSets, weekFourSets];
+  const weeksFuncArr = [weekOneSets, weekTwoSets, weekThreeSets];
 
-  const data = weeksFuncArr.map((setsGenerator) => {
+  const standardWeeks = weeksFuncArr.map((setsGenerator, i) => {
     const overheadPressSets = setsGenerator(overheadPressWeight);
     const deadliftSets = setsGenerator(deadliftWeight);
     const benchPressSets = setsGenerator(benchPressWeight);
     const squatSets = setsGenerator(squatWeight);
     return {
+      cardTitle: `Week ${i + 1}`,
       phases: [
         {
           name: 'Warm Up',
@@ -118,6 +119,42 @@ export function fiveThreeOneGenerator(
     };
   });
 
+  const overheadPressSets = weekFourSets(overheadPressWeight);
+  const deadliftSets = weekFourSets(deadliftWeight);
+  const benchPressSets = weekFourSets(benchPressWeight);
+  const squatSets = weekFourSets(squatWeight);
+  const deloadWeek = {
+    cardTitle: 'Week 4',
+    phases: [
+      {
+        name: 'Deload',
+        setCount: 3,
+        rowContent: [
+          [
+            overheadPressSets[0],
+            deadliftSets[0],
+            benchPressSets[0],
+            squatSets[0]
+          ],
+          [
+            overheadPressSets[1],
+            deadliftSets[1],
+            benchPressSets[1],
+            squatSets[1]
+          ],
+          [
+            overheadPressSets[2],
+            deadliftSets[2],
+            benchPressSets[2],
+            squatSets[2]
+          ]
+        ]
+      }
+    ]
+  };
+
+  standardWeeks.push(deloadWeek);
+
   return {
     columnHeaders: [
       'Day 1\nOverhead Press',
@@ -125,7 +162,7 @@ export function fiveThreeOneGenerator(
       'Day 3\nBench Press',
       'Day 4\nSquat'
     ],
-    data
+    data: standardWeeks
   };
 }
 

@@ -15,10 +15,11 @@ export type ExerciseType =
   | 'overheadPress'
   | 'squat';
 
-export type ScheduleCardDataType = Array<{
-  phases: {
+export type ScheduleCardDataType = {
+  cardTitle: string,
+  phases: Array<{
     name: string,
-    rowContent: Array<string>,
+    rowContent: Array<Array<string>>,
     setCount: number
-  }
-}>;
+  }>
+};
