@@ -3,12 +3,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Alert as UnstyledAlert } from 'reactstrap';
-import ScheduleCard from './ScheduleCard';
-import { fiveThreeOneGenerator } from '../TemplateFormulas';
+import ScheduleCard from '../components/ScheduleCard';
+import fiveThreeOneGenerator from '../template-generators/fiveThreeOneGenerator';
 import type { ProgramTemplateType } from '../types';
 
 type Props = {
   ormFormula: (reps: ?number, weight: ?number) => ?number,
+  modification: string,
+  templateName: ProgramTemplateType,
   benchPressData: {
     reps: ?number,
     weight: ?number
@@ -38,6 +40,7 @@ export default class ScheduleWrapper extends React.Component {
   constructor(props: Props) {
     super(props);
   }
+
   render() {
     const {
       ormFormula,
@@ -55,11 +58,12 @@ export default class ScheduleWrapper extends React.Component {
     const overheadPressOrm =
       ormFormula(overheadPressData.reps, overheadPressData.weight) || null;
     const squatOrm = ormFormula(squatData.reps, squatData.weight) || null;
-    const { columnHeaders, data } = fiveThreeOneGenerator(
+    const { data } = fiveThreeOneGenerator(
       benchPressOrm,
       deadliftOrm,
       overheadPressOrm,
-      squatOrm
+      squatOrm,
+      this.props.modification
     );
 
     return (

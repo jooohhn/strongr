@@ -6,8 +6,6 @@ import {
   FormGroup as UnstlyedFormGroup,
   Label,
   Input,
-  Container,
-  Row,
   Col
 } from 'reactstrap';
 import styled from 'styled-components';
@@ -40,74 +38,89 @@ const Form = styled(UnstyledForm)`
 
 type Props = {
   handleViewChange: () => void,
-  view: 'data' | 'schedule'
+  view: 'data' | 'schedule',
+  modification: string,
+  handleModificationChange: (modifcation: string) => void
 };
 
 const FormWrapper = (props: Props) => {
   const buttonText = props.view === 'data' ? 'Show schedule' : 'Show 1RM';
+  const modifications = ['The Triumvirate', 'Boring but Big'].map(e =>
+    (<FormGroup key={e} check>
+      <Label check>
+        <Input
+          type="radio"
+          name={'radio1'}
+          checked={e === props.modification}
+          onChange={() => props.handleModificationChange(e)}
+        />{' '}
+        {e}
+      </Label>
+    </FormGroup>)
+  );
+
   return (
     <div>
       <Form>
-        <FormGroup>
-          <Label for="genderInput">Gender</Label>
-          <Input type="select" name="Gender" id="genderInput">
-            <option>Male</option>
-            <option>Female</option>
-          </Input>
+        <FormGroup row>
+          <Col xs="12">
+            <Label for="genderInput">Gender</Label>
+            <Input type="select" name="Gender" id="genderInput">
+              <option>Male</option>
+              <option>Female</option>
+            </Input>
+          </Col>
         </FormGroup>
-        <Container fluid style={{ padding: '0' }}>
-          <Row>
-            <Col xs="6">
-              <FormGroup>
-                <Label for="weightInput">Weight</Label>
-                <Input type="number" name="Weight" id="weightInput" />
-              </FormGroup>
-            </Col>
-            <Col xs="6">
-              <FormGroup>
-                <Label for="unitInput">Units</Label>
-                <Input type="select" name="Units" id="unitInput">
-                  <option>lbs</option>
-                  <option>kg</option>
-                </Input>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6">
-              <FormGroup>
-                <Label for="ormFormulaInput">1RM Formula</Label>
-                <Input
-                  type="select"
-                  name="One Rep Max Formula"
-                  id="ormFormulaInput"
-                >
-                  <option>Epley</option>
-                  <option>Brzycki</option>
-                  <option>McGlothin</option>
-                  <option>Lombardi</option>
-                  <option>Mayhew et al.</option>
-                  <option>
-                    {"O'Conner et al."}
-                  </option>
-                </Input>
-              </FormGroup>
-            </Col>
-            <Col xs="6">
-              <FormGroup>
-                <Label for="programTemplateInput">Programs</Label>
-                <Input
-                  type="select"
-                  name="Program Template"
-                  id="programTemplateInput"
-                >
-                  <option>5/3/1</option>
-                  <option>Starting Strength</option>
-                </Input>
-              </FormGroup>
-            </Col>
-          </Row>
-        </Container>
+        <FormGroup row>
+          <Col xs="6">
+            <Label for="weightInput">Weight</Label>
+            <Input type="number" name="Weight" id="weightInput" />
+          </Col>
+          <Col xs="6">
+            <Label for="unitInput">Units</Label>
+            <Input type="select" name="Units" id="unitInput">
+              <option>lbs</option>
+              <option>kg</option>
+            </Input>
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Col xs="12">
+            <Label for="ormFormulaInput">1RM Formula</Label>
+            <Input
+              type="select"
+              name="One Rep Max Formula"
+              id="ormFormulaInput"
+            >
+              <option>Epley</option>
+              <option>Brzycki</option>
+              <option>McGlothin</option>
+              <option>Lombardi</option>
+              <option>Mayhew et al.</option>
+              <option>
+                {"O'Conner et al."}
+              </option>
+            </Input>
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Col xs="12">
+            <Label for="programTemplateInput">Programs</Label>
+            <Input
+              type="select"
+              name="Program Template"
+              id="programTemplateInput"
+            >
+              <option>5/3/1</option>
+              <option>Starting Strength</option>
+            </Input>
+          </Col>
+        </FormGroup>
+        <hr />
+        <FormGroup tag="fieldset">
+          <Label>Modifications</Label>
+          {modifications}
+        </FormGroup>
         <Button block onClick={props.handleViewChange}>
           {buttonText}
         </Button>

@@ -23,7 +23,9 @@
 		"react/jsx-wrap-multilines": ["error", {"declaration": false, "assignment": false}],
 		"react/prop-types": 0,
 		// Since handled by flow
-		"react/no-unused-prop-types" : 0
+		"react/no-unused-prop-types" : 0,
+		// Conflicts with prettier
+		"no-confusing-arrow" : 0
 	},
 	"settings": {
 		"polyfills": ["fetch"]
