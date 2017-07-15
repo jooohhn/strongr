@@ -4,7 +4,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { APP_NAME } from '../../../shared/config';
-import ScheduleWrapper from '../ScheduleWrapper';
+import ScheduleWrapper from '../../containers/ScheduleWrapper';
 import ORMWrapper from '../ORMWrapper';
 import FormWrapper from '../FormWrapper';
 import ormFormulas from '../../ORMFormulas';
@@ -37,6 +37,7 @@ export default class HomePage extends React.Component {
     ormFormulaName: OrmFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: ProgramTemplateType,
+    modification: string,
     view: 'data' | 'schedule'
   };
 
@@ -57,6 +58,7 @@ export default class HomePage extends React.Component {
       ormFormulaName: 'epley',
       units: 'lbs',
       programTemplate: '5/3/1',
+      modification: 'The Triumvirate',
       view: 'data'
     };
   }
@@ -67,6 +69,10 @@ export default class HomePage extends React.Component {
     } else if (this.state.view === 'schedule') {
       this.setState({ view: 'data' });
     } else throw new Error('this.state.view is neither schedule nor data');
+  };
+
+  handleModificationChange = (modification: string) => {
+    this.setState({ modification });
   };
 
   setExerciseData = (
@@ -109,13 +115,15 @@ export default class HomePage extends React.Component {
         />
         <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
-            <Col xs="12" sm="12" md="5" lg="4" xl="3">
+            <Col xs="12" sm="12" md="5" lg="4" xl="4">
               <FormWrapper
                 handleViewChange={this.handleViewChange}
+                modification={this.state.modification}
+                handleModificationChange={this.handleModificationChange}
                 view={view}
               />
             </Col>
-            <Col xs="12" sm="12" md="7" lg="8" xl="9">
+            <Col xs="12" sm="12" md="7" lg="8" xl="8">
               {view === 'data'
                 ? <ORMWrapper
                   ormFormula={ormFormulas[ormFormulaName]}
@@ -127,6 +135,8 @@ export default class HomePage extends React.Component {
                 />
                 : <ScheduleWrapper
                   ormFormula={ormFormulas[ormFormulaName]}
+                  modification={this.state.modification}
+                  templateName={this.state.programTemplate}
                   benchPressData={this.state.benchPressData}
                   deadliftData={this.state.deadliftData}
                   squatData={this.state.squatData}
