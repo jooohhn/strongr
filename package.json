@@ -1,7 +1,7 @@
 {
-	"name": "js-boilerplate",
+	"name": "strongr",
 	"version": "1.0.0",
-	"description": "Personal boilerplate",
+	"description": "Application to calculate 1RM and workout schedules",
 	"main": "index.js",
 	"author": "John Tran",
 	"license": "MIT",
