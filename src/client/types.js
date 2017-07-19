@@ -24,3 +24,12 @@ export type ScheduleCardDataType = {
     setCount: number
   }>
 };
+
+// Used in strength-standards-generator
+export type StrengthStandardsType = {
+  untrained: number,
+  novice: number,
+  intermediate: number,
+  advanced: number,
+  elite: number
+};

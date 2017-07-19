@@ -1,15 +1,8 @@
 /* eslint no-restricted-syntax: 0 */
 import ormFormulas from '../src/client/ORMFormulas';
+import getDeadliftStandards from '../src/client/strength-standards-generator/deadliftStandards';
 
 describe('One Rep Max Formulas', () => {
-  // beforeAll(async () => {
-
-  // });
-
-  // afterAll(() => {
-
-  // });
-
   describe('Epley', () => {
     it('Testing Correctness', async () => {
       const { epley } = ormFormulas;
@@ -31,5 +24,24 @@ describe('One Rep Max Formulas', () => {
       expect(() => { epley(-2, -1); }).toThrow();
       expect(() => { epley(0, 0); }).toThrow();
     });
+  });
+});
+
+describe('Strength Standards Calculations', () => {
+  it('Testing Deadlift Standards', async () => {
+    const weight = 220;
+    const standards = getDeadliftStandards(weight);
+    console.log(standards);
+  });
+
+  // prettier-ignore
+  it('Testing Bad Input', async () => {
+    const { epley } = ormFormulas;
+    expect(() => { epley(0, 175); }).toThrow();
+    expect(() => { epley(-1, 175); }).toThrow();
+    expect(() => { epley(3, 0); }).toThrow();
+    expect(() => { epley(3, -1); }).toThrow();
+    expect(() => { epley(-2, -1); }).toThrow();
+    expect(() => { epley(0, 0); }).toThrow();
   });
 });
