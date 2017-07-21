@@ -17,51 +17,73 @@ import type {
 
 export default class HomePage extends React.Component {
   state: {
+    bodyweight: ?number,
     gender: 'male' | 'female',
-    benchPressData: {
-      exerciseName: ExerciseType,
-      reps: ?number,
-      weight: ?number
-    },
-    deadliftData: {
-      exerciseName: ExerciseType,
-      reps: ?number,
-      weight: ?number
-    },
-    overheadPressData: {
-      exerciseName: ExerciseType,
-      reps: ?number,
-      weight: ?number
-    },
-    squatData: { exerciseName: ExerciseType, reps: ?number, weight: ?number },
     ormFormulaName: OrmFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: ProgramTemplateType,
     modification: string,
-    view: 'data' | 'schedule'
+    view: 'data' | 'schedule',
+    benchPressData: {
+      exerciseName: ExerciseType,
+      reps: ?number,
+      exerciseWeight: ?number
+    },
+    deadliftData: {
+      exerciseName: ExerciseType,
+      reps: ?number,
+      exerciseWeight: ?number
+    },
+    overheadPressData: {
+      exerciseName: ExerciseType,
+      reps: ?number,
+      exerciseWeight: ?number
+    },
+    squatData: {
+      exerciseName: ExerciseType,
+      reps: ?number,
+      exerciseWeight: ?number
+    }
   };
 
   constructor(props: {}) {
     super(props);
     this.state = {
+      bodyweight: null,
       gender: 'male',
-      benchPressData: { exerciseName: 'benchPress', reps: null, weight: null },
-      deadliftData: { exerciseName: 'deadlift', reps: null, weight: null },
-      overheadPressData: {
-        exerciseName: 'overheadPress',
-        reps: null,
-        weight: null
-      },
-      squatData: { exerciseName: 'squat', reps: null, weight: null },
       // @TODO: Have units be based on user location
       //        Hardcoded 'epley'
       ormFormulaName: 'epley',
       units: 'lbs',
       programTemplate: '5/3/1',
       modification: 'The Triumvirate',
-      view: 'data'
+      view: 'data',
+      benchPressData: {
+        exerciseName: 'benchPress',
+        reps: null,
+        exerciseWeight: null
+      },
+      deadliftData: {
+        exerciseName: 'deadlift',
+        reps: null,
+        exerciseWeight: null
+      },
+      overheadPressData: {
+        exerciseName: 'overheadPress',
+        reps: null,
+        exerciseWeight: null
+      },
+      squatData: { exerciseName: 'squat', reps: null, exerciseWeight: null }
     };
   }
+
+  changeBodyweight = (bodyweight: number) => {
+    this.setState({ bodyweight });
+  };
+
+  handleModificationChange = (modification: string) => {
+    this.setState({ modification });
+  };
 
   handleViewChange = () => {
     if (this.state.view === 'data') {
@@ -71,27 +93,27 @@ export default class HomePage extends React.Component {
     } else throw new Error('this.state.view is neither schedule nor data');
   };
 
-  handleModificationChange = (modification: string) => {
-    this.setState({ modification });
-  };
-
   setExerciseData = (
     exerciseName: ExerciseType,
     reps: ?number,
-    weight: ?number
+    exerciseWeight: ?number
   ) => {
     switch (exerciseName) {
       case 'benchPress':
-        this.setState({ benchPressData: { exerciseName, reps, weight } });
+        this.setState({
+          benchPressData: { exerciseName, reps, exerciseWeight }
+        });
         break;
       case 'deadlift':
-        this.setState({ deadliftData: { exerciseName, reps, weight } });
+        this.setState({ deadliftData: { exerciseName, reps, exerciseWeight } });
         break;
       case 'overheadPress':
-        this.setState({ overheadPressData: { exerciseName, reps, weight } });
+        this.setState({
+          overheadPressData: { exerciseName, reps, exerciseWeight }
+        });
         break;
       case 'squat':
-        this.setState({ squatData: { exerciseName, reps, weight } });
+        this.setState({ squatData: { exerciseName, reps, exerciseWeight } });
         break;
       default:
         throw new Error(
@@ -117,15 +139,18 @@ export default class HomePage extends React.Component {
           <Row>
             <Col xs="12" sm="12" md="5" lg="4" xl="4">
               <FormWrapper
-                handleViewChange={this.handleViewChange}
+                bodyweight={this.state.bodyweight}
                 modification={this.state.modification}
-                handleModificationChange={this.handleModificationChange}
                 view={view}
+                changeBodyweight={this.changeBodyweight}
+                handleModificationChange={this.handleModificationChange}
+                handleViewChange={this.handleViewChange}
               />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="8">
               {view === 'data'
                 ? <ORMWrapper
+                  bodyweight={this.state.bodyweight}
                   ormFormula={ormFormulas[ormFormulaName]}
                   setExerciseData={this.setExerciseData}
                   benchPressData={this.state.benchPressData}

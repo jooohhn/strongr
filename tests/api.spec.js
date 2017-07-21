@@ -30,8 +30,13 @@ describe('One Rep Max Formulas', () => {
 describe('Strength Standards Calculations', () => {
   it('Testing Deadlift Standards', async () => {
     const weight = 220;
-    const standards = getDeadliftStandards(weight);
-    console.log(standards);
+    expect(getDeadliftStandards(weight)).toEqual({
+      untrained: 164,
+      novice: 305,
+      intermediate: 351,
+      advanced: 478,
+      elite: 584
+    });
   });
 
   // prettier-ignore

@@ -37,10 +37,12 @@ const Form = styled(UnstyledForm)`
 `;
 
 type Props = {
-  handleViewChange: () => void,
-  view: 'data' | 'schedule',
+  bodyweight: ?number,
   modification: string,
-  handleModificationChange: (modifcation: string) => void
+  view: 'data' | 'schedule',
+  changeBodyweight: (bodyweight: number) => void,
+  handleModificationChange: (modifcation: string) => void,
+  handleViewChange: () => void
 };
 
 const FormWrapper = (props: Props) => {
@@ -73,8 +75,15 @@ const FormWrapper = (props: Props) => {
         </FormGroup>
         <FormGroup row>
           <Col xs="6">
-            <Label for="weightInput">Weight</Label>
-            <Input type="number" name="Weight" id="weightInput" />
+            <Label for="BodyweightInput">Bodyweight</Label>
+            <Input
+              type="number"
+              name="Bodyweight"
+              id="bodyweightInput"
+              value={props.bodyweight || ''}
+              onChange={e =>
+                props.changeBodyweight(parseInt(e.target.value, 10))}
+            />
           </Col>
           <Col xs="6">
             <Label for="unitInput">Units</Label>

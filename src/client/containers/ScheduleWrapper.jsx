@@ -8,19 +8,19 @@ import fiveThreeOneGenerator from '../template-generators/fiveThreeOneGenerator'
 import type { ProgramTemplateType } from '../types';
 
 type Props = {
-  ormFormula: (reps: ?number, weight: ?number) => ?number,
+  ormFormula: (reps: ?number, exerciseWeight: ?number) => ?number,
   modification: string,
   templateName: ProgramTemplateType,
   benchPressData: {
     reps: ?number,
-    weight: ?number
+    exerciseWeight: ?number
   },
-  deadliftData: { reps: ?number, weight: ?number },
+  deadliftData: { reps: ?number, exerciseWeight: ?number },
   overheadPressData: {
     reps: ?number,
-    weight: ?number
+    exerciseWeight: ?number
   },
-  squatData: { reps: ?number, weight: ?number }
+  squatData: { reps: ?number, exerciseWeight: ?number }
 };
 
 const StyledAlert = styled(UnstyledAlert)`
@@ -50,14 +50,16 @@ export default class ScheduleWrapper extends React.Component {
       squatData
     } = this.props;
     const benchPressOrm =
-      ormFormula(benchPressData.reps, benchPressData.weight) || null;
+      ormFormula(benchPressData.reps, benchPressData.exerciseWeight) || null;
     const deadliftOrm = ormFormula(
       deadliftData.reps,
-      deadliftData.weight || null
+      deadliftData.exerciseWeight || null
     );
     const overheadPressOrm =
-      ormFormula(overheadPressData.reps, overheadPressData.weight) || null;
-    const squatOrm = ormFormula(squatData.reps, squatData.weight) || null;
+      ormFormula(overheadPressData.reps, overheadPressData.exerciseWeight) ||
+      null;
+    const squatOrm =
+      ormFormula(squatData.reps, squatData.exerciseWeight) || null;
     const { data } = fiveThreeOneGenerator(
       benchPressOrm,
       deadliftOrm,

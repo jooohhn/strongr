@@ -14,12 +14,9 @@ import {
   Col
 } from 'reactstrap';
 import styled from 'styled-components';
+import ProgressBar from './ProgressBar';
 import { SECONDARY_COLOR } from '../colors';
-import type { ExerciseType } from '../types';
-
-const StyledProgress = styled(UnstyledProgress)`
-	background-color: ${SECONDARY_COLOR}
-`;
+import type { ExerciseType, StrengthStandardsType } from '../types';
 
 const StyledCardTitle = styled(UnstyledCardTitle)`
 	font-size: 1.2rem
@@ -41,13 +38,14 @@ type Props = {
   title: 'Bench Press' | 'Deadlift' | 'Overhead Press' | 'Squat',
   exerciseName: ExerciseType,
   reps: ?number,
-  weight: ?number,
-  ormFormula: (reps: ?number, weight: ?number) => ?number,
+  exerciseWeight: ?number,
+  ormFormula: (reps: ?number, exerciseWeight: ?number) => ?number,
   setExerciseData: (
     exerciseName: ExerciseType,
     reps: ?number,
-    weight: ?number
-  ) => void
+    exerciseWeight: ?number
+  ) => void,
+  strengthStandards: StrengthStandardsType
 };
 
 export default class ORMCard extends React.Component {
@@ -61,24 +59,25 @@ export default class ORMCard extends React.Component {
     }
     if (e.target.name === 'Repetitions') {
       const { setExerciseData } = this.props;
-      const { exerciseName, weight } = this.props;
+      const { exerciseName, exerciseWeight } = this.props;
       const newReps = parseInt(e.target.value, 10) || null;
-      setExerciseData(exerciseName, newReps, weight);
-    } else if (e.target.name === 'Weight') {
+      setExerciseData(exerciseName, newReps, exerciseWeight);
+    } else if (e.target.name === 'ExerciseWeight') {
       const { setExerciseData } = this.props;
       const { exerciseName, reps } = this.props;
       const newWeight = parseInt(e.target.value, 10) || null;
       setExerciseData(exerciseName, reps, newWeight);
     } else {
       throw new Error(
-        `Input name is ${e.target.name} rather than "Weight" or "Repetitions"`
+        `Input name is ${e.target
+          .name} rather than "ExerciseWeight" or "Repetitions"`
       );
     }
   };
 
   render() {
-    const { title, reps, weight, ormFormula } = this.props;
-    const orm = ormFormula(reps, weight) || '?';
+    const { title, reps, exerciseWeight, ormFormula } = this.props;
+    const orm = ormFormula(reps, exerciseWeight) || '?';
 
     return (
       <div>
@@ -107,18 +106,16 @@ export default class ORMCard extends React.Component {
                     <Label for="weightInput">Weight</Label>
                     <Input
                       type="number"
-                      name="Weight"
-                      id="weightInput"
-                      value={weight || ''}
+                      name="ExerciseWeight"
+                      id="ExerciseWeightInput"
+                      value={exerciseWeight || ''}
                       onChange={this.handleInputChange}
                     />
                   </Col>
                 </Row>
               </Container>
             </FormGroup>
-            <StyledProgress multi>
-              <StyledProgress bar value="15" />
-            </StyledProgress>
+            <ProgressBar {...this.props.strengthStandards} />
           </CardBlock>
         </Card>
       </div>
