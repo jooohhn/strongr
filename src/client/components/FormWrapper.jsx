@@ -31,7 +31,7 @@ const Form = styled(UnstyledForm)`
 	margin-bottom: 2.5vh;
 	background-color: white;
 	color: #292b2c;
-	padding: 0.75em;
+	padding: 0.85em;
 	border: 1px solid rgba(0, 0, 0, .125);
 	border-radius: .25rem;
 `;
@@ -123,6 +123,29 @@ const FormWrapper = (props: Props) => {
               <option>5/3/1</option>
               <option>Starting Strength</option>
             </Input>
+          </Col>
+        </FormGroup>
+        <hr />
+        <FormGroup row>
+          <Col xs="6">
+            <Label for="programTemplateInput">Reps</Label>
+            <Input
+              type="number"
+              name="Bench Press Reps"
+              id="benchPressReps"
+              value={0 || ''}
+              onChange={() => console.log('bench reps changed')}
+            />
+          </Col>
+          <Col xs="6">
+            <Label for="programTemplateInput">Weight</Label>
+            <Input
+              type="number"
+              name="Bench Press Weight"
+              id="benchPressWeight"
+              value={0 || ''}
+              onChange={() => console.log('bench weight changed')}
+            />
           </Col>
         </FormGroup>
         <hr />
