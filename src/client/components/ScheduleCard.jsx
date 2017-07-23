@@ -27,7 +27,7 @@ const StyledTable = styled(UnstyledTable)`
 	th {
 		background-color: white;
 	}
-	font-size: 85%;
+	font-size: .8em;
 `;
 
 const ScheduleCard = (props: Props) => {
