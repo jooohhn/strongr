@@ -18,7 +18,7 @@ import type {
 export default class HomePage extends React.Component {
   state: {
     bodyweight: ?number,
-    gender: 'male' | 'female',
+    sex: 'male' | 'female',
     ormFormulaName: OrmFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: ProgramTemplateType,
@@ -50,7 +50,7 @@ export default class HomePage extends React.Component {
     super(props);
     this.state = {
       bodyweight: null,
-      gender: 'male',
+      sex: 'male',
       // @TODO: Have units be based on user location
       //        Hardcoded 'epley'
       ormFormulaName: 'epley',

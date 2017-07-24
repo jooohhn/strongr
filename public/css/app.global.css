@@ -47,6 +47,11 @@ svg {
 	transition: .4s ease-out, .2s ease-in;
 }
 
+hr {
+	border-width: 2px;
+	margin: 1rem 0;
+}
+
 
 /* Overriding Bootstrap */
 
