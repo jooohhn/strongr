@@ -9,7 +9,7 @@ import type { ExerciseType } from '../types';
 const CardWrapper = styled.div`margin-bottom: 2vh;`;
 
 type Props = {
-  bodyweight: number,
+  bodyweight: ?number,
   ormFormula: (reps: ?number, exerciseWeight: ?number) => ?number,
   setExerciseData: (
     exerciseName: ExerciseType,

@@ -8,13 +8,11 @@ import {
   FormGroup,
   Label,
   Input,
-  Progress as UnstyledProgress,
   Container,
   Row,
   Col
 } from 'reactstrap';
 import styled from 'styled-components';
-import ProgressBar from './ProgressBar';
 import { SECONDARY_COLOR } from '../colors';
 import type { ExerciseType, StrengthStandardsType } from '../types';
 
@@ -115,7 +113,6 @@ export default class ORMCard extends React.Component {
                 </Row>
               </Container>
             </FormGroup>
-            <ProgressBar {...this.props.strengthStandards} />
           </CardBlock>
         </Card>
       </div>

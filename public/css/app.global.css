@@ -1,20 +1,40 @@
-
 @import "bootstrap/dist/css/bootstrap.min.css";
-
-html, body {
+html,
+body {
 	font-family: sans-serif;
 }
+
 body {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 	background-color: #ECF0F1;
 }
 
+
 /* @TODO: Remove Safari's <select> gloss*/
-select {
-	
+
+select, input {
+	border-left: 0 !important;
+	border-right: 0 !important;
+	border-top: 0 !important;
+	border-radius: 0px !important;
 }
 
+select {
+	 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA0LjkgMTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQuOSAxMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiM0NDQ0NDQ7fQo8L3N0eWxlPgo8dGl0bGU+YXJyb3dzPC90aXRsZT4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxLjQsNC43IDIuNSwzLjIgMy41LDQuNyAiLz4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIzLjUsNS4zIDIuNSw2LjggMS40LDUuMyAiLz4KPC9zdmc+Cg==) no-repeat right !important;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 a {
 	transition: .4s ease-out, .2s ease-in;
 }
@@ -27,7 +47,24 @@ svg {
 	transition: .4s ease-out, .2s ease-in;
 }
 
+hr {
+	border-width: 2px;
+	margin: 1rem 0;
+}
+
+
 /* Overriding Bootstrap */
-.table-responsive table{
+
+.table-responsive table {
 	margin-bottom: 0;
+}
+
+label{
+	margin-bottom: .25rem;
+}
+
+.input-group-addon {
+	padding: 0;
+	border: 0;
+	background-color: inherit;
 }
