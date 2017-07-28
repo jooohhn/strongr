@@ -62,3 +62,9 @@ hr {
 label{
 	margin-bottom: .25rem;
 }
+
+.input-group-addon {
+	padding: 0;
+	border: 0;
+	background-color: inherit;
+}

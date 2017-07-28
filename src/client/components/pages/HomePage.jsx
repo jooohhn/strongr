@@ -145,9 +145,14 @@ export default class HomePage extends React.Component {
                 changeBodyweight={this.changeBodyweight}
                 handleModificationChange={this.handleModificationChange}
                 handleViewChange={this.handleViewChange}
+                setExerciseData={this.setExerciseData}
+                benchPressData={this.state.benchPressData}
+                deadliftData={this.state.deadliftData}
+                overheadPressData={this.state.overheadPressData}
+                squatData={this.state.squatData}
               />
             </Col>
-            <Col xs="12" >
+            <Col xs="12">
               {view === 'data'
                 ? <ORMWrapper
                   bodyweight={this.state.bodyweight}
