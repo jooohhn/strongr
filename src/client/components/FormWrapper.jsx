@@ -48,6 +48,7 @@ const Input = styled(UntstyledInput)`
 
 const Label = styled(UntstyledLabel)`
 	margin-bottom: 0;
+	font-size: 95%;
 `;
 
 const Section = styled.div`
@@ -58,6 +59,13 @@ const Section = styled.div`
   padding: 0.85rem;
   padding-top: ${props => (props.topBorder ? '1.2rem' : '0.85rem')};
   padding-bottom: ${props => (props.bottomBorder ? '1.2rem' : '0.85rem')};
+`;
+
+const SectionHeading = styled.div`
+  font-size: 1.65rem;
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+  color: ${SECONDARY_COLOR};
 `;
 
 function camelToRegular(word: string) {
@@ -189,6 +197,7 @@ const FormWrapper = (props: Props) => {
     <div>
       <Form>
         <Section bottomBorder>
+          <SectionHeading>Personal Details</SectionHeading>
           <FormGroup row>
             <Col xs="12">
               <Label for="sexInput">Sex</Label>
@@ -220,6 +229,7 @@ const FormWrapper = (props: Props) => {
           </FormGroup>
         </Section>
         <Section bottomBorder>
+          <SectionHeading>Lift Data</SectionHeading>
           <FormGroup row>
             <Col xs={{ size: 4, offset: 4 }}>Reps</Col>
             <Col xs="4">Weight</Col>
@@ -227,6 +237,7 @@ const FormWrapper = (props: Props) => {
           {exerciseForms}
         </Section>
         <Section bottomBorder>
+          <SectionHeading>Program Generator</SectionHeading>
           <FormGroup row>
             <Col xs="12">
               <Label for="programTemplateInput">Programs</Label>
