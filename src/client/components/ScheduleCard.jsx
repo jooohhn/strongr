@@ -11,8 +11,9 @@ import styled from 'styled-components';
 import type { ScheduleCardDataType } from '../types';
 
 type Props = {
+  cardData: ScheduleCardDataType,
   columnHeaders: Array<string>,
-  cardData: ScheduleCardDataType
+  styles: Object
 };
 
 // @TODO: Find out why border needs !important
@@ -57,7 +58,7 @@ const ScheduleCard = (props: Props) => {
   });
   // Maps whole row sections together by phase name
   return (
-    <div>
+    <div style={props.styles}>
       <Card>
         <CardHeader tag="h5">
           <b>

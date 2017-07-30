@@ -142,8 +142,18 @@ export default function fiveThreeOneGenerator(
           name: 'Boring but Big',
           setCount: 2,
           rowContent: [
-            ['TBA', 'TBA', 'TBA', 'TBA'],
-            ['TBA', 'TBA', 'TBA', 'TBA']
+            [
+              'Overhead Press\n5 x 10',
+              'Dead Lift\n5 x 10',
+              'Bench Press\n5 x 10',
+              'Squat Press\n5 x 10'
+            ],
+            [
+              'Lateral Work\n5 x 10',
+              'Abs\n5 x 10',
+              'Lateral Work\n5 x 10',
+              'Abs\n5 x 10'
+            ]
           ]
         });
         break;
