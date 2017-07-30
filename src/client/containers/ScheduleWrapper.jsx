@@ -95,6 +95,7 @@ export default class ScheduleWrapper extends React.Component {
             key={e.cardTitle}
             cardData={e}
             columnHeaders={e.columnHeaders}
+            styles={{ marginBottom: '30px' }}
           />)
         )}
       </div>

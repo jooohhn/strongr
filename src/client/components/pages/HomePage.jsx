@@ -135,9 +135,9 @@ export default class HomePage extends React.Component {
             { property: 'og:title', content: APP_NAME }
           ]}
         />
-        <Container style={{ marginTop: '1.25vh' }}>
+        <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
-            <Col xs="12">
+            <Col xs="12" sm="12" md="5" lg="4" xl="4">
               <FormWrapper
                 bodyweight={this.state.bodyweight}
                 modification={this.state.modification}
@@ -152,7 +152,7 @@ export default class HomePage extends React.Component {
                 squatData={this.state.squatData}
               />
             </Col>
-            <Col xs="12">
+            <Col xs="12" sm="12" md="7" lg="8" xl="8">
               {view === 'data'
                 ? <ORMWrapper
                   bodyweight={this.state.bodyweight}
