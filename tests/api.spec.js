@@ -31,6 +31,7 @@ describe('Strength Standards Calculations', () => {
   it('Testing Deadlift Standards', async () => {
     const weight = 220;
     expect(getDeadliftStandards(weight)).toEqual({
+      exerciseName: 'deadlift',
       untrained: 164,
       novice: 305,
       intermediate: 351,

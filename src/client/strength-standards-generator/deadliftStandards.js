@@ -5,6 +5,7 @@ export default function getDeadliftStandards(
   bodyweight: number
 ): StrengthStandardsType {
   return {
+    exerciseName: 'deadlift',
     untrained: Math.round(
       -90.39365 +
         2.311359 * bodyweight -

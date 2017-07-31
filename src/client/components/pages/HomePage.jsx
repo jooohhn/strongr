@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../../containers/ScheduleWrapper';
-import ORMWrapper from '../ORMWrapper';
+import GraphsWrapper from '../GraphsWrapper';
 import FormWrapper from '../FormWrapper';
 import ormFormulas from '../../ORMFormulas';
 
@@ -154,14 +154,9 @@ export default class HomePage extends React.Component {
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="8">
               {view === 'data'
-                ? <ORMWrapper
+                ? <GraphsWrapper
                   bodyweight={this.state.bodyweight}
                   ormFormula={ormFormulas[ormFormulaName]}
-                  setExerciseData={this.setExerciseData}
-                  benchPressData={this.state.benchPressData}
-                  deadliftData={this.state.deadliftData}
-                  squatData={this.state.squatData}
-                  overheadPressData={this.state.overheadPressData}
                 />
                 : <ScheduleWrapper
                   ormFormula={ormFormulas[ormFormulaName]}

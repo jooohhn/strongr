@@ -1,11 +1,5 @@
 // @flow
-export type OrmFormulaType =
-  | 'epley'
-  | 'brzycki'
-  | 'mcglothin'
-  | 'lombardi'
-  | 'mayhew et al.'
-  | "o'Conner et al.";
+export type OrmFormulaType = 'epley';
 
 export type ProgramTemplateType = '5/3/1' | 'Starting Strength';
 
@@ -27,6 +21,7 @@ export type ScheduleCardDataType = {
 
 // Used in strength-standards-generator
 export type StrengthStandardsType = {
+  exerciseName: ExerciseType,
   untrained: number,
   novice: number,
   intermediate: number,
