@@ -79,10 +79,18 @@ function camelToRegular(word: string) {
 
 type Props = {
   bodyweight: ?number,
-  modification: string,
-  view: 'data' | 'schedule',
   changeBodyweight: (bodyweight: number) => void,
-  handleModificationChange: (modifcation: string) => void,
+  modification: string,
+  changeModifcation: (modifcation: string) => void,
+  programTemplate: '5/3/1' | 'Starting Strength',
+  changeProgramTemplate: (template: '5/3/1' | 'Starting Strength') => void,
+  roundingNumber: number,
+  changeRoundingNumber: (roundingNumber: number) => void,
+  units: 'lbs' | 'kg',
+  changeUnits: (units: 'lbs' | 'kg') => void,
+  sex: 'Male' | 'Female',
+  changeSex: (sex: 'Male' | 'Female') => void,
+  view: 'data' | 'schedule',
   handleViewChange: () => void,
   setExerciseData: (
     exerciseName: ExerciseType,
@@ -120,7 +128,7 @@ const FormWrapper = (props: Props) => {
           type="radio"
           name={'radio1'}
           checked={e === props.modification}
-          onChange={() => props.handleModificationChange(e)}
+          onChange={() => props.changeModifcation(e)}
         />{' '}
         {e}
       </Label>
@@ -197,11 +205,17 @@ const FormWrapper = (props: Props) => {
     <div>
       <Form>
         <Section bottomBorder>
-          <SectionHeading>Personal Details</SectionHeading>
+          <SectionHeading>User Details</SectionHeading>
           <FormGroup row>
             <Col xs="12">
               <Label for="sexInput">Sex</Label>
-              <Input type="select" name="sex" id="sexInput">
+              <Input
+                type="select"
+                name="sex"
+                id="sexInput"
+                value={props.sex}
+                onChange={e => props.changeSex(e.target.value)}
+              >
                 <option>Male</option>
                 <option>Female</option>
               </Input>
@@ -221,7 +235,13 @@ const FormWrapper = (props: Props) => {
             </Col>
             <Col xs="6">
               <Label for="unitInput">Units</Label>
-              <Input type="select" name="Units" id="unitInput">
+              <Input
+                type="select"
+                name="Units"
+                id="unitInput"
+                value={props.units}
+                onChange={e => props.changeUnits(e.target.value)}
+              >
                 <option>lbs</option>
                 <option>kg</option>
               </Input>
@@ -239,15 +259,30 @@ const FormWrapper = (props: Props) => {
         <Section bottomBorder>
           <SectionHeading>Program Generator</SectionHeading>
           <FormGroup row>
-            <Col xs="12">
+            <Col xs="6">
               <Label for="programTemplateInput">Programs</Label>
               <Input
                 type="select"
                 name="Program Template"
                 id="programTemplateInput"
+                value="5/3/1"
+                onChange={e => props.changeProgramTemplate(e.target.value)}
               >
                 <option>5/3/1</option>
-                <option>Starting Strength</option>
+                <option disabled>Starting Strength</option>
+              </Input>
+            </Col>
+            <Col xs="6">
+              <Label for="roundingNumberInput">Round Weights To</Label>
+              <Input
+                type="select"
+                name="RoundingNumber"
+                id="roundingNumberInput"
+                value={props.roundingNumber}
+                onChange={e => props.changeRoundingNumber(e.target.value)}
+              >
+                <option>5</option>
+                <option>2.5</option>
               </Input>
             </Col>
           </FormGroup>
