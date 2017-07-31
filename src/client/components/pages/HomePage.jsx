@@ -18,11 +18,12 @@ import type {
 export default class HomePage extends React.Component {
   state: {
     bodyweight: ?number,
-    sex: 'male' | 'female',
+    sex: 'Male' | 'Female',
     ormFormulaName: OrmFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: ProgramTemplateType,
     modification: string,
+    roundingNumber: number,
     view: 'data' | 'schedule',
     benchPressData: {
       exerciseName: ExerciseType,
@@ -50,13 +51,14 @@ export default class HomePage extends React.Component {
     super(props);
     this.state = {
       bodyweight: null,
-      sex: 'male',
+      sex: 'Male',
       // @TODO: Have units be based on user location
       //        Hardcoded 'epley'
       ormFormulaName: 'epley',
       units: 'lbs',
       programTemplate: '5/3/1',
       modification: 'The Triumvirate',
+      roundingNumber: 5,
       view: 'data',
       benchPressData: {
         exerciseName: 'benchPress',
@@ -81,8 +83,24 @@ export default class HomePage extends React.Component {
     this.setState({ bodyweight });
   };
 
-  handleModificationChange = (modification: string) => {
+  changeModifcation = (modification: string) => {
     this.setState({ modification });
+  };
+
+  changeProgramTemplate = (programTemplate: '5/3/1' | 'Starting Strength') => {
+    this.setState({ programTemplate });
+  };
+
+  changeRoundingNumber = (roundingNumber: number) => {
+    this.setState({ roundingNumber });
+  };
+
+  changeSex = (sex: 'Male' | 'Female') => {
+    this.setState({ sex });
+  };
+
+  changeUnits = (units: 'lbs' | 'kg') => {
+    this.setState({ units });
   };
 
   handleViewChange = () => {
@@ -140,16 +158,24 @@ export default class HomePage extends React.Component {
             <Col xs="12" sm="12" md="5" lg="4" xl="4">
               <FormWrapper
                 bodyweight={this.state.bodyweight}
-                modification={this.state.modification}
-                view={view}
                 changeBodyweight={this.changeBodyweight}
-                handleModificationChange={this.handleModificationChange}
+                modification={this.state.modification}
+                changeModifcation={this.changeModifcation}
+                programTemplate={this.state.programTemplate}
+                changeProgramTemplate={this.changeProgramTemplate}
+                roundingNumber={this.state.roundingNumber}
+                changeRoundingNumber={this.changeRoundingNumber}
+                sex={this.state.sex}
+                changeSex={this.changeSex}
+                units={this.state.units}
+                changeUnits={this.changeUnits}
+                view={view}
                 handleViewChange={this.handleViewChange}
-                setExerciseData={this.setExerciseData}
                 benchPressData={this.state.benchPressData}
                 deadliftData={this.state.deadliftData}
                 overheadPressData={this.state.overheadPressData}
                 squatData={this.state.squatData}
+                setExerciseData={this.setExerciseData}
               />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="8">
@@ -161,7 +187,9 @@ export default class HomePage extends React.Component {
                 : <ScheduleWrapper
                   ormFormula={ormFormulas[ormFormulaName]}
                   modification={this.state.modification}
+                  roundingNumber={this.state.roundingNumber}
                   templateName={this.state.programTemplate}
+                  units={this.state.units}
                   benchPressData={this.state.benchPressData}
                   deadliftData={this.state.deadliftData}
                   squatData={this.state.squatData}

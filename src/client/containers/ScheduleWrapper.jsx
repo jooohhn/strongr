@@ -10,6 +10,8 @@ import type { ProgramTemplateType } from '../types';
 type Props = {
   ormFormula: (reps: ?number, exerciseWeight: ?number) => ?number,
   modification: string,
+  units: 'lbs' | 'kg',
+  roundingNumber: number,
   templateName: ProgramTemplateType,
   benchPressData: {
     reps: ?number,
@@ -47,7 +49,8 @@ export default class ScheduleWrapper extends React.Component {
       benchPressData,
       deadliftData,
       overheadPressData,
-      squatData
+      squatData,
+      roundingNumber
     } = this.props;
     const benchPressOrm =
       ormFormula(benchPressData.reps, benchPressData.exerciseWeight) || null;
@@ -65,6 +68,7 @@ export default class ScheduleWrapper extends React.Component {
       deadliftOrm,
       overheadPressOrm,
       squatOrm,
+      roundingNumber,
       this.props.modification
     );
 

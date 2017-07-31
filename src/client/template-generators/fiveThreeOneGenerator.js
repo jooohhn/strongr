@@ -1,56 +1,60 @@
 // @flow
 
-const roundToFives = num => 5 * Math.round(num / 5);
+function roundTo(roundingNumber: number) {
+  return arg => roundingNumber * Math.round(arg / roundingNumber);
+}
 
 export default function fiveThreeOneGenerator(
   benchPressWeight: ?number,
   deadliftWeight: ?number,
   overheadPressWeight: ?number,
   squatWeight: ?number,
+  roundingNumber: number,
   accesory: 'The Triumvirate' | 'Boring but Big'
 ) {
+  const roundingFunc = roundTo(roundingNumber);
   const weekOneSets = (exerciseWeight: ?number) =>
     typeof exerciseWeight === 'number'
       ? [
-        `${roundToFives(exerciseWeight * 0.4)} x 5`,
-        `${roundToFives(exerciseWeight * 0.5)} x 5`,
-        `${roundToFives(exerciseWeight * 0.6)} x 3`,
-        `${roundToFives(exerciseWeight * 0.65)} x 5`,
-        `${roundToFives(exerciseWeight * 0.75)} x 5`,
-        `${roundToFives(exerciseWeight * 0.85)} x 5+`
+        `${roundingFunc(exerciseWeight * 0.4)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.5)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.6)} x 3`,
+        `${roundingFunc(exerciseWeight * 0.65)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.75)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.85)} x 5+`
       ]
       : Array(6).fill('–');
 
   const weekTwoSets = (exerciseWeight: ?number) =>
     typeof exerciseWeight === 'number'
       ? [
-        `${roundToFives(exerciseWeight * 0.4)} x 5`,
-        `${roundToFives(exerciseWeight * 0.5)} x 5`,
-        `${roundToFives(exerciseWeight * 0.6)} x 3`,
-        `${roundToFives(exerciseWeight * 0.7)} x 3`,
-        `${roundToFives(exerciseWeight * 0.8)} x 3`,
-        `${roundToFives(exerciseWeight * 0.9)} x 3+`
+        `${roundingFunc(exerciseWeight * 0.4)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.5)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.6)} x 3`,
+        `${roundingFunc(exerciseWeight * 0.7)} x 3`,
+        `${roundingFunc(exerciseWeight * 0.8)} x 3`,
+        `${roundingFunc(exerciseWeight * 0.9)} x 3+`
       ]
       : Array(6).fill('–');
 
   const weekThreeSets = (exerciseWeight: ?number) =>
     typeof exerciseWeight === 'number'
       ? [
-        `${roundToFives(exerciseWeight * 0.4)} x 5`,
-        `${roundToFives(exerciseWeight * 0.5)} x 5`,
-        `${roundToFives(exerciseWeight * 0.6)} x 5`,
-        `${roundToFives(exerciseWeight * 0.75)} x 5`,
-        `${roundToFives(exerciseWeight * 0.85)} x 3`,
-        `${roundToFives(exerciseWeight * 0.95)} x 1+`
+        `${roundingFunc(exerciseWeight * 0.4)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.5)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.6)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.75)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.85)} x 3`,
+        `${roundingFunc(exerciseWeight * 0.95)} x 1+`
       ]
       : Array(6).fill('–');
 
   const weekFourSets = (exerciseWeight: ?number) =>
     typeof exerciseWeight === 'number'
       ? [
-        `${roundToFives(exerciseWeight * 0.4)} x 5`,
-        `${roundToFives(exerciseWeight * 0.5)} x 5`,
-        `${roundToFives(exerciseWeight * 0.6)} x 5`
+        `${roundingFunc(exerciseWeight * 0.4)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.5)} x 5`,
+        `${roundingFunc(exerciseWeight * 0.6)} x 5`
       ]
       : Array(3).fill('–');
 
