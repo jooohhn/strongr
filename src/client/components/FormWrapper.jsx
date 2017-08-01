@@ -17,7 +17,7 @@ import {
   SECONDARY_COLOR,
   BACKGROUND_COLOR,
   NAV_COLOR
-} from '../colors';
+} from '../constants/colors';
 
 const Button = styled(UnstyledButton)`
 	background-color: ${SECONDARY_COLOR};
@@ -63,7 +63,7 @@ const Section = styled.div`
 
 const SectionHeading = styled.div`
   font-size: 1.65rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.55rem;
   font-weight: 500;
   color: ${SECONDARY_COLOR};
 `;
@@ -171,7 +171,7 @@ const FormWrapper = (props: Props) => {
               onChange={e =>
                 props.setExerciseData(
                   exerciseName,
-                  e.target.value,
+                  parseInt(e.target.value, 10),
                   exerciseWeight
                 )}
             />
@@ -193,7 +193,11 @@ const FormWrapper = (props: Props) => {
               id={`${exerciseName}Weight`}
               value={exerciseWeight || ''}
               onChange={e =>
-                props.setExerciseData(exerciseName, reps, e.target.value)}
+                props.setExerciseData(
+                  exerciseName,
+                  reps,
+                  parseInt(e.target.value, 10)
+                )}
             />
           </Col>
         </Row>

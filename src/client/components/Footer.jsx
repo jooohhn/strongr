@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FacebookIcon, GithubIcon, TwitterIcon } from './Icons';
-import { NAV_COLOR, BACKGROUND_COLOR } from '../colors';
+import { NAV_COLOR, BACKGROUND_COLOR } from '../constants/colors';
 
 const StyledFooterDiv = styled.footer`
   width: 100%;
