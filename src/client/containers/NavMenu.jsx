@@ -16,7 +16,7 @@ import {
   FAQ_PAGE_ROUTE
 } from '../../shared/routes';
 import { APP_NAME } from '../../shared/config';
-import { BACKGROUND_COLOR, NAV_COLOR } from '../colors';
+import { BACKGROUND_COLOR, NAV_COLOR } from '../constants/colors';
 
 // @ TODO: These CSS properties aren't given priority. Find out why
 const StyledNavbar = styled(UntsyledNavbar)`

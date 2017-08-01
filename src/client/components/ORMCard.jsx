@@ -13,7 +13,7 @@ import {
   Col
 } from 'reactstrap';
 import styled from 'styled-components';
-import { SECONDARY_COLOR } from '../colors';
+import { SECONDARY_COLOR } from '../constants/colors';
 import type { ExerciseType, StrengthStandardsType } from '../types';
 
 const StyledCardTitle = styled(UnstyledCardTitle)`

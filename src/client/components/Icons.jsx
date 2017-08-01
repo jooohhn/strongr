@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { BACKGROUND_COLOR } from '../colors';
+import { BACKGROUND_COLOR } from '../constants/colors';
 
 const FacebookSVG = styled.svg`
   fill: ${BACKGROUND_COLOR};

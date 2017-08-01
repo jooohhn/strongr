@@ -1,5 +1,5 @@
 // @flow
-export type OrmFormulaType = 'epley';
+export type OrmFormulaType = 'wathan';
 
 export type ProgramTemplateType = '5/3/1' | 'Starting Strength';
 

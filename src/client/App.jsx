@@ -18,7 +18,7 @@ import {
   FAQ_PAGE_ROUTE,
   ROOT_ROUTE
 } from '../shared/routes';
-import { BACKGROUND_COLOR } from './colors';
+import { BACKGROUND_COLOR } from './constants/colors';
 
 // See app.globa.css for why flex property is used (so sticky footer)
 const ContentWrapper = styled.div`

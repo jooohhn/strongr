@@ -53,13 +53,13 @@ export default class HomePage extends React.Component {
       bodyweight: null,
       sex: 'Male',
       // @TODO: Have units be based on user location
-      //        Hardcoded 'epley'
-      ormFormulaName: 'epley',
+      //        Hardcoded 'wathan'
+      ormFormulaName: 'wathan',
       units: 'lbs',
       programTemplate: '5/3/1',
       modification: 'The Triumvirate',
       roundingNumber: 5,
-      view: 'data',
+      view: 'schedule',
       benchPressData: {
         exerciseName: 'benchPress',
         reps: null,
