@@ -132,7 +132,7 @@ export default class SmolovJrGenerator implements GeneratorInterface {
     return 'LOREM IPSUM SMOLOV JR. PLACEHODER';
   }
 
-  static getModifications() {
+  static getTemplateModifications() {
     return ['Smolov Jr. Bench', 'Smolov Jr. Squat'];
   }
 }

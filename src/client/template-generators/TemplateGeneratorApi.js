@@ -1,7 +1,11 @@
 // @flow
 import FiveThreeOneGenerator from './FiveThreeOneGenerator';
 import SmolovJrGenerator from './SmolovJrGenerator';
-import type { ProgramTemplateType, ScheduleCardDataType } from '../types';
+import type {
+  ProgramTemplateType,
+  ScheduleCardDataType,
+  TemplateModificationType
+} from '../types';
 
 function roundTo(roundingNumber: number) {
   return arg => roundingNumber * Math.round(arg / roundingNumber);
@@ -56,12 +60,14 @@ export default class TemplateGeneratorApi {
     }
   }
 
-  static getModifications(template: ProgramTemplateType): Array<string> {
+  static getTemplateModifications(
+    template: ProgramTemplateType
+  ): Array<TemplateModificationType> {
     switch (template) {
       case '5/3/1':
-        return FiveThreeOneGenerator.getModifications();
+        return FiveThreeOneGenerator.getTemplateModifications();
       case 'Smolov Jr.':
-        return SmolovJrGenerator.getModifications();
+        return SmolovJrGenerator.getTemplateModifications();
       default:
         throw new Error(`Template ${template} give, which is not supported`);
     }

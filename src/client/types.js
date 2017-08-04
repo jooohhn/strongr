@@ -3,6 +3,12 @@ export type OrmFormulaType = 'wathan';
 
 export type ProgramTemplateType = '5/3/1' | 'Smolov Jr.';
 
+export type TemplateModificationType =
+  | 'The Triumvirate'
+  | 'Boring but Big'
+  | 'Smolov Jr. Bench'
+  | 'Smolov Jr. Squat';
+
 export type ExerciseType =
   | 'benchPress'
   | 'deadlift'

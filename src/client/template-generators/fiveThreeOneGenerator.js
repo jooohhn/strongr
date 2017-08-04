@@ -226,7 +226,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
     return 'LOREM IPSUM TEMPLATE INFO';
   }
 
-  static getModifications() {
+  static getTemplateModifications() {
     return ['The Triumvirate', 'Boring but Big'];
   }
 
