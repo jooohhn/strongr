@@ -81,7 +81,7 @@ function camelToRegular(word: string) {
 type Props = {
   bodyweight: ?number,
   changeBodyweight: (bodyweight: number) => void,
-  modification: string,
+  templateModification: string,
   changeModifcation: (modifcation: string) => void,
   programTemplate: '5/3/1' | 'Smolov Jr.',
   changeProgramTemplate: (template: '5/3/1' | 'Smolov Jr.') => void,
@@ -99,30 +99,31 @@ type Props = {
     exerciseWeight: ?number
   ) => void,
   benchPressData: {
-    exerciseName: ExerciseType,
+    exerciseName: 'benchPress',
     reps: ?number,
     exerciseWeight: ?number
   },
   deadliftData: {
-    exerciseName: ExerciseType,
+    exerciseName: 'deadlift',
     reps: ?number,
     exerciseWeight: ?number
   },
   overheadPressData: {
-    exerciseName: ExerciseType,
+    exerciseName: 'overheadPress',
     reps: ?number,
     exerciseWeight: ?number
   },
   squatData: {
-    exerciseName: ExerciseType,
+    exerciseName: 'squat',
     reps: ?number,
     exerciseWeight: ?number
   }
 };
 
 const FormWrapper = (props: Props) => {
+  // console.log(props.sex);
   const buttonText = props.view === 'data' ? 'Show schedule' : 'Show 1RM';
-  const modifications = TemplateGeneratorApi.getModifications(
+  const templateModifications = TemplateGeneratorApi.getTemplateModifications(
     props.programTemplate
   ).map(e =>
     (<FormGroup style={{ fontSize: '80%' }} key={e} check>
@@ -130,7 +131,7 @@ const FormWrapper = (props: Props) => {
         <Input
           type="radio"
           name={'radio1'}
-          checked={e === props.modification}
+          checked={e === props.templateModification}
           onChange={() => props.changeModifcation(e)}
         />{' '}
         {e}
@@ -294,8 +295,10 @@ const FormWrapper = (props: Props) => {
             </Col>
           </FormGroup>
           <FormGroup tag="fieldset">
-            <Label style={{ marginBottom: '0.5em' }}>Modifications</Label>
-            {modifications}
+            <Label style={{ marginBottom: '0.5em' }}>
+              templateModifications
+            </Label>
+            {templateModifications}
           </FormGroup>
         </Section>
         <Section>
