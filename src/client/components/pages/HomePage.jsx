@@ -7,6 +7,7 @@ import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../../containers/ScheduleWrapper';
 import GraphsWrapper from '../GraphsWrapper';
 import FormWrapper from '../FormWrapper';
+import TemplateGeneratorApi from '../../template-generators/TemplateGeneratorApi';
 import ormFormulas from '../../ORMFormulas';
 
 import type {
@@ -87,8 +88,11 @@ export default class HomePage extends React.Component {
     this.setState({ modification });
   };
 
-  changeProgramTemplate = (programTemplate: '5/3/1' | 'Starting Strength') => {
-    this.setState({ programTemplate });
+  changeProgramTemplate = (programTemplate: '5/3/1' | 'Smolov Jr.') => {
+    const modification = TemplateGeneratorApi.getModifications(
+      programTemplate
+    )[0];
+    this.setState({ programTemplate, modification });
   };
 
   changeRoundingNumber = (roundingNumber: number) => {

@@ -11,7 +11,6 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import ORMCard from '../components/ORMCard';
 import getDeadliftStandards from '../strength-standards-generator/deadliftStandards';
 
 type Props = {

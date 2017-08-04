@@ -11,6 +11,7 @@ import {
   Row
 } from 'reactstrap';
 import styled from 'styled-components';
+import TemplateGeneratorApi from '../template-generators/TemplateGeneratorApi';
 import type { ExerciseType } from '../types';
 import {
   PRIMARY_COLOR,
@@ -82,8 +83,8 @@ type Props = {
   changeBodyweight: (bodyweight: number) => void,
   modification: string,
   changeModifcation: (modifcation: string) => void,
-  programTemplate: '5/3/1' | 'Starting Strength',
-  changeProgramTemplate: (template: '5/3/1' | 'Starting Strength') => void,
+  programTemplate: '5/3/1' | 'Smolov Jr.',
+  changeProgramTemplate: (template: '5/3/1' | 'Smolov Jr.') => void,
   roundingNumber: number,
   changeRoundingNumber: (roundingNumber: number) => void,
   units: 'lbs' | 'kg',
@@ -121,7 +122,9 @@ type Props = {
 
 const FormWrapper = (props: Props) => {
   const buttonText = props.view === 'data' ? 'Show schedule' : 'Show 1RM';
-  const modifications = ['The Triumvirate', 'Boring but Big'].map(e =>
+  const modifications = TemplateGeneratorApi.getModifications(
+    props.programTemplate
+  ).map(e =>
     (<FormGroup style={{ fontSize: '80%' }} key={e} check>
       <Label check>
         <Input
@@ -269,11 +272,11 @@ const FormWrapper = (props: Props) => {
                 type="select"
                 name="Program Template"
                 id="programTemplateInput"
-                value="5/3/1"
+                value={props.programTemplate}
                 onChange={e => props.changeProgramTemplate(e.target.value)}
               >
                 <option>5/3/1</option>
-                <option disabled>Starting Strength</option>
+                <option>Smolov Jr.</option>
               </Input>
             </Col>
             <Col xs="6">

@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Alert as UnstyledAlert } from 'reactstrap';
 import ScheduleCard from '../components/ScheduleCard';
-import fiveThreeOneGenerator from '../template-generators/fiveThreeOneGenerator';
+import TemplateGeneratorApi from '../template-generators/TemplateGeneratorApi';
 import type { ProgramTemplateType } from '../types';
 
 type Props = {
@@ -50,7 +50,8 @@ export default class ScheduleWrapper extends React.Component {
       deadliftData,
       overheadPressData,
       squatData,
-      roundingNumber
+      roundingNumber,
+      templateName
     } = this.props;
     const benchPressOrm =
       ormFormula(benchPressData.reps, benchPressData.exerciseWeight) || null;
@@ -63,7 +64,8 @@ export default class ScheduleWrapper extends React.Component {
       null;
     const squatOrm =
       ormFormula(squatData.reps, squatData.exerciseWeight) || null;
-    const { data } = fiveThreeOneGenerator(
+    const { data } = TemplateGeneratorApi.getTemplateData(
+      templateName,
       benchPressOrm,
       deadliftOrm,
       overheadPressOrm,

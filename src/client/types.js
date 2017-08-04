@@ -1,7 +1,7 @@
 // @flow
 export type OrmFormulaType = 'wathan';
 
-export type ProgramTemplateType = '5/3/1' | 'Starting Strength';
+export type ProgramTemplateType = '5/3/1' | 'Smolov Jr.';
 
 export type ExerciseType =
   | 'benchPress'
