@@ -9,7 +9,7 @@ import type { ProgramTemplateType } from '../types';
 
 type Props = {
   ormFormula: (reps: ?number, exerciseWeight: ?number) => ?number,
-  modification: string,
+  templateModification: string,
   units: 'lbs' | 'kg',
   roundingNumber: number,
   templateName: ProgramTemplateType,
@@ -71,7 +71,7 @@ export default class ScheduleWrapper extends React.Component {
       overheadPressOrm,
       squatOrm,
       roundingNumber,
-      this.props.modification
+      this.props.templateModification
     );
 
     return (

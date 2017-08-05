@@ -17,5 +17,5 @@ export interface GeneratorInterface {
 
   static getTemplateInfo: () => string,
 
-  static getModifications: () => Array<string>
+  static getTemplateModifications: () => Array<string>
 }

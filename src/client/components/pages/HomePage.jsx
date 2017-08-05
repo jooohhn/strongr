@@ -3,17 +3,18 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
+import DatabaseApi from '../../api/DatabaseApi';
 import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../../containers/ScheduleWrapper';
 import GraphsWrapper from '../GraphsWrapper';
 import FormWrapper from '../FormWrapper';
 import TemplateGeneratorApi from '../../template-generators/TemplateGeneratorApi';
 import ormFormulas from '../../ORMFormulas';
-
 import type {
   OrmFormulaType,
   ProgramTemplateType,
-  ExerciseType
+  ExerciseType,
+  TemplateModificationType
 } from '../../types';
 
 export default class HomePage extends React.Component {
@@ -23,26 +24,26 @@ export default class HomePage extends React.Component {
     ormFormulaName: OrmFormulaType,
     units: 'lbs' | 'kg',
     programTemplate: ProgramTemplateType,
-    modification: string,
-    roundingNumber: number,
+    templateModification: TemplateModificationType,
+    roundingNumber: 5 | 2.5,
     view: 'data' | 'schedule',
     benchPressData: {
-      exerciseName: ExerciseType,
+      exerciseName: 'benchPress',
       reps: ?number,
       exerciseWeight: ?number
     },
     deadliftData: {
-      exerciseName: ExerciseType,
+      exerciseName: 'deadlift',
       reps: ?number,
       exerciseWeight: ?number
     },
     overheadPressData: {
-      exerciseName: ExerciseType,
+      exerciseName: 'overheadPress',
       reps: ?number,
       exerciseWeight: ?number
     },
     squatData: {
-      exerciseName: ExerciseType,
+      exerciseName: 'squat',
       reps: ?number,
       exerciseWeight: ?number
     }
@@ -58,7 +59,7 @@ export default class HomePage extends React.Component {
       ormFormulaName: 'wathan',
       units: 'lbs',
       programTemplate: '5/3/1',
-      modification: 'The Triumvirate',
+      templateModification: 'The Triumvirate',
       roundingNumber: 5,
       view: 'schedule',
       benchPressData: {
@@ -81,30 +82,37 @@ export default class HomePage extends React.Component {
   }
 
   changeBodyweight = (bodyweight: number) => {
+    DatabaseApi.saveBodyweight(bodyweight);
     this.setState({ bodyweight });
   };
 
-  changeModifcation = (modification: string) => {
-    this.setState({ modification });
-  };
-
-  changeProgramTemplate = (programTemplate: '5/3/1' | 'Smolov Jr.') => {
-    const modification = TemplateGeneratorApi.getModifications(
-      programTemplate
-    )[0];
-    this.setState({ programTemplate, modification });
-  };
-
-  changeRoundingNumber = (roundingNumber: number) => {
-    this.setState({ roundingNumber });
-  };
-
   changeSex = (sex: 'Male' | 'Female') => {
+    DatabaseApi.saveSex(sex);
     this.setState({ sex });
   };
 
   changeUnits = (units: 'lbs' | 'kg') => {
+    DatabaseApi.saveUnits(units);
     this.setState({ units });
+  };
+
+  changeProgramTemplate = (programTemplate: '5/3/1' | 'Smolov Jr.') => {
+    const templateModification = TemplateGeneratorApi.getTemplateModifications(
+      programTemplate
+    )[0];
+    DatabaseApi.saveProgramTemplate(programTemplate);
+    DatabaseApi.saveTemplateModification(templateModification);
+    this.setState({ programTemplate, templateModification });
+  };
+
+  changeModifcation = (templateModification: TemplateModificationType) => {
+    DatabaseApi.saveTemplateModification(templateModification);
+    this.setState({ templateModification });
+  };
+
+  changeRoundingNumber = (roundingNumber: 5 | 2.5) => {
+    DatabaseApi.saveRoundingNumber(roundingNumber);
+    this.setState({ roundingNumber });
   };
 
   handleViewChange = () => {
@@ -122,26 +130,89 @@ export default class HomePage extends React.Component {
   ) => {
     switch (exerciseName) {
       case 'benchPress':
-        this.setState({
-          benchPressData: { exerciseName, reps, exerciseWeight }
-        });
+        {
+          const benchPressData = { exerciseName, reps, exerciseWeight };
+          DatabaseApi.saveBenchPressData(benchPressData);
+          this.setState({ benchPressData });
+        }
         break;
-      case 'deadlift':
-        this.setState({ deadliftData: { exerciseName, reps, exerciseWeight } });
+      case 'deadlift': {
+        const deadliftData = { exerciseName, reps, exerciseWeight };
+        DatabaseApi.saveDeadliftData(deadliftData);
+        this.setState({ deadliftData });
         break;
-      case 'overheadPress':
-        this.setState({
-          overheadPressData: { exerciseName, reps, exerciseWeight }
-        });
+      }
+      case 'overheadPress': {
+        const overheadPressData = { exerciseName, reps, exerciseWeight };
+        DatabaseApi.saveOverheadPressData(overheadPressData);
+        this.setState({ overheadPressData });
         break;
-      case 'squat':
-        this.setState({ squatData: { exerciseName, reps, exerciseWeight } });
+      }
+      case 'squat': {
+        const squatData = { exerciseName, reps, exerciseWeight };
+        DatabaseApi.saveSquatData(squatData);
+        this.setState({ squatData });
         break;
+      }
       default:
         throw new Error(
           `setExerciseData given ${exerciseName}" instead of ExerciseType`
         );
     }
+  };
+
+  /**  Gets data from localforage. If null, keeps defaults from constructor */
+  componentDidMount = () => {
+    DatabaseApi.getBodyweight().then((bodyweight) => {
+      if (bodyweight) {
+        this.setState({ bodyweight });
+      }
+    });
+    DatabaseApi.getSex().then((sex) => {
+      if (sex) {
+        this.setState({ sex });
+      }
+    });
+    DatabaseApi.getUnits().then((units) => {
+      if (units) {
+        this.setState({ units });
+      }
+    });
+    DatabaseApi.getProgramTemplate().then((programTemplate) => {
+      if (programTemplate) {
+        this.setState({ programTemplate });
+      }
+    });
+    DatabaseApi.getTemplateModification().then((mod) => {
+      if (mod) {
+        this.setState({ templateModification: mod });
+      }
+    });
+    DatabaseApi.getRoundingNumber().then((roundingNumber) => {
+      if (roundingNumber) {
+        this.setState({ roundingNumber });
+      }
+    });
+    DatabaseApi.getBenchPressData().then((benchPressData) => {
+      if (benchPressData) {
+        this.setState({ benchPressData });
+      }
+    });
+    DatabaseApi.getDeadliftData().then((deadliftData) => {
+      if (deadliftData) {
+        this.setState({ deadliftData });
+      }
+    });
+    DatabaseApi.getOverheadPressData().then((overheadPressData) => {
+      if (overheadPressData) {
+        this.setState({ overheadPressData });
+      }
+    });
+    DatabaseApi.getSquatData().then((squatData) => {
+      if (squatData) {
+        this.setState({ squatData });
+      }
+    });
   };
 
   render() {
@@ -163,7 +234,7 @@ export default class HomePage extends React.Component {
               <FormWrapper
                 bodyweight={this.state.bodyweight}
                 changeBodyweight={this.changeBodyweight}
-                modification={this.state.modification}
+                templateModification={this.state.templateModification}
                 changeModifcation={this.changeModifcation}
                 programTemplate={this.state.programTemplate}
                 changeProgramTemplate={this.changeProgramTemplate}
@@ -190,7 +261,7 @@ export default class HomePage extends React.Component {
                 />
                 : <ScheduleWrapper
                   ormFormula={ormFormulas[ormFormulaName]}
-                  modification={this.state.modification}
+                  templateModification={this.state.templateModification}
                   roundingNumber={this.state.roundingNumber}
                   templateName={this.state.programTemplate}
                   units={this.state.units}
