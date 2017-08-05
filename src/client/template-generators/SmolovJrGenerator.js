@@ -9,7 +9,7 @@ export default class SmolovJrGenerator implements GeneratorInterface {
     overheadPressWeight: ?number,
     squatWeight: ?number,
     roundingFunc: (num: number) => number,
-    accesory: 'Smolov Jr. Bench' | 'Smolov Jr. Squat'
+    templateModification: 'Smolov Jr. Bench' | 'Smolov Jr. Squat'
   ): { data: Array<ScheduleCardDataType> } {
     const dayOneGenerator = (baseWeight: ?number, additionalWeight: number) =>
       typeof baseWeight === 'number'
@@ -77,7 +77,9 @@ export default class SmolovJrGenerator implements GeneratorInterface {
 
     const additionalWeights = [0, 10, 20];
     const exerciseUsed =
-      accesory === 'Smolov Jr. Bench' ? benchPressWeight : squatWeight;
+      templateModification === 'Smolov Jr. Bench'
+        ? benchPressWeight
+        : squatWeight;
 
     const weeks = additionalWeights.map((additionalWeight, i) => {
       const dayOneSets = dayOneGenerator(exerciseUsed, additionalWeight);
@@ -100,7 +102,7 @@ export default class SmolovJrGenerator implements GeneratorInterface {
         },
         {
           name:
-            accesory === 'Smolov Jr. Bench'
+            templateModification === 'Smolov Jr. Bench'
               ? 'Smolov Jr.\nBench'
               : 'Smolov Jr.\nSquat',
           setCount: 10,
