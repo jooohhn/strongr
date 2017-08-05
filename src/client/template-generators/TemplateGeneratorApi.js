@@ -22,27 +22,43 @@ export default class TemplateGeneratorApi {
     overheadPressWeight: ?number,
     squatWeight: ?number,
     roundingNumber: number,
-    accesory: string
+    templateModification: TemplateModificationType
   ): { data: Array<ScheduleCardDataType> } {
     const roundingFunc = roundTo(roundingNumber);
     switch (template) {
       case '5/3/1':
+        if (
+          templateModification !== 'The Triumvirate' &&
+          templateModification !== 'Boring but Big'
+        ) {
+          throw new Error(
+            `5/3/1 erroneously given templateModification ${templateModification}`
+          );
+        }
         return FiveThreeOneGenerator.getTemplateData(
           benchPressWeight,
           deadliftWeight,
           overheadPressWeight,
           squatWeight,
           roundingFunc,
-          accesory
+          templateModification
         );
       case 'Smolov Jr.':
+        if (
+          templateModification !== 'Smolov Jr. Bench' &&
+          templateModification !== 'Smolov Jr. Squat'
+        ) {
+          throw new Error(
+            `Smolov Jr. erroneously given templateModification ${templateModification}`
+          );
+        }
         return SmolovJrGenerator.getTemplateData(
           benchPressWeight,
           deadliftWeight,
           overheadPressWeight,
           squatWeight,
           roundingFunc,
-          accesory
+          templateModification
         );
       default:
         throw new Error(`Template ${template} give, which is not supported`);

@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import TemplateGeneratorApi from '../template-generators/TemplateGeneratorApi';
-import type { ExerciseType } from '../types';
+import type { ExerciseType, TemplateModificationType } from '../types';
 import {
   PRIMARY_COLOR,
   SECONDARY_COLOR,
@@ -82,11 +82,11 @@ type Props = {
   bodyweight: ?number,
   changeBodyweight: (bodyweight: number) => void,
   templateModification: string,
-  changeModifcation: (modifcation: string) => void,
+  changeModifcation: (modifcation: TemplateModificationType) => void,
   programTemplate: '5/3/1' | 'Smolov Jr.',
   changeProgramTemplate: (template: '5/3/1' | 'Smolov Jr.') => void,
   roundingNumber: number,
-  changeRoundingNumber: (roundingNumber: number) => void,
+  changeRoundingNumber: (roundingNumber: 5 | 2.5) => void,
   units: 'lbs' | 'kg',
   changeUnits: (units: 'lbs' | 'kg') => void,
   sex: 'Male' | 'Female',
@@ -121,7 +121,6 @@ type Props = {
 };
 
 const FormWrapper = (props: Props) => {
-  // console.log(props.sex);
   const buttonText = props.view === 'data' ? 'Show schedule' : 'Show 1RM';
   const templateModifications = TemplateGeneratorApi.getTemplateModifications(
     props.programTemplate

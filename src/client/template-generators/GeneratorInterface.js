@@ -12,7 +12,7 @@ export interface GeneratorInterface {
     overheadPressWeight: ?number,
     squatWeight: ?number,
     roundingFunc: (num: number) => number,
-    accesory: string
+    templateModification: string
   ) => { data: ScheduleCardDataType },
 
   static getTemplateInfo: () => string,
