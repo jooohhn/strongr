@@ -9,7 +9,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
     overheadPressWeight: ?number,
     squatWeight: ?number,
     roundingFunc: (num: number) => number,
-    accesory: 'The Triumvirate' | 'Boring but Big'
+    templateModification: 'The Triumvirate' | 'Boring but Big'
   ): { data: Array<ScheduleCardDataType> } {
     const weekOneSetsGenerator = (exerciseWeight: ?number) =>
       typeof exerciseWeight === 'number'
@@ -118,7 +118,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
         }
       ];
 
-      switch (accesory) {
+      switch (templateModification) {
         case 'The Triumvirate':
           phases.push({
             name: 'The Triumvirate',
@@ -160,7 +160,9 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
           });
           break;
         default:
-          throw new Error(`Given accesory ${accesory} and did not fit default`);
+          throw new Error(
+            `Given templateModification ${templateModification} and did not fit default`
+          );
       }
 
       return {

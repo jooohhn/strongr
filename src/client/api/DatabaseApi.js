@@ -32,8 +32,15 @@ export default class DatabaseApi {
     return bodyweight;
   }
 
-  static getBodyweight(): Promise<?number> {
-    return localForage.getItem('bodyweight');
+  static async getBodyweight(): Promise<{
+    type: 'bodyweight',
+    contents: ?number
+  }> {
+    const obj = {
+      type: 'bodyweight',
+      contents: (await localForage.getItem('bodyweight')) || null
+    };
+    return obj;
   }
 
   static saveSex(sex: 'Male' | 'Female'): 'Male' | 'Female' {
@@ -41,8 +48,12 @@ export default class DatabaseApi {
     return sex;
   }
 
-  static getSex(): Promise<'Male' | 'Female'> {
-    return localForage.getItem('sex');
+  static async getSex(): Promise<{ type: 'sex', contents: 'Male' | 'Female' }> {
+    const obj = {
+      type: 'sex',
+      contents: (await localForage.getItem('sex')) || 'Male'
+    };
+    return obj;
   }
 
   static saveUnits(units: 'lbs' | 'kg'): 'lbs' | 'kg' {
@@ -50,8 +61,12 @@ export default class DatabaseApi {
     return units;
   }
 
-  static getUnits(): Promise<'lbs' | 'kg'> {
-    return localForage.getItem('units');
+  static async getUnits(): Promise<{ type: 'units', contents: 'lbs' | 'kg' }> {
+    const obj = {
+      type: 'units',
+      contents: (await localForage.getItem('units')) || 'lbs'
+    };
+    return obj;
   }
 
   static saveProgramTemplate(
@@ -61,8 +76,15 @@ export default class DatabaseApi {
     return programTemplate;
   }
 
-  static getProgramTemplate(): Promise<ProgramTemplateType> {
-    return localForage.getItem('programTemplate');
+  static async getProgramTemplate(): Promise<{
+    type: 'programTemplate',
+    contents: ProgramTemplateType
+  }> {
+    const obj = {
+      type: 'programTemplate',
+      contents: (await localForage.getItem('programTemplate')) || '5/3/1'
+    };
+    return obj;
   }
 
   static saveTemplateModification(
@@ -72,8 +94,16 @@ export default class DatabaseApi {
     return modification;
   }
 
-  static getTemplateModification(): Promise<TemplateModificationType> {
-    return localForage.getItem('templateModification');
+  static async getTemplateModification(): Promise<{
+    type: 'templateModification',
+    contents: TemplateModificationType
+  }> {
+    const obj = {
+      type: 'templateModification',
+      contents:
+        (await localForage.getItem('templateModification')) || 'The Triumvirate'
+    };
+    return obj;
   }
 
   static saveRoundingNumber(roundingNumber: 5 | 2.5): 5 | 2.5 {
@@ -81,8 +111,15 @@ export default class DatabaseApi {
     return roundingNumber;
   }
 
-  static getRoundingNumber(): Promise<5 | 2.5> {
-    return localForage.getItem('roundingNumber');
+  static async getRoundingNumber(): Promise<{
+    type: 'roundingNumber',
+    contents: 5 | 2.5
+  }> {
+    const obj = {
+      type: 'roundingNumber',
+      contents: (await localForage.getItem('roundingNumber')) || 5
+    };
+    return obj;
   }
 
   static saveBenchPressData(
@@ -92,8 +129,19 @@ export default class DatabaseApi {
     return benchPressData;
   }
 
-  static getBenchPressData(): Promise<BenchPressDataType> {
-    return localForage.getItem('benchPressData');
+  static async getBenchPressData(): Promise<{
+    type: 'benchPressData',
+    contents: BenchPressDataType
+  }> {
+    const obj = {
+      type: 'benchPressData',
+      contents: (await localForage.getItem('benchPressData')) || {
+        exerciseName: 'benchPress',
+        reps: null,
+        exerciseWeight: null
+      }
+    };
+    return obj;
   }
 
   static saveDeadliftData(deadliftData: DeadliftDataType): DeadliftDataType {
@@ -101,8 +149,19 @@ export default class DatabaseApi {
     return deadliftData;
   }
 
-  static getDeadliftData(): Promise<DeadliftDataType> {
-    return localForage.getItem('deadliftData');
+  static async getDeadliftData(): Promise<{
+    type: 'deadliftData',
+    contents: DeadliftDataType
+  }> {
+    const obj = {
+      type: 'deadliftData',
+      contents: (await localForage.getItem('deadliftData')) || {
+        exerciseName: 'deadlift',
+        reps: null,
+        exerciseWeight: null
+      }
+    };
+    return obj;
   }
 
   static saveOverheadPressData(
@@ -112,8 +171,19 @@ export default class DatabaseApi {
     return overheadPressData;
   }
 
-  static getOverheadPressData(): Promise<OverheadPressDataType> {
-    return localForage.getItem('overheadPressData');
+  static async getOverheadPressData(): Promise<{
+    type: 'overheadPressData',
+    contents: OverheadPressDataType
+  }> {
+    const obj = {
+      type: 'overheadPressData',
+      contents: (await localForage.getItem('overheadPressData')) || {
+        exerciseName: 'overheadPress',
+        reps: null,
+        exerciseWeight: null
+      }
+    };
+    return obj;
   }
 
   static saveSquatData(squatData: SquatDataType): SquatDataType {
@@ -121,7 +191,18 @@ export default class DatabaseApi {
     return squatData;
   }
 
-  static getSquatData(): Promise<SquatDataType> {
-    return localForage.getItem('squatData');
+  static async getSquatData(): Promise<{
+    type: 'squatData',
+    contents: SquatDataType
+  }> {
+    const obj = {
+      type: 'squatData',
+      contents: (await localForage.getItem('squatData')) || {
+        exerciseName: 'squat',
+        reps: null,
+        exerciseWeight: null
+      }
+    };
+    return obj;
   }
 }

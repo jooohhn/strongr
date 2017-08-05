@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { Alert as UnstyledAlert } from 'reactstrap';
 import ScheduleCard from '../components/ScheduleCard';
 import TemplateGeneratorApi from '../template-generators/TemplateGeneratorApi';
-import type { ProgramTemplateType } from '../types';
+import type { ProgramTemplateType, TemplateModificationType } from '../types';
 
 type Props = {
   ormFormula: (reps: ?number, exerciseWeight: ?number) => ?number,
-  templateModification: string,
+  templateModification: TemplateModificationType,
   units: 'lbs' | 'kg',
   roundingNumber: number,
   templateName: ProgramTemplateType,
