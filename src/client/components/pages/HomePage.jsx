@@ -8,7 +8,7 @@ import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../../containers/ScheduleWrapper';
 import GraphsWrapper from '../GraphsWrapper';
 import FormWrapper from '../FormWrapper';
-import TemplateGeneratorApi from '../../template-generators/TemplateGeneratorApi';
+import TemplateGeneratorApi from '../../api/template-generators/TemplateGeneratorApi';
 import ormFormulas from '../../ORMFormulas';
 import type {
   OrmFormulaType,

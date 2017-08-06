@@ -1,5 +1,5 @@
 // @flow
-import type { ScheduleCardDataType } from '../types';
+import type { ScheduleCardDataType } from '../../types';
 
 export interface GeneratorInterface {
   /**

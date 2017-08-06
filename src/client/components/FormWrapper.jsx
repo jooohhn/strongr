@@ -11,13 +11,12 @@ import {
   Row
 } from 'reactstrap';
 import styled from 'styled-components';
-import TemplateGeneratorApi from '../template-generators/TemplateGeneratorApi';
+import TemplateGeneratorApi from '../api/template-generators/TemplateGeneratorApi';
 import type { ExerciseType, TemplateModificationType } from '../types';
 import {
   PRIMARY_COLOR,
   SECONDARY_COLOR,
-  BACKGROUND_COLOR,
-  NAV_COLOR
+  BACKGROUND_COLOR
 } from '../constants/colors';
 
 const Button = styled(UnstyledButton)`
