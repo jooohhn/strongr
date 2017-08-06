@@ -1,6 +1,6 @@
 // @flow
 import type { GeneratorInterface } from './GeneratorInterface';
-import type { ScheduleCardDataType } from '../types';
+import type { ScheduleCardDataType } from '../../types';
 
 export default class SmolovJrGenerator implements GeneratorInterface {
   static getTemplateData(

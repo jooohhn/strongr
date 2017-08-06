@@ -11,7 +11,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import getDeadliftStandards from '../strength-standards-generator/deadliftStandards';
+import getDeadliftStandards from '../api/strength-standards-generator/deadliftStandards';
 
 type Props = {
   bodyweight: ?number,

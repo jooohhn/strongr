@@ -1,5 +1,5 @@
 // @flow
-import type { StrengthStandardsType } from '../types';
+import type { StrengthStandardsType } from '../../types';
 
 export default function getDeadliftStandards(
   bodyweight: number
