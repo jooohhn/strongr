@@ -20,29 +20,30 @@ import type {
 export default class HomePage extends React.Component {
   state: {
     bodyweight: ?number,
-    sex: 'Male' | 'Female',
+    sex?: 'Male' | 'Female',
     ormFormulaName: OrmFormulaType,
-    units: 'lbs' | 'kg',
-    programTemplate: ProgramTemplateType,
-    templateModification: TemplateModificationType,
-    roundingNumber: 5 | 2.5,
+    units?: 'lbs' | 'kg',
+    programTemplate?: ProgramTemplateType,
+    templateModification?: TemplateModificationType,
+    roundingNumber?: 5 | 2.5,
     view: 'data' | 'schedule',
-    benchPressData: {
+    loading?: boolean,
+    benchPressData?: {
       exerciseName: 'benchPress',
       reps: ?number,
       exerciseWeight: ?number
     },
-    deadliftData: {
+    deadliftData?: {
       exerciseName: 'deadlift',
       reps: ?number,
       exerciseWeight: ?number
     },
-    overheadPressData: {
+    overheadPressData?: {
       exerciseName: 'overheadPress',
       reps: ?number,
       exerciseWeight: ?number
     },
-    squatData: {
+    squatData?: {
       exerciseName: 'squat',
       reps: ?number,
       exerciseWeight: ?number
@@ -53,31 +54,11 @@ export default class HomePage extends React.Component {
     super(props);
     this.state = {
       bodyweight: null,
-      sex: 'Male',
       // @TODO: Have units be based on user location
       //        Hardcoded 'wathan'
       ormFormulaName: 'wathan',
-      units: 'lbs',
-      programTemplate: '5/3/1',
-      templateModification: 'The Triumvirate',
-      roundingNumber: 5,
       view: 'schedule',
-      benchPressData: {
-        exerciseName: 'benchPress',
-        reps: null,
-        exerciseWeight: null
-      },
-      deadliftData: {
-        exerciseName: 'deadlift',
-        reps: null,
-        exerciseWeight: null
-      },
-      overheadPressData: {
-        exerciseName: 'overheadPress',
-        reps: null,
-        exerciseWeight: null
-      },
-      squatData: { exerciseName: 'squat', reps: null, exerciseWeight: null }
+      loading: true
     };
   }
 
@@ -163,59 +144,32 @@ export default class HomePage extends React.Component {
 
   /**  Gets data from localforage. If null, keeps defaults from constructor */
   componentDidMount = () => {
-    DatabaseApi.getBodyweight().then((bodyweight) => {
-      if (bodyweight) {
-        this.setState({ bodyweight });
-      }
-    });
-    DatabaseApi.getSex().then((sex) => {
-      if (sex) {
-        this.setState({ sex });
-      }
-    });
-    DatabaseApi.getUnits().then((units) => {
-      if (units) {
-        this.setState({ units });
-      }
-    });
-    DatabaseApi.getProgramTemplate().then((programTemplate) => {
-      if (programTemplate) {
-        this.setState({ programTemplate });
-      }
-    });
-    DatabaseApi.getTemplateModification().then((mod) => {
-      if (mod) {
-        this.setState({ templateModification: mod });
-      }
-    });
-    DatabaseApi.getRoundingNumber().then((roundingNumber) => {
-      if (roundingNumber) {
-        this.setState({ roundingNumber });
-      }
-    });
-    DatabaseApi.getBenchPressData().then((benchPressData) => {
-      if (benchPressData) {
-        this.setState({ benchPressData });
-      }
-    });
-    DatabaseApi.getDeadliftData().then((deadliftData) => {
-      if (deadliftData) {
-        this.setState({ deadliftData });
-      }
-    });
-    DatabaseApi.getOverheadPressData().then((overheadPressData) => {
-      if (overheadPressData) {
-        this.setState({ overheadPressData });
-      }
-    });
-    DatabaseApi.getSquatData().then((squatData) => {
-      if (squatData) {
-        this.setState({ squatData });
-      }
-    });
+    Promise.all([
+      DatabaseApi.getBodyweight(),
+      DatabaseApi.getSex(),
+      DatabaseApi.getUnits(),
+      DatabaseApi.getProgramTemplate(),
+      DatabaseApi.getTemplateModification(),
+      DatabaseApi.getRoundingNumber(),
+      DatabaseApi.getBenchPressData(),
+      DatabaseApi.getDeadliftData(),
+      DatabaseApi.getOverheadPressData(),
+      DatabaseApi.getSquatData()
+    ])
+      .then((values) => {
+        values.forEach(({ type, contents }) => {
+          this.setState({ [type]: contents });
+        });
+      })
+      .then(() => {
+        this.setState({ loading: false });
+      });
   };
 
   render() {
+    if (this.state.loading) {
+      return <div />;
+    }
     const { view, ormFormulaName } = this.state;
     return (
       <div>
@@ -231,6 +185,8 @@ export default class HomePage extends React.Component {
         <Container fluid style={{ marginTop: '1.25vh' }}>
           <Row>
             <Col xs="12" sm="12" md="5" lg="4" xl="4">
+              {/* All these props be instantiated once loading === false
+							$FlowFixMe */}
               <FormWrapper
                 bodyweight={this.state.bodyweight}
                 changeBodyweight={this.changeBodyweight}
