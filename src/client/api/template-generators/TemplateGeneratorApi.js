@@ -5,7 +5,7 @@ import type {
   ProgramTemplateType,
   ScheduleCardDataType,
   TemplateModificationType
-} from '../types';
+} from '../../types';
 
 function roundTo(roundingNumber: number) {
   return arg => roundingNumber * Math.round(arg / roundingNumber);
