@@ -123,7 +123,12 @@ export default class SmolovJrGenerator implements GeneratorInterface {
 
       return {
         cardTitle: `Week ${i + 1}`,
-        columnHeaders: ['Day 1', 'Day 2', 'Day 3', 'Day 4'],
+        columnHeaders: [
+          'Day 1\nBench',
+          'Day 2\nBench',
+          'Day 3\nBench',
+          'Day 4\nBench'
+        ],
         phases
       };
     });

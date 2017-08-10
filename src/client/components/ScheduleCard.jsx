@@ -21,7 +21,7 @@ const StyledTable = styled(UnstyledTable)`
 	th, td {
   	text-align: center;
 		vertical-align: middle !important;
-		border: 1px solid black !important; 
+		border: 1px solid #cccccc !important; 
 		padding: 6px;
 		white-space: pre;
 	}
