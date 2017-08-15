@@ -129,6 +129,7 @@ export default class SmolovJrGenerator implements GeneratorInterface {
           'Day 3\nBench',
           'Day 4\nBench'
         ],
+        columnCount: 4,
         phases
       };
     });

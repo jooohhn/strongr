@@ -133,7 +133,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
               [
                 'Chin Ups\n5 x 10',
                 'Hanging Leg Raises\n5 x 15',
-                '	Dumbbell Rows\n5 x 10',
+                'Dumbbell Rows\n5 x 10',
                 'Leg Curls\n5 x 10'
               ]
             ]
@@ -173,6 +173,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
           'Day 3\nBench Press',
           'Day 4\nSquat'
         ],
+        columnCount: 4,
         phases
       };
     });
@@ -189,6 +190,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
         'Day 3\nBench Press',
         'Day 4\nSquat'
       ],
+      columnCount: 4,
       phases: [
         {
           name: 'Deload',

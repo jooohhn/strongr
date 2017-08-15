@@ -18,6 +18,7 @@ export type ExerciseType =
 export type ScheduleCardDataType = {
   cardTitle: string,
   columnHeaders: Array<string>,
+  columnCount: number,
   phases: Array<{
     name: string,
     rowContent: Array<Array<string>>,

@@ -24,7 +24,7 @@ type SquatDataType = {
 };
 
 /**
- * Returns either the  static saved property or a default property
+ * Returns either the static saved property or a default property
  */
 export default class DatabaseApi {
   static saveBodyweight(bodyweight: number): number {
@@ -204,5 +204,28 @@ export default class DatabaseApi {
       }
     };
     return obj;
+  }
+
+  static saveWeekData(
+    templateName: ProgramTemplateType,
+    templateModification: string,
+    cardTitle: string,
+    weekData: Array<Array<boolean>>
+  ): Array<Array<boolean>> {
+    localForage.setItem(
+      `${templateName}${templateModification}${cardTitle}`,
+      weekData
+    );
+    return weekData;
+  }
+
+  static async getWeekData(
+    templateName: ProgramTemplateType,
+    templateModification: string,
+    cardTitle: string
+  ): Promise<Array<Array<boolean>> | null> {
+    return localForage.getItem(
+      `${templateName}${templateModification}${cardTitle}`
+    );
   }
 }
