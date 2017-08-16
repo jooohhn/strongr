@@ -3,11 +3,11 @@
 import React from 'react';
 import {
   Table as UnstyledTable,
+  Button,
   Card,
   CardHeader,
   CardBlock
 } from 'reactstrap';
-import _ from 'lodash';
 import styled from 'styled-components';
 import DatabaseApi from '../api/DatabaseApi';
 import type {
@@ -52,7 +52,10 @@ export default class ScheduleCard extends React.Component {
     if (!this.state.savedWeekData) {
       throw new Error('savedWeekData needs to exist');
     }
-    const savedWeekData = _.cloneDeep(this.state.savedWeekData);
+    const savedWeekData = this.state.savedWeekData.map(row =>
+      row.map(cellContent => cellContent)
+    );
+
     savedWeekData[y][x] = flag;
     this.setState({ savedWeekData });
     DatabaseApi.saveWeekData(
@@ -60,6 +63,30 @@ export default class ScheduleCard extends React.Component {
       this.props.templateModification,
       this.props.cardData.cardTitle,
       savedWeekData
+    );
+  }
+
+  /** Generates a default 2D array representing the grid of the
+   * template's data. All content is set to false to represent unfinished
+   * exercise sets
+   */
+  getDefaultWeekData() {
+    const rowCount = this.props.cardData.phases.reduce(
+      (count, phase) => count + phase.setCount,
+      0
+    );
+    const columnCount = this.props.cardData.columnCount;
+    return Array(rowCount).fill(Array(columnCount).fill(false));
+  }
+
+  resetSavedWeekData() {
+    const defaultSavedWeekData = this.getDefaultWeekData();
+    this.setState({ savedWeekData: defaultSavedWeekData });
+    DatabaseApi.saveWeekData(
+      this.props.templateName,
+      this.props.templateModification,
+      this.props.cardData.cardTitle,
+      defaultSavedWeekData
     );
   }
 
@@ -73,14 +100,7 @@ export default class ScheduleCard extends React.Component {
       if (savedWeekData) {
         this.setState({ savedWeekData });
       } else {
-        const rowCount = cardData.phases.reduce(
-          (count, phase) => count + phase.setCount,
-          0
-        );
-        const columnCount = cardData.columnCount;
-        const defaultSavedWeekData = Array(rowCount).fill(
-          Array(columnCount).fill(false)
-        );
+        const defaultSavedWeekData = this.getDefaultWeekData();
         this.setState({ savedWeekData: defaultSavedWeekData });
         DatabaseApi.saveWeekData(
           templateName,
@@ -100,20 +120,28 @@ export default class ScheduleCard extends React.Component {
     // @TODO When React 16 comes out, replace the array with just two
     // disjoint JSX elements <tr><th></th></tr> and {body content}
     // https://stackoverflow.com/questions/33766085/how-to-avoid-extra-wrapping-div-in-react
+    let counter = 0;
     const bodyContent = phases.map(({ name, rowContent, setCount }) => {
-      const data = rowContent.map((row, y) =>
-        (<tr>
-          {row.map((cellContent, x) =>
-            (<td
-              key={`Content:${cellContent} [${y}][${x}]`}
-              style={{ backgroundColor: savedWeekData[y][x] ? 'green' : '' }}
-              onClick={() => this.saveWeekData(y, x, !savedWeekData[y][x])}
-            >
-              {cellContent}
-            </td>)
-          )}
-        </tr>)
-      );
+      const data = rowContent.map((row) => {
+        const rowNumber = counter;
+        counter += 1;
+        return (
+          <tr>
+            {row.map((cellContent, x) =>
+              (<td
+                key={`Content:${cellContent} [${rowNumber}][${x}]`}
+                style={{
+                  backgroundColor: savedWeekData[rowNumber][x] ? 'green' : ''
+                }}
+                onClick={() =>
+                  this.saveWeekData(rowNumber, x, !savedWeekData[rowNumber][x])}
+              >
+                {cellContent}
+              </td>)
+            )}
+          </tr>
+        );
+      });
       return [
         <tr>
           <th rowSpan={setCount + 1}>
@@ -131,6 +159,14 @@ export default class ScheduleCard extends React.Component {
             <b>
               {this.props.cardData.cardTitle}
             </b>
+            <Button
+              size="sm"
+              onClick={() => this.resetSavedWeekData()}
+              style={{ float: 'right' }}
+              color="primary"
+            >
+              Reset Markers
+            </Button>
           </CardHeader>
           <CardBlock>
             <StyledTable striped responsive>
