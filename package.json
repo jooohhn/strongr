@@ -12,13 +12,15 @@
 	"scripts": {
 		"dev": "npm-run-all -p dev:start dev:wds",
 		"dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
-		"dev:wds": "webpack-dev-server --progress",
+    "dev:wds": "webpack-dev-server --progress",
+    "flow": "flow",
+    "flow-typed": "rm -rf flow-typed && flow-typed install --overwrite || true",
 		"prod": "yarn prod:build && yarn prod:start",
 		"prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
 		"prod:start": "heroku local",
 		"lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
 		"lint-fix": "prettier --single-quote --write \"{,!(dist|flow-typed|lib)/**}/*.{js,jsx}\" && yarn lint -- --fix",
-		"test": "yarn lint && flow && jest --coverage",
+		"test": "jest --coverage",
 		"test:unit": "jest",
 		"heroku-postbuild": "yarn prod:build"
 	},

@@ -1,6 +1,6 @@
 /* eslint no-restricted-syntax: 0 */
 import ormFormulas from '../src/client/ORMFormulas';
-import getDeadliftStandards from '../src/client/strength-standards-generator/deadliftStandards';
+import getDeadliftStandards from '../src/client/api/strength-standards-generator/deadliftStandards';
 
 describe('One Rep Max Formulas', () => {
   describe('epley', () => {
