@@ -79,25 +79,26 @@ export default class ScheduleCard extends React.Component {
    * template's data. All content is set to false to represent unfinished
    * exercise sets
    */
-  getDefaultWeekData() {
-    const rowCount = this.props.cardData.phases.reduce(
+  static getDefaultWeekData(cardData: ScheduleCardDataType) {
+    const rowCount = cardData.phases.reduce(
       (count, phase) => count + phase.setCount,
       0
     );
-    const columnCount = this.props.cardData.columnCount;
+    const columnCount = cardData.columnCount;
     return Array(rowCount).fill(Array(columnCount).fill(false));
   }
 
   resetSavedWeekData() {
-    const defaultSavedWeekData = this.getDefaultWeekData();
+    const { templateName, templateModification, cardData } = this.props;
+    const defaultSavedWeekData = ScheduleCard.getDefaultWeekData(cardData);
     this.setState({
       savedWeekData: defaultSavedWeekData,
       showResetConfirmation: false
     });
     DatabaseApi.saveWeekData(
-      this.props.templateName,
-      this.props.templateModification,
-      this.props.cardData.cardTitle,
+      templateName,
+      templateModification,
+      cardData.cardTitle,
       defaultSavedWeekData
     );
   }
@@ -112,7 +113,30 @@ export default class ScheduleCard extends React.Component {
       if (savedWeekData) {
         this.setState({ savedWeekData });
       } else {
-        const defaultSavedWeekData = this.getDefaultWeekData();
+        const defaultSavedWeekData = ScheduleCard.getDefaultWeekData(cardData);
+        this.setState({ savedWeekData: defaultSavedWeekData });
+        DatabaseApi.saveWeekData(
+          templateName,
+          templateModification,
+          cardData.cardTitle,
+          defaultSavedWeekData
+        );
+      }
+    });
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    this.state = { savedWeekData: null, showResetConfirmation: false };
+    const { cardData, templateName, templateModification } = nextProps;
+    DatabaseApi.getWeekData(
+      templateName,
+      templateModification,
+      cardData.cardTitle
+    ).then((savedWeekData) => {
+      if (savedWeekData) {
+        this.setState({ savedWeekData });
+      } else {
+        const defaultSavedWeekData = ScheduleCard.getDefaultWeekData(cardData);
         this.setState({ savedWeekData: defaultSavedWeekData });
         DatabaseApi.saveWeekData(
           templateName,
@@ -141,7 +165,7 @@ export default class ScheduleCard extends React.Component {
           <tr>
             {row.map((cellContent, x) =>
               (<StyledTableCell
-                key={`Content:${cellContent} [${rowNumber}][${x}]`}
+                key={`${this.props.templateName}[${rowNumber}][${x}]`}
                 isMarked={savedWeekData[rowNumber][x]}
                 onClick={() =>
                   this.saveWeekData(rowNumber, x, !savedWeekData[rowNumber][x])}

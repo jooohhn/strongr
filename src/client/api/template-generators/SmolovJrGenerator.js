@@ -20,10 +20,10 @@ export default class SmolovJrGenerator implements GeneratorInterface {
           `${roundingFunc(baseWeight * 0.7) + additionalWeight} x 6`,
           `${roundingFunc(baseWeight * 0.7) + additionalWeight} x 6`,
           `${roundingFunc(baseWeight * 0.7) + additionalWeight} x 6`,
-          '-',
-          '-',
-          '-',
-          '-'
+          '–',
+          '–',
+          '–',
+          '–'
         ]
         : Array(10).fill('–');
 
@@ -37,9 +37,9 @@ export default class SmolovJrGenerator implements GeneratorInterface {
           `${roundingFunc(baseWeight * 0.75) + additionalWeight} x 5`,
           `${roundingFunc(baseWeight * 0.75) + additionalWeight} x 5`,
           `${roundingFunc(baseWeight * 0.75) + additionalWeight} x 5`,
-          '-',
-          '-',
-          '-'
+          '–',
+          '–',
+          '–'
         ]
         : Array(10).fill('–');
 
@@ -54,8 +54,8 @@ export default class SmolovJrGenerator implements GeneratorInterface {
           `${roundingFunc(baseWeight * 0.8) + additionalWeight} x 4`,
           `${roundingFunc(baseWeight * 0.8) + additionalWeight} x 4`,
           `${roundingFunc(baseWeight * 0.8) + additionalWeight} x 4`,
-          '-',
-          '-'
+          '–',
+          '–'
         ]
         : Array(10).fill('–');
 
@@ -98,7 +98,7 @@ export default class SmolovJrGenerator implements GeneratorInterface {
                 Array(4).fill(`${roundingFunc(exerciseUsed * 0.5)} x 10`),
                 Array(4).fill(`${roundingFunc(exerciseUsed * 0.6)} x 10`)
               ]
-              : [Array(4).fill('-'), Array(4).fill('-'), Array(4).fill('-')]
+              : [Array(4).fill('–'), Array(4).fill('–'), Array(4).fill('–')]
         },
         {
           name:
