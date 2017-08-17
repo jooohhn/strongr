@@ -24,6 +24,13 @@ type Props = {
   styles: Object
 };
 
+const StyledTableCell = styled.td`
+  background-color: ${props => (props.isMarked ? 'green' : '')};
+  &:hover {
+    background-color: ${props => (props.isMarked ? '' : '#b3ffb3')};
+  }
+`;
+
 // @TODO: Find out why border needs !important
 const StyledTable = styled(UnstyledTable)`
 	th, td {
@@ -31,21 +38,23 @@ const StyledTable = styled(UnstyledTable)`
 		vertical-align: middle !important;
 		border: 1px solid #cccccc !important; 
 		padding: 6px;
-		white-space: pre;
+    white-space: pre;
+    transition: .4s ease-out, .2s ease-in;
 	}
 	th {
 		background-color: white;
-	}
+  }
 	font-size: .75rem;
 `;
 
 export default class ScheduleCard extends React.Component {
   state: {
-    savedWeekData: ?Array<Array<boolean>>
+    savedWeekData: ?Array<Array<boolean>>,
+    showResetConfirmation: boolean
   };
   constructor(props: Props) {
     super(props);
-    this.state = { savedWeekData: null };
+    this.state = { savedWeekData: null, showResetConfirmation: false };
   }
 
   saveWeekData(y: number, x: number, flag: boolean) {
@@ -81,7 +90,10 @@ export default class ScheduleCard extends React.Component {
 
   resetSavedWeekData() {
     const defaultSavedWeekData = this.getDefaultWeekData();
-    this.setState({ savedWeekData: defaultSavedWeekData });
+    this.setState({
+      savedWeekData: defaultSavedWeekData,
+      showResetConfirmation: false
+    });
     DatabaseApi.saveWeekData(
       this.props.templateName,
       this.props.templateModification,
@@ -128,16 +140,14 @@ export default class ScheduleCard extends React.Component {
         return (
           <tr>
             {row.map((cellContent, x) =>
-              (<td
+              (<StyledTableCell
                 key={`Content:${cellContent} [${rowNumber}][${x}]`}
-                style={{
-                  backgroundColor: savedWeekData[rowNumber][x] ? 'green' : ''
-                }}
+                isMarked={savedWeekData[rowNumber][x]}
                 onClick={() =>
                   this.saveWeekData(rowNumber, x, !savedWeekData[rowNumber][x])}
               >
                 {cellContent}
-              </td>)
+              </StyledTableCell>)
             )}
           </tr>
         );
@@ -161,11 +171,17 @@ export default class ScheduleCard extends React.Component {
             </b>
             <Button
               size="sm"
-              onClick={() => this.resetSavedWeekData()}
+              onClick={
+                this.state.showResetConfirmation
+                  ? () => this.resetSavedWeekData()
+                  : () => this.setState({ showResetConfirmation: true })
+              }
               style={{ float: 'right' }}
-              color="primary"
+              color={this.state.showResetConfirmation ? 'warning' : 'primary'}
             >
-              Reset Markers
+              {this.state.showResetConfirmation
+                ? 'Are You Sure?'
+                : 'Reset Markers'}
             </Button>
           </CardHeader>
           <CardBlock>
