@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import {
-  Button as UnstyledButton,
   Form as UnstyledForm,
   FormGroup as UnstlyedFormGroup,
   Input as UntstyledInput,
@@ -14,21 +13,8 @@ import styled from 'styled-components';
 import TemplateGeneratorApi from '../api/template-generators/TemplateGeneratorApi';
 import type { ExerciseType, TemplateModificationType } from '../types';
 import {
-  PRIMARY_COLOR,
-  SECONDARY_COLOR,
-  BACKGROUND_COLOR
+  SECONDARY_COLOR
 } from '../constants/colors';
-
-const Button = styled(UnstyledButton)`
-	background-color: ${SECONDARY_COLOR};
-	color: ${BACKGROUND_COLOR};
-	border-color: ${SECONDARY_COLOR};
-	&:hover {
-		background-color: ${PRIMARY_COLOR};
-		color: ${BACKGROUND_COLOR};
-		border-color: ${PRIMARY_COLOR};
-  }
-`;
 
 const Form = styled(UnstyledForm)`
 	margin-bottom: 2vh;
@@ -90,8 +76,6 @@ type Props = {
   changeUnits: (units: 'lbs' | 'kg') => void,
   sex: 'Male' | 'Female',
   changeSex: (sex: 'Male' | 'Female') => void,
-  view: 'data' | 'schedule',
-  handleViewChange: () => void,
   setExerciseData: (
     exerciseName: ExerciseType,
     reps: ?number,
@@ -120,7 +104,6 @@ type Props = {
 };
 
 const FormWrapper = (props: Props) => {
-  const buttonText = props.view === 'data' ? 'Show schedule' : 'Show 1RM';
   const templateModifications = TemplateGeneratorApi.getTemplateModifications(
     props.programTemplate
   ).map(e =>
@@ -262,7 +245,7 @@ const FormWrapper = (props: Props) => {
           </FormGroup>
           {exerciseForms}
         </Section>
-        <Section bottomBorder>
+        <Section>
           <SectionHeading>Program Generator</SectionHeading>
           <FormGroup row>
             <Col xs="6">
@@ -298,13 +281,6 @@ const FormWrapper = (props: Props) => {
             </Label>
             {templateModifications}
           </FormGroup>
-        </Section>
-        <Section>
-          <Container>
-            <Button block onClick={props.handleViewChange}>
-              {buttonText}
-            </Button>
-          </Container>
         </Section>
       </Form>
     </div>

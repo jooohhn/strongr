@@ -18,7 +18,18 @@ export default {
   module: {
     rules: [
       // Tells all .js and .jsx files to go through babel-loader.
-      { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
+      {
+        test: /\.(js|jsx)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ],
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
         use: [

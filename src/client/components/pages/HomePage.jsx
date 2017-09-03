@@ -6,7 +6,6 @@ import { Container, Row, Col } from 'reactstrap';
 import DatabaseApi from '../../api/DatabaseApi';
 import { APP_NAME } from '../../../shared/config';
 import ScheduleWrapper from '../../containers/ScheduleWrapper';
-import GraphsWrapper from '../GraphsWrapper';
 import FormWrapper from '../FormWrapper';
 import TemplateGeneratorApi from '../../api/template-generators/TemplateGeneratorApi';
 import ormFormulas from '../../ORMFormulas';
@@ -26,7 +25,6 @@ export default class HomePage extends React.Component {
     programTemplate?: ProgramTemplateType,
     templateModification?: TemplateModificationType,
     roundingNumber?: 5 | 2.5,
-    view: 'data' | 'schedule',
     loading?: boolean,
     benchPressData?: {
       exerciseName: 'benchPress',
@@ -57,7 +55,6 @@ export default class HomePage extends React.Component {
       // @TODO: Have units be based on user location
       //        Hardcoded 'wathan'
       ormFormulaName: 'wathan',
-      view: 'schedule',
       loading: true
     };
   }
@@ -94,14 +91,6 @@ export default class HomePage extends React.Component {
   changeRoundingNumber = (roundingNumber: 5 | 2.5) => {
     DatabaseApi.saveRoundingNumber(roundingNumber);
     this.setState({ roundingNumber });
-  };
-
-  handleViewChange = () => {
-    if (this.state.view === 'data') {
-      this.setState({ view: 'schedule' });
-    } else if (this.state.view === 'schedule') {
-      this.setState({ view: 'data' });
-    } else throw new Error('this.state.view is neither schedule nor data');
   };
 
   setExerciseData = (
@@ -170,7 +159,7 @@ export default class HomePage extends React.Component {
     if (this.state.loading) {
       return <div />;
     }
-    const { view, ormFormulaName } = this.state;
+    const { ormFormulaName } = this.state;
     return (
       <div>
         <Helmet
@@ -200,8 +189,6 @@ export default class HomePage extends React.Component {
                 changeSex={this.changeSex}
                 units={this.state.units}
                 changeUnits={this.changeUnits}
-                view={view}
-                handleViewChange={this.handleViewChange}
                 benchPressData={this.state.benchPressData}
                 deadliftData={this.state.deadliftData}
                 overheadPressData={this.state.overheadPressData}
@@ -210,22 +197,17 @@ export default class HomePage extends React.Component {
               />
             </Col>
             <Col xs="12" sm="12" md="7" lg="8" xl="8">
-              {view === 'data'
-                ? <GraphsWrapper
-                  bodyweight={this.state.bodyweight}
-                  ormFormula={ormFormulas[ormFormulaName]}
-                />
-                : <ScheduleWrapper
-                  ormFormula={ormFormulas[ormFormulaName]}
-                  templateModification={this.state.templateModification}
-                  roundingNumber={this.state.roundingNumber}
-                  templateName={this.state.programTemplate}
-                  units={this.state.units}
-                  benchPressData={this.state.benchPressData}
-                  deadliftData={this.state.deadliftData}
-                  squatData={this.state.squatData}
-                  overheadPressData={this.state.overheadPressData}
-                />}
+              <ScheduleWrapper
+                ormFormula={ormFormulas[ormFormulaName]}
+                templateModification={this.state.templateModification}
+                roundingNumber={this.state.roundingNumber}
+                templateName={this.state.programTemplate}
+                units={this.state.units}
+                benchPressData={this.state.benchPressData}
+                deadliftData={this.state.deadliftData}
+                squatData={this.state.squatData}
+                overheadPressData={this.state.overheadPressData}
+              />
             </Col>
           </Row>
         </Container>
