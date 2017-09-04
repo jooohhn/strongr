@@ -43,19 +43,6 @@ export default class DatabaseApi {
     return obj;
   }
 
-  static saveSex(sex: 'Male' | 'Female'): 'Male' | 'Female' {
-    localForage.setItem('sex', sex);
-    return sex;
-  }
-
-  static async getSex(): Promise<{ type: 'sex', contents: 'Male' | 'Female' }> {
-    const obj = {
-      type: 'sex',
-      contents: (await localForage.getItem('sex')) || 'Male'
-    };
-    return obj;
-  }
-
   static saveUnits(units: 'lbs' | 'kg'): 'lbs' | 'kg' {
     localForage.setItem('units', units);
     return units;

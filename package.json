@@ -12,9 +12,9 @@
 	"scripts": {
 		"dev": "npm-run-all -p dev:start dev:wds",
 		"dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
-    "dev:wds": "webpack-dev-server --progress",
-    "flow": "flow",
-    "flow-typed": "rm -rf flow-typed && flow-typed install --overwrite || true",
+		"dev:wds": "webpack-dev-server --progress",
+		"flow": "flow",
+		"flow-typed": "rm -rf flow-typed && flow-typed install --overwrite || true",
 		"prod": "yarn prod:build && yarn prod:start",
 		"prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
 		"prod:start": "heroku local",
@@ -34,11 +34,11 @@
 		"babel-jest": "^20.0.3",
 		"babel-loader": "^7.0.0",
 		"babel-plugin-flow-react-proptypes": "^3.4.3",
-		"babel-plugin-recharts": "^1.1.0",
 		"babel-preset-env": "^1.5.2",
 		"babel-preset-flow": "^6.23.0",
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-0": "^6.24.1",
+		"coveralls": "^2.13.1",
 		"cross-env": "^5.0.1",
 		"eslint": "^3.19.0",
 		"eslint-config-airbnb": "^15.1.0",
@@ -76,7 +76,6 @@
 		"react-router": "^4.1.2",
 		"react-router-dom": "^4.1.2",
 		"reactstrap": "^4.8.0",
-		"recharts": "^1.0.0-alpha.2",
 		"styled-components": "^2.1.0"
 	}
 }

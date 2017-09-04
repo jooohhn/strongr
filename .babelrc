@@ -6,7 +6,6 @@
 		"stage-0"
   ],
   "plugins": [
-		"flow-react-proptypes",
-		"recharts"
+		"flow-react-proptypes"
   ]
 }

@@ -12,9 +12,7 @@ import {
 import styled from 'styled-components';
 import TemplateGeneratorApi from '../api/template-generators/TemplateGeneratorApi';
 import type { ExerciseType, TemplateModificationType } from '../types';
-import {
-  SECONDARY_COLOR
-} from '../constants/colors';
+import { SECONDARY_COLOR } from '../constants/colors';
 
 const Form = styled(UnstyledForm)`
 	margin-bottom: 2vh;
@@ -74,8 +72,6 @@ type Props = {
   changeRoundingNumber: (roundingNumber: 5 | 2.5) => void,
   units: 'lbs' | 'kg',
   changeUnits: (units: 'lbs' | 'kg') => void,
-  sex: 'Male' | 'Female',
-  changeSex: (sex: 'Male' | 'Female') => void,
   setExerciseData: (
     exerciseName: ExerciseType,
     reps: ?number,
@@ -195,21 +191,6 @@ const FormWrapper = (props: Props) => {
       <Form>
         <Section bottomBorder>
           <SectionHeading>User Details</SectionHeading>
-          <FormGroup row>
-            <Col xs="12">
-              <Label for="sexInput">Sex</Label>
-              <Input
-                type="select"
-                name="sex"
-                id="sexInput"
-                value={props.sex}
-                onChange={e => props.changeSex(e.target.value)}
-              >
-                <option>Male</option>
-                <option>Female</option>
-              </Input>
-            </Col>
-          </FormGroup>
           <FormGroup row>
             <Col xs="6">
               <Label for="BodyweightInput">Bodyweight</Label>

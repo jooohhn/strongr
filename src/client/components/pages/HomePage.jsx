@@ -19,7 +19,6 @@ import type {
 export default class HomePage extends React.Component {
   state: {
     bodyweight: ?number,
-    sex?: 'Male' | 'Female',
     ormFormulaName: OrmFormulaType,
     units?: 'lbs' | 'kg',
     programTemplate?: ProgramTemplateType,
@@ -63,12 +62,6 @@ export default class HomePage extends React.Component {
     DatabaseApi.saveBodyweight(bodyweight);
     this.setState({ bodyweight });
   };
-
-  changeSex = (sex: 'Male' | 'Female') => {
-    DatabaseApi.saveSex(sex);
-    this.setState({ sex });
-  };
-
   changeUnits = (units: 'lbs' | 'kg') => {
     DatabaseApi.saveUnits(units);
     this.setState({ units });
@@ -135,7 +128,6 @@ export default class HomePage extends React.Component {
   componentDidMount = () => {
     Promise.all([
       DatabaseApi.getBodyweight(),
-      DatabaseApi.getSex(),
       DatabaseApi.getUnits(),
       DatabaseApi.getProgramTemplate(),
       DatabaseApi.getTemplateModification(),

@@ -76,9 +76,10 @@ export default class ScheduleWrapper extends React.Component {
 
     return (
       <div>
-        <StyledAlert color={overheadPressOrm !== null ? 'success' : 'danger'}>
+        <b>One Rep Maxes: </b>
+        <StyledAlert color={benchPressOrm !== null ? 'success' : 'danger'}>
           <span>
-            Overhead Press Max: <strong>{overheadPressOrm || '?'}</strong>
+            Bench Press Max:<strong>{benchPressOrm || '?'}</strong>
           </span>
         </StyledAlert>
         <StyledAlert color={deadliftOrm !== null ? 'success' : 'danger'}>
@@ -86,9 +87,9 @@ export default class ScheduleWrapper extends React.Component {
             Deadlift Max:<strong>{deadliftOrm || '?'}</strong>
           </span>
         </StyledAlert>
-        <StyledAlert color={benchPressOrm !== null ? 'success' : 'danger'}>
+        <StyledAlert color={overheadPressOrm !== null ? 'success' : 'danger'}>
           <span>
-            Bench Press Max:<strong>{benchPressOrm || '?'}</strong>
+            Overhead Press Max: <strong>{overheadPressOrm || '?'}</strong>
           </span>
         </StyledAlert>
         <StyledAlert color={squatOrm !== null ? 'success' : 'danger'}>
