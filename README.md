@@ -2,11 +2,12 @@
 Strongr
 ======
 
-**⚠️ EXTREMELY EXPERIMENTAL ⚠️**
+**⚠️  EXPERIMENTAL ⚠️**
+
 [![Build Status](https://img.shields.io/travis/jooohhn/strongr.svg?style=flat-square)](https://travis-ci.org/jooohhn/strongr)
 [![Coverage Status](https://img.shields.io/coveralls/jooohhn/strongr.svg?style=flat-square)](https://coveralls.io/github/jooohhn/strongr?branch=master)
 
-**[Try it out](https://strongr.herokuapp.com/)**
+#### **[Try it out](https://strongr.herokuapp.com/)**
 
 ## Planned Key Features
 - React Native version

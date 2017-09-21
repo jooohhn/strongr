@@ -1,6 +1,5 @@
 /* eslint no-restricted-syntax: 0 */
 import ormFormulas from '../src/client/ORMFormulas';
-import getDeadliftStandards from '../src/client/api/strength-standards-generator/deadliftStandards';
 
 describe('One Rep Max Formulas', () => {
   describe('epley', () => {
@@ -47,20 +46,6 @@ describe('One Rep Max Formulas', () => {
       expect(() => { wathan(3, -1); }).toThrow();
       expect(() => { wathan(-2, -1); }).toThrow();
       expect(() => { wathan(0, 0); }).toThrow();
-    });
-  });
-});
-
-describe('Strength Standards Calculations', () => {
-  it('Testing Deadlift Standards', async () => {
-    const weight = 220;
-    expect(getDeadliftStandards(weight)).toEqual({
-      exerciseName: 'deadlift',
-      untrained: 164,
-      novice: 305,
-      intermediate: 351,
-      advanced: 478,
-      elite: 584
     });
   });
 });
