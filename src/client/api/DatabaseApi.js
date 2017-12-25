@@ -56,9 +56,7 @@ export default class DatabaseApi {
     return obj;
   }
 
-  static saveProgramTemplate(
-    programTemplate: ProgramTemplateType
-  ): ProgramTemplateType {
+  static saveProgramTemplate(programTemplate: ProgramTemplateType): ProgramTemplateType {
     localForage.setItem('programTemplate', programTemplate);
     return programTemplate;
   }
@@ -74,9 +72,7 @@ export default class DatabaseApi {
     return obj;
   }
 
-  static saveTemplateModification(
-    modification: TemplateModificationType
-  ): TemplateModificationType {
+  static saveTemplateModification(modification: TemplateModificationType): TemplateModificationType {
     localForage.setItem('templateModification', modification);
     return modification;
   }
@@ -109,9 +105,7 @@ export default class DatabaseApi {
     return obj;
   }
 
-  static saveBenchPressData(
-    benchPressData: BenchPressDataType
-  ): BenchPressDataType {
+  static saveBenchPressData(benchPressData: BenchPressDataType): BenchPressDataType {
     localForage.setItem('benchPressData', benchPressData);
     return benchPressData;
   }
@@ -151,9 +145,7 @@ export default class DatabaseApi {
     return obj;
   }
 
-  static saveOverheadPressData(
-    overheadPressData: OverheadPressDataType
-  ): OverheadPressDataType {
+  static saveOverheadPressData(overheadPressData: OverheadPressDataType): OverheadPressDataType {
     localForage.setItem('overheadPressData', overheadPressData);
     return overheadPressData;
   }
@@ -211,8 +203,6 @@ export default class DatabaseApi {
     templateModification: string,
     cardTitle: string
   ): Promise<Array<Array<boolean>> | null> {
-    return localForage.getItem(
-      `${templateName}${templateModification}${cardTitle}`
-    );
+    return localForage.getItem(`${templateName}${templateModification}${cardTitle}`);
   }
 }

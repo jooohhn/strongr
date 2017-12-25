@@ -6,8 +6,8 @@ import { Container, Row } from 'reactstrap';
 
 const title = 'Page Not Found';
 
-const NotFoundPage = () =>
-  (<div>
+const NotFoundPage = () => (
+  <div>
     <Helmet
       title={title}
       meta={[
@@ -20,6 +20,7 @@ const NotFoundPage = () =>
         <h3>404 Page</h3>
       </Row>
     </Container>
-  </div>);
+  </div>
+);
 
 export default NotFoundPage;

@@ -14,9 +14,9 @@ const renderApp = () => {
   </head>
   <body>
     <div class="${APP_CONTAINER_CLASS}"></div>
-    <script src="${isProd
-      ? STATIC_PATH
-      : `http://localhost:${WDS_PORT}/dist`}/js/bundle.js"></script>
+    <script src="${
+  isProd ? STATIC_PATH : `http://localhost:${WDS_PORT}/dist`
+}/js/bundle.js"></script>
   </body>
 </html>`;
 };

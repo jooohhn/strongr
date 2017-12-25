@@ -68,9 +68,7 @@ export default class HomePage extends React.Component {
   };
 
   changeProgramTemplate = (programTemplate: '5/3/1' | 'Smolov Jr.') => {
-    const templateModification = TemplateGeneratorApi.getTemplateModifications(
-      programTemplate
-    )[0];
+    const templateModification = TemplateGeneratorApi.getTemplateModifications(programTemplate)[0];
     DatabaseApi.saveProgramTemplate(programTemplate);
     DatabaseApi.saveTemplateModification(templateModification);
     this.setState({ programTemplate, templateModification });
@@ -118,9 +116,7 @@ export default class HomePage extends React.Component {
         break;
       }
       default:
-        throw new Error(
-          `setExerciseData given ${exerciseName}" instead of ExerciseType`
-        );
+        throw new Error(`setExerciseData given ${exerciseName}" instead of ExerciseType`);
     }
   };
 

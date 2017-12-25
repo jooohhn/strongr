@@ -33,18 +33,19 @@ const StyledTableCell = styled.td`
 
 // @TODO: Find out why border needs !important
 const StyledTable = styled(UnstyledTable)`
-	th, td {
-  	text-align: center;
-		vertical-align: middle !important;
-		border: 1px solid #cccccc !important; 
-		padding: 6px;
+  th,
+  td {
+    text-align: center;
+    vertical-align: middle !important;
+    border: 1px solid #cccccc !important;
+    padding: 6px;
     white-space: pre;
-    transition: .4s ease-out, .2s ease-in;
-	}
-	th {
-		background-color: white;
+    transition: 0.4s ease-out, 0.2s ease-in;
   }
-	font-size: .75rem;
+  th {
+    background-color: white;
+  }
+  font-size: 0.75rem;
 `;
 
 export default class ScheduleCard extends React.Component {
@@ -62,8 +63,7 @@ export default class ScheduleCard extends React.Component {
       throw new Error('savedWeekData needs to exist');
     }
     const savedWeekData = this.state.savedWeekData.map(row =>
-      row.map(cellContent => cellContent)
-    );
+      row.map(cellContent => cellContent));
 
     savedWeekData[y][x] = flag;
     this.setState({ savedWeekData });
@@ -163,24 +163,23 @@ export default class ScheduleCard extends React.Component {
         counter += 1;
         return (
           <tr>
-            {row.map((cellContent, x) =>
-              (<StyledTableCell
+            {row.map((cellContent, x) => (
+              <StyledTableCell
                 key={`${this.props.templateName}[${rowNumber}][${x}]`}
                 isMarked={savedWeekData[rowNumber][x]}
                 onClick={() =>
-                  this.saveWeekData(rowNumber, x, !savedWeekData[rowNumber][x])}
+                  this.saveWeekData(rowNumber, x, !savedWeekData[rowNumber][x])
+                }
               >
                 {cellContent}
-              </StyledTableCell>)
-            )}
+              </StyledTableCell>
+            ))}
           </tr>
         );
       });
       return [
         <tr>
-          <th rowSpan={setCount + 1}>
-            {name}
-          </th>
+          <th rowSpan={setCount + 1}>{name}</th>
         </tr>,
         data
       ];
@@ -190,9 +189,7 @@ export default class ScheduleCard extends React.Component {
       <div style={this.props.styles}>
         <Card>
           <CardHeader tag="h5">
-            <b>
-              {this.props.cardData.cardTitle}
-            </b>
+            <b>{this.props.cardData.cardTitle}</b>
             <Button
               size="sm"
               onClick={
@@ -213,16 +210,10 @@ export default class ScheduleCard extends React.Component {
               <thead>
                 <tr>
                   <th style={{ width: '100px', borderTop: 'none' }}>Phase</th>
-                  {columnHeaders.map(e =>
-                    (<th key={e}>
-                      {e}
-                    </th>)
-                  )}
+                  {columnHeaders.map(e => <th key={e}>{e}</th>)}
                 </tr>
               </thead>
-              <tbody>
-                {bodyContent}
-              </tbody>
+              <tbody>{bodyContent}</tbody>
             </StyledTable>
           </CardBlock>
         </Card>

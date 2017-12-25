@@ -3,9 +3,9 @@ import type { ScheduleCardDataType } from '../../types';
 
 export interface GeneratorInterface {
   /**
-	 * Returns an object containing data, which is to be used in
-	 * ScheduleWrapper to create weekly workout schedules
-	 */
+   * Returns an object containing data, which is to be used in
+   * ScheduleWrapper to create weekly workout schedules
+   */
   static getTemplateData: (
     benchPressWeight: ?number,
     deadliftWeight: ?number,
@@ -13,9 +13,9 @@ export interface GeneratorInterface {
     squatWeight: ?number,
     roundingFunc: (num: number) => number,
     templateModification: string
-  ) => { data: ScheduleCardDataType },
+  ) => { data: ScheduleCardDataType };
 
-  static getTemplateInfo: () => string,
+  static getTemplateInfo: () => string;
 
-  static getTemplateModifications: () => Array<string>
+  static getTemplateModifications: () => Array<string>;
 }

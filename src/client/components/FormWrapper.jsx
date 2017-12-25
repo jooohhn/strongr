@@ -15,24 +15,24 @@ import type { ExerciseType, TemplateModificationType } from '../types';
 import { SECONDARY_COLOR } from '../constants/colors';
 
 const Form = styled(UnstyledForm)`
-	margin-bottom: 2vh;
-	background-color: white;
-	color: #292b2c;
-	border: 1px solid rgba(0, 0, 0, .125);
-	border-radius: .25rem;
+  margin-bottom: 2vh;
+  background-color: white;
+  color: #292b2c;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 `;
 
 const FormGroup = styled(UnstlyedFormGroup)`
-	margin-bottom: 6px;
+  margin-bottom: 6px;
 `;
 
 const Input = styled(UntstyledInput)`
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 `;
 
 const Label = styled(UntstyledLabel)`
-	margin-bottom: 0;
-	font-size: 95%;
+  margin-bottom: 0;
+  font-size: 95%;
 `;
 
 const Section = styled.div`
@@ -100,29 +100,27 @@ type Props = {
 };
 
 const FormWrapper = (props: Props) => {
-  const templateModifications = TemplateGeneratorApi.getTemplateModifications(
-    props.programTemplate
-  ).map(e =>
-    (<FormGroup style={{ fontSize: '80%' }} key={e} check>
+  const templateModifications = TemplateGeneratorApi.getTemplateModifications(props.programTemplate).map(e => (
+    <FormGroup style={{ fontSize: '80%' }} key={e} check>
       <Label check>
         <Input
           type="radio"
-          name={'radio1'}
+          name="radio1"
           checked={e === props.templateModification}
           onChange={() => props.changeModifcation(e)}
         />{' '}
         {e}
       </Label>
-    </FormGroup>)
-  );
+    </FormGroup>
+  ));
 
   const exerciseForms = [
     props.benchPressData,
     props.deadliftData,
     props.overheadPressData,
     props.squatData
-  ].map(({ exerciseName, reps, exerciseWeight }) =>
-    (<FormGroup key={exerciseName}>
+  ].map(({ exerciseName, reps, exerciseWeight }) => (
+    <FormGroup key={exerciseName}>
       <Container fluid style={{ padding: '0' }}>
         <Row noGutters>
           <Col
@@ -154,7 +152,8 @@ const FormWrapper = (props: Props) => {
                   exerciseName,
                   parseInt(e.target.value, 10),
                   exerciseWeight
-                )}
+                )
+              }
             />
           </Col>
           <Col
@@ -178,13 +177,14 @@ const FormWrapper = (props: Props) => {
                   exerciseName,
                   reps,
                   parseInt(e.target.value, 10)
-                )}
+                )
+              }
             />
           </Col>
         </Row>
       </Container>
-    </FormGroup>)
-  );
+    </FormGroup>
+  ));
 
   return (
     <div>
@@ -200,7 +200,8 @@ const FormWrapper = (props: Props) => {
                 id="bodyweightInput"
                 value={props.bodyweight || ''}
                 onChange={e =>
-                  props.changeBodyweight(parseInt(e.target.value, 10))}
+                  props.changeBodyweight(parseInt(e.target.value, 10))
+                }
               />
             </Col>
             <Col xs="6">

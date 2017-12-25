@@ -26,16 +26,16 @@ type Props = {
 };
 
 const StyledAlert = styled(UnstyledAlert)`
-	span {
-		font-size: 75%;
-	}
-	padding: 3px 6px;
-	strong {
-		text-decoration: underline;
-		margin-left: 5px
-	}
-	display: inline-block;
-	margin-right: 10px;
+  span {
+    font-size: 75%;
+  }
+  padding: 3px 6px;
+  strong {
+    text-decoration: underline;
+    margin-left: 5px;
+  }
+  display: inline-block;
+  margin-right: 10px;
 `;
 
 export default class ScheduleWrapper extends React.Component {
@@ -97,16 +97,16 @@ export default class ScheduleWrapper extends React.Component {
             Squat Max:<strong>{squatOrm || '?'}</strong>
           </span>
         </StyledAlert>
-        {data.map(e =>
-          (<ScheduleCard
+        {data.map(e => (
+          <ScheduleCard
             key={e.cardTitle}
             cardData={e}
             columnHeaders={e.columnHeaders}
             templateName={this.props.templateName}
             templateModification={this.props.templateModification}
             styles={{ marginBottom: '30px' }}
-          />)
-        )}
+          />
+        ))}
       </div>
     );
   }

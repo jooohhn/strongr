@@ -15,11 +15,12 @@ const StyledFooterDiv = styled.footer`
   color: ${BACKGROUND_COLOR};
 `;
 
-const Footer = () =>
-  (<StyledFooterDiv>
+const Footer = () => (
+  <StyledFooterDiv>
     <GithubIcon />
     <FacebookIcon />
     <TwitterIcon />
-  </StyledFooterDiv>);
+  </StyledFooterDiv>
+);
 
 export default Footer;

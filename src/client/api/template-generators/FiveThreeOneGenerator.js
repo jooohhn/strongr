@@ -160,9 +160,7 @@ export default class FiveThreeOneGenerator implements GeneratorInterface {
           });
           break;
         default:
-          throw new Error(
-            `Given templateModification ${templateModification} and did not fit default`
-          );
+          throw new Error(`Given templateModification ${templateModification} and did not fit default`);
       }
 
       return {

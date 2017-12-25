@@ -31,9 +31,7 @@ export default class TemplateGeneratorApi {
           templateModification !== 'The Triumvirate' &&
           templateModification !== 'Boring but Big'
         ) {
-          throw new Error(
-            `5/3/1 erroneously given templateModification ${templateModification}`
-          );
+          throw new Error(`5/3/1 erroneously given templateModification ${templateModification}`);
         }
         return FiveThreeOneGenerator.getTemplateData(
           benchPressWeight,
@@ -48,9 +46,7 @@ export default class TemplateGeneratorApi {
           templateModification !== 'Smolov Jr. Bench' &&
           templateModification !== 'Smolov Jr. Squat'
         ) {
-          throw new Error(
-            `Smolov Jr. erroneously given templateModification ${templateModification}`
-          );
+          throw new Error(`Smolov Jr. erroneously given templateModification ${templateModification}`);
         }
         return SmolovJrGenerator.getTemplateData(
           benchPressWeight,
@@ -76,9 +72,7 @@ export default class TemplateGeneratorApi {
     }
   }
 
-  static getTemplateModifications(
-    template: ProgramTemplateType
-  ): Array<TemplateModificationType> {
+  static getTemplateModifications(template: ProgramTemplateType): Array<TemplateModificationType> {
     switch (template) {
       case '5/3/1':
         return FiveThreeOneGenerator.getTemplateModifications();

@@ -20,8 +20,8 @@ import { BACKGROUND_COLOR, NAV_COLOR } from '../constants/colors';
 
 // @ TODO: These CSS properties aren't given priority. Find out why
 const StyledNavbar = styled(UntsyledNavbar)`
-	 background-color:${NAV_COLOR};
-	 color: ${BACKGROUND_COLOR} !important
+  background-color: ${NAV_COLOR};
+  color: ${BACKGROUND_COLOR} !important;
 `;
 
 export default class NavMenu extends React.Component {
@@ -54,13 +54,13 @@ export default class NavMenu extends React.Component {
                 { route: HOME_PAGE_ROUTE, label: 'Home' },
                 { route: FAQ_PAGE_ROUTE, label: 'FAQ' },
                 { route: ABOUT_PAGE_ROUTE, label: 'About' }
-              ].map(link =>
-                (<NavItem key={link.route}>
+              ].map(link => (
+                <NavItem key={link.route}>
                   <NavLink tag={RRNavLink} to={link.route}>
                     {link.label}
                   </NavLink>
-                </NavItem>)
-              )}
+                </NavItem>
+              ))}
             </Nav>
           </Collapse>
         </StyledNavbar>

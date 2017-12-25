@@ -28,8 +28,8 @@ const ContentWrapper = styled.div`
 }
 `;
 
-const App = () =>
-  (<div>
+const App = () => (
+  <div>
     <ContentWrapper>
       <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
       <NavMenu />
@@ -46,6 +46,7 @@ const App = () =>
       </Switch>
     </ContentWrapper>
     <Footer />
-  </div>);
+  </div>
+);
 
 export default App;

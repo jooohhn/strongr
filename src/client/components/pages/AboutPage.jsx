@@ -6,8 +6,8 @@ import { Container, Row } from 'reactstrap';
 
 const title = 'About';
 
-const AboutPage = () =>
-  (<div>
+const AboutPage = () => (
+  <div>
     <Helmet
       title={title}
       meta={[
@@ -20,6 +20,7 @@ const AboutPage = () =>
         <h3>About Page</h3>
       </Row>
     </Container>
-  </div>);
+  </div>
+);
 
 export default AboutPage;

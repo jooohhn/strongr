@@ -13,12 +13,13 @@ import { APP_CONTAINER_SELECTOR } from '../shared/config';
 
 const rootEl = document.querySelector(APP_CONTAINER_SELECTOR);
 
-const wrapApp = AppComponent =>
-  (<BrowserRouter>
+const wrapApp = AppComponent => (
+  <BrowserRouter>
     <AppContainer>
       <AppComponent />
     </AppContainer>
-  </BrowserRouter>);
+  </BrowserRouter>
+);
 
 ReactDOM.render(wrapApp(App), rootEl);
 
