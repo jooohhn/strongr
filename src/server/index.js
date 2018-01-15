@@ -19,6 +19,8 @@ app.get('/*', (req, res) => {
   res.send(renderApp());
 });
 
+console.log(process.env);
+
 app.listen(WEB_PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Server running on port ${WEB_PORT} ${
