@@ -34,7 +34,6 @@ export default {
   resolve: {
     extensions: ['.js', '.jsx', '.css']
   },
-  devtool: 'source-map',
   devServer: {
     // port for dev server
     port: WDS_PORT,
