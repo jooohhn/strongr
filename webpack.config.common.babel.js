@@ -1,6 +1,5 @@
 // @flow
 import path from 'path';
-import webpack from 'webpack';
 import { WDS_PORT } from './src/shared/config';
 import { isProd } from './src/shared/util';
 
@@ -18,18 +17,7 @@ export default {
   module: {
     rules: [
       // Tells all .js and .jsx files to go through babel-loader.
-      {
-        test: /\.(js|jsx)$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true
-            }
-          }
-        ],
-        exclude: /node_modules/
-      },
+      { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
       {
         test: /\.css$/,
         use: [
@@ -43,13 +31,6 @@ export default {
       }
     ]
   },
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  ],
-  devtool: isProd ? false : 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.css']
   },
