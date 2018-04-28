@@ -21,12 +21,8 @@ export default {
       {
         test: /\.css$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'postcss-loader'
-          }
+          { loader: 'style-loader' },
+          { loader: 'postcss-loader' }
         ]
       }
     ]
@@ -34,12 +30,11 @@ export default {
   resolve: {
     extensions: ['.js', '.jsx', '.css']
   },
+  devtool: 'source-map',
   devServer: {
     // port for dev server
     port: WDS_PORT,
-    hot: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
+    hot: isProd ? false : true,
+    headers: { 'Access-Control-Allow-Origin': '*' }
   }
 };
