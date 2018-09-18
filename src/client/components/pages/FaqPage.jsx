@@ -15,12 +15,15 @@ const AboutPage = () => (
         { property: 'og:title', content: title }
       ]}
     />
-    <Container fluid style={{ marginTop: '1.25vh' }}>
+    <Container fluid style={{ marginTop: '1.75vh', paddingLeft: '50px' }}>
       <Row>
-        <h3>FAQ Page</h3>
-        <p>-Sources used</p>
-        <p>-How are ORMs calculated</p>
-        <p>-How are ORMs used in calculating schedules</p>
+        <h4>How Do I Use Strongr</h4>
+      </Row>
+      <Row>
+        <p>
+          Input your current strength levels and desired template and allow the
+          app to generate and exercise routine for you.
+        </p>
       </Row>
     </Container>
   </div>

@@ -15,9 +15,15 @@ const AboutPage = () => (
         { property: 'og:title', content: title }
       ]}
     />
-    <Container fluid style={{ marginTop: '1.25vh' }}>
+    <Container fluid style={{ marginTop: '1.75vh', paddingLeft: '55px' }}>
       <Row>
-        <h3>About Page</h3>
+        <h4>What is Strongr?</h4>
+      </Row>
+      <Row>
+        <p>
+          Strongr is a weightraining routine generator that allows users to use
+          and share their exericise templates.
+        </p>
       </Row>
     </Container>
   </div>
