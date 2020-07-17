@@ -72,7 +72,7 @@
 		"express": "^4.16.3",
 		"express-sslify": "^1.2.0",
 		"localforage": "^1.7.1",
-		"lodash": "^4.17.5",
+		"lodash": "^4.17.19",
 		"react": "16.3.2",
 		"react-addons-css-transition-group": "^15.6.0",
 		"react-addons-transition-group": "^15.6.0",
